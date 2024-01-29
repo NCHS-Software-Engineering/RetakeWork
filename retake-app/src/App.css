@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #1d1f22;
+  background-color: #7e787b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+
+/*Brand colors: 0E2140
+7E787B
+37527F
+D7D1CF
+5584B9
+*/
