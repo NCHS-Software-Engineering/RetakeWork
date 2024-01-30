@@ -6,6 +6,10 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
+       <div className="App" id="outer-container">
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+      
+    </div>
       <header className="App-header">
         
         <p>
@@ -22,10 +26,7 @@ function App() {
       </header>
      
    
-    <div className="App" id="outer-container">
-      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-      
-    </div>
+   
     </div>
     
   );
