@@ -39,7 +39,7 @@
   
   /* General sidebar styles */
   .bm-menu {
-    background: #373a47;
+    background: #7E787B;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }
@@ -59,7 +59,7 @@
   .bm-item {
     display: inline-block;
   
-    color: #270b74;
+    color: #0E2140;
   margin-bottom: 10px;
   text-align: left;
   text-decoration: none;
