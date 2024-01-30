@@ -1,5 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from './Sidebar';
+import React from 'react';
+
 
 function App() {
   return (
@@ -18,11 +20,11 @@ function App() {
           
         </a>
       </header>
-      <div className="App" id="outer-container">
-      <div id="page-wrap">
-        <h1>Cool Restaurant</h1>
-        <h2>Check out our offerings in the sidebar!</h2>
-      </div>
+     
+   
+    <div className="App" id="outer-container">
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+      
     </div>
     </div>
     
