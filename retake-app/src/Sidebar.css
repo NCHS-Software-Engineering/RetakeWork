@@ -64,10 +64,11 @@
   text-align: left;
   text-decoration: none;
   transition: color 0.2s;
+  font-weight: bold;
 }
 
 .bm-item:hover {
-  color: #21b470;
+  color: #D7D1CF;
 }
   
   /* Styling of overlay */
