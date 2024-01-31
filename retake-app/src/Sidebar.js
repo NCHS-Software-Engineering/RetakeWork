@@ -1,22 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import './Sidebar.css';
+import Select from "react-select";
+
+
 
 export default props => {
+  const [options1, setOptions] = useState([]);
   return (
     <Menu>
-      <a className="menu-item" href="/">
-        Home
-      </a>
-      <a className="menu-item" href="/salads">
-        Salads
-      </a>
-      <a className="menu-item" href="/pizzas">
-        Pizzas
-      </a>
-      <a className="menu-item" href="/desserts">
-        Desserts
-      </a>
+      <div className="mt-auto m-auto w-50">
+<Select options = {options1} autoFocus={true} />
+</div>
     </Menu>
   );
 };
+
