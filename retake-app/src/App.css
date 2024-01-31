@@ -53,10 +53,38 @@ D7D1CF
 .button1 {
   background-color: white; 
   color: black; 
-  border: 2px solid #04AA6D;
+  border: 2px solid #999999;
+  padding: 15px 32px;
+  float: right;
+  margin-block-start: auto;
+ 
+  width: 200px;
+  height: 50px;
+  font-size: calc(0.1px + 2vmin);
+  align-items: top;
+  justify-content: top right;
+  text-align: center;
 }
 
 .button1:hover {
-  background-color: #04AA6D;
+  background-color: #999999;
+  color: white;
+}
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #999999;
+  padding: 15px 32px;
+  position:absolute; top:0; right:0;
+  width: 200px;
+  height: 50px;
+  font-size: calc(0.1px + 2vmin);
+  align-items: top;
+  justify-content: top right;
+  text-align: center;
+}
+
+.button2:hover {
+  background-color: #999999;
   color: white;
 }

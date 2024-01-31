@@ -15,7 +15,8 @@ function App() {
         <p>
           Retake App
         </p>
-        <button class="button button1">Log in </button>
+        <button class="button button1">Log In </button>
+        <button class="button button2">Sign Up </button>
         <a
           className="App-link"
           href="https://reactjs.org"
