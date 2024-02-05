@@ -5,27 +5,27 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Link,
 } from "react-router-dom";
-import Login from './pages/logIn';  
+ 
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router';
+import Login from './pages/Login.jsx';
 
+function MainRouter(){
+  return(
+      <Router>
+          <div className="container">
+              <Routes>
+                  <Route path="./pages/Login" component={Login} />
+              </Routes>
+          </div>
+     </Router>
 
-
+  )
+}
 
 function App() {
   
-
-  
-    const routeChange = () =>{ 
-      <Router>
-        let navigate = useNavigate(); 
-        <Routes>
-        <Route path="./pages/login" element={<button button button1/>} />
-          navigate("/login");
-        </Routes>
-      </Router>
-    }
     
 
   return (
@@ -39,18 +39,12 @@ function App() {
         <p>
           Retake App
         </p>
-        <a to="./pages/logIn" className="btn button1">Login</a>
 
-        <button class="button button1"  onClick={routeChange}>Log In </button>
+        <button class="button button1" onClick={MainRouter}>Log In </button>
         <button class="button button2">Sign Up </button>
-        <a
-          //className="App-link"
-          //href="https://reactjs.org"
-          //target="_blank"
-          //rel="noopener noreferrer"
-        >
+        
           
-        </a>
+       
       </header>
       
 
