@@ -1,0 +1,84 @@
+.HomePage {
+    text-align: center;
+  }
+
+  
+  .Home-header {
+    background-color: #7e787b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    justify-content: top;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+    font-size: calc(60px + 2vmin);
+    color: #0E2140;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  /*Brand colors: 0E2140
+  7E787B
+  37527F
+  D7D1CF
+  5584B9
+  */
+  
+  
+  .button1 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #999999;
+    padding: 15px 32px;
+    float: right;
+    margin-block-start: auto;
+    position:absolute; 
+    top:0; 
+    right:11%;
+    width: 200px;
+    height: 50px;
+    font-size: calc(0.1px + 2vmin);
+    align-items: top;
+    justify-content: top right;
+    text-align: center;
+  }
+  
+  .button1:hover {
+    background-color: #999999;
+    color: white;
+  }
+  .button2 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #999999;
+    padding: 15px 32px;
+    position:absolute; 
+    top:0%; 
+    right:0;
+    width: 200px;
+    height: 50px;
+    font-size: calc(0.1px + 2vmin);
+    align-items: top;
+    justify-content: top right;
+    text-align: center;
+  }
+  
+  .button2:hover {
+    background-color: #999999;
+    color: white;
+  }
