@@ -16,15 +16,14 @@ import Home from './pages/Home.js';
 
 function App() {
   
-    
-
   return (
     <div className="App">
        <Router>
           <div className="container">
               <Routes>
-                  <Route path="./pages/Home"  component={<Home/>}/>
-                  <Route path="./pages/Login" element={<Login/>} />
+                  <Route path="" element={<><Home/></>}/>
+                  <Route path="/Login" element={<><Login/></>} />
+                  <Route path="/Home" element={<><Home/></>} />
               </Routes>
           </div>
      </Router>

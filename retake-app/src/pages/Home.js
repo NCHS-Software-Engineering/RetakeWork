@@ -21,22 +21,18 @@ function App() {
       
     </div>
       <header className="Home-header">
-        
+      <img src="logoNB.jpg" alt="Retake work app"/>
+
         <p>
           Retake App
         </p>
 
-        <button class="button button1">Log In </button>
+        <Link to="/login"><button class="button button1">Log In </button></Link>
         <button class="button button2">Sign Up </button>
         
           
        
       </header>
-      
-
-
-
-
 
      
     </div>
