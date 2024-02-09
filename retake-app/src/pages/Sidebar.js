@@ -6,14 +6,16 @@ import Select from "react-select";
 
 
 export default props => {
-  const [options1, setOptions] = useState([]);
-
-  
+ 
+  const options1 = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }];
   return (
     <Menu>
       <div className="mt-auto m-auto w-50">
-<Select options = {options1} autoFocus={true} />
-</div>
+        <Select options = {options1} autoFocus={true}/>
+      </div>
 
     </Menu>
   );

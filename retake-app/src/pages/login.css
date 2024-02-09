@@ -1,0 +1,12 @@
+.screen{
+    background-color: #7e787b;
+    flex-grow: 1;
+}
+.box {
+    background-color: #7e787b;
+    opacity: 40%;
+    width: 300px;
+    height: 500px;
+    padding: 50px;
+    margin: 20px;
+}
