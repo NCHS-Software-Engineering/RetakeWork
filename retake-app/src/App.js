@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Login from './pages/Login.js';
 import Home from './pages/Home.js';
+import Signup from './pages/Signup.js';
 
 
 
@@ -24,6 +25,7 @@ function App() {
                   <Route path="" element={<><Home/></>}/>
                   <Route path="/Login" element={<><Login/></>} />
                   <Route path="/Home" element={<><Home/></>} />
+                  <Route path="/signup" element={<><Signup/></>} />
               </Routes>
           </div>
      </Router>
