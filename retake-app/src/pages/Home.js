@@ -10,7 +10,7 @@ import {
  
 import { useNavigate } from "react-router-dom";
 import Login from './Login.js';
-
+import logo from './Logo.jpg';
 function App() {
   
     
@@ -21,14 +21,11 @@ function App() {
       
     </div>
       <header className="Home-header">
-      <img src="logoNB.jpg" alt="Retake work app"/>
+      <img src={logo} alt="Retake work app logo"/>
 
         <p>
           Retake App
         </p>
-
-        <Link to="/login"><button class="button button1">Log In </button></Link>
-        <button class="button button2">Sign Up </button>
         
           
        
