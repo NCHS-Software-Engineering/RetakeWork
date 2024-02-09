@@ -26,9 +26,6 @@ function App() {
         <p>
           Retake App
         </p>
-
-        <Link to="/login"><button class="button button1">Log In </button></Link>
-        <button class="button button2">Sign Up </button>
         
           
        
