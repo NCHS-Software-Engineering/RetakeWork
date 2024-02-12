@@ -9,6 +9,7 @@ import {
 
 const Login = () => {
     return (
+        <body>
         <div className='screen'>
         <div className='box'>
             <form action="">
@@ -27,14 +28,17 @@ const Login = () => {
                     <a href='#' >Forgot password?</a>
                 </div>
 
-                <Link to="/"><button type='submit'>Login</button></Link>
+                <Link to="/home"><button type='submit'>Login</button></Link>
 
                 <div className="register-link">
                     <p>Click here to <Link to="/signup">sign up</Link></p>
                 </div>
+
+                <div class="go"><i class="fab fa-google"></i>  Google</div>
             </form>
         </div>
         </div>
+        </body>
     );
 };
 

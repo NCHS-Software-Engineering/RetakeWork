@@ -26,10 +26,10 @@ const Login = () => {
                     <input type="text" placeholder='Confirm password' required />
                 </div>
 
-                <div className="remember-forget">
+               {/*  <div className="remember-forget">
                     <label><input type="checkbox" />Remember me   </label>
                     <a href='#' >   Forget password</a>
-                </div>
+                </div> */}
 
                 <Link to="/"><button type='submit'>Signup</button></Link>
 

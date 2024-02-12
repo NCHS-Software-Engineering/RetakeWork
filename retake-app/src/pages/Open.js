@@ -14,7 +14,6 @@ function App() {
         <div className="OpenPage">
             
             <header className="Open-header">
-                <img src="logoNB.jpg" alt="Retake work app" />
 
                 <p>
                     Retake App
@@ -22,7 +21,7 @@ function App() {
 
                 <Link to="/login"><button class="button button1">Log In </button></Link>
                 <Link to="/signup"><button class="button button2">Sign Up </button></Link>
-                <Link to="/home"><button class="button button2">home </button></Link>
+                <Link to="/home"><button class="button3">home </button></Link>
 
 
 
