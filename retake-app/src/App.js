@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import Login from './pages/Login.js';
 import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
+import Open from './pages/Open.js';
 
 
 
@@ -22,10 +23,11 @@ function App() {
        <Router>
           <div className="container">
               <Routes>
-                  <Route path="" element={<><Home/></>}/>
+                  <Route path="" element={<><Open/></>}/>
                   <Route path="/Login" element={<><Login/></>} />
                   <Route path="/Home" element={<><Home/></>} />
                   <Route path="/signup" element={<><Signup/></>} />
+                  <Route path="/home" element={<><Home/></>}/>
               </Routes>
           </div>
      </Router>
