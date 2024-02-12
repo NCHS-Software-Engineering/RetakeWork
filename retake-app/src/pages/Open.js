@@ -11,26 +11,27 @@ function App() {
 
 
     return (
-        <div className="OpenPage">
-            
-            <header className="Open-header">
+        <body>
+            <div className="OpenPage">
 
-                <p>
-                    Retake App
-                </p>
+                <header className="Open-header">
 
-                <Link to="/login"><button class="button button1">Log In </button></Link>
-                <Link to="/signup"><button class="button button2">Sign Up </button></Link>
-                <Link to="/home"><button class="button3">home </button></Link>
+                    <p>
+                        Retake App
+                    </p>
 
-
-
-
-            </header>
+                    <Link to="/login"><button class="button1">Log In </button></Link>
+                    <Link to="/signup"><button class="button2">Sign Up </button></Link>
+                    <Link to="/home"><button class="button3">home </button></Link>
 
 
-        </div>
 
+
+                </header>
+
+
+            </div>
+        </body>
     );
 }
 
