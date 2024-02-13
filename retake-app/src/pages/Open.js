@@ -22,7 +22,7 @@ function App() {
 
                     <Link to="/login"><button class="button1">Log In </button></Link>
                     <Link to="/signup"><button class="button2">Sign Up </button></Link>
-                    <Link to="/home"><button class="button3">home </button></Link>
+                    <Link to="/home"><button class="button3">Home </button></Link>
 
 
 

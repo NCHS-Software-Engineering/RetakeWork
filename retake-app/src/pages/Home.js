@@ -20,7 +20,10 @@ function App() {
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       
     </div>
-    <img src={logo} alt="Retake work app logo" style={{ width: '400px'}}/>
+    
+      <img src={logo} alt="Retake work app logo" style={{ width: '400px'}}/>
+    
+    
       <header className="Home-header">
 
 
