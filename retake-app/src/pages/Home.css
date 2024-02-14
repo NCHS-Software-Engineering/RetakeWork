@@ -33,6 +33,12 @@
       transform: rotate(360deg);
     }
   }
+
+  .Home-header img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
   
   
   /*Brand colors: 

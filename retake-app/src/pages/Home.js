@@ -22,11 +22,11 @@ function App() {
       
     </div>
     
-      <img src={logo} alt="Retake work app logo" style={{ width: '400px'}}/>
+      
 
     
       <header className="Home-header">
-
+      <img src={logo} alt="Retake work app logo" style={{ width: '500px'}}/>
         <p>
           Retake App
         </p>
