@@ -15,6 +15,7 @@ function App() {
   
     
   return (
+    <body>
     <div className="HomePage">
        <div className="HomePage" id="outer-container">
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
@@ -22,10 +23,9 @@ function App() {
     </div>
     
       <img src={logo} alt="Retake work app logo" style={{ width: '400px'}}/>
-    
+
     
       <header className="Home-header">
-
 
         <p>
           Retake App
@@ -37,6 +37,7 @@ function App() {
       
      
     </div>
+    </body>
     
   );
 }
