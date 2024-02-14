@@ -68,7 +68,7 @@
 }
 
 .bm-item:hover {
-  color: #D7D1CF;
+  color: #34bbbb;
 }
   
   /* Styling of overlay */
@@ -76,6 +76,4 @@
     background: rgba(0, 0, 0, 0.3);
   }
 
-  div.select-option {
-    color:aqua;
-  }
+  

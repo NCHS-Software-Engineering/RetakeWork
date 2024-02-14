@@ -12,7 +12,7 @@ import {
 
 
 
-
+let isOpenable = false
 
 export default props => {
   const [selected, setSelected] = useState(null);
@@ -24,21 +24,28 @@ export default props => {
     if (selectedOption.value === "default") {
       window.location.href = "./";
     }
-    if (selectedOption.value === "signnup") {
+    if (selectedOption.value === "signup") {
       window.location.href = "./signup";
+    }
+if(selectedOption.value === "home"){
+      isOpenable = true;
     }
     
   };
-  
+
+
+
   const customStyles = {
     singleValue: (base) => ({
       ...base,
       padding: "5px 10px",
       borderRadius: 5,
       background: selected,
+      selected: "true",
       color: "#37527F",
       display: "flex",
       width: "fit-content",
+
     }),
   };
 
@@ -49,10 +56,18 @@ export default props => {
     { value: 'home', label: 'Home' },
     { value: 'login', label: 'Log In'},
   {value: 'default', label: 'Default'},];
+
+  const classOptions = [
+    { value: 'prog1', label: 'Programming 1' },
+    { value: 'APCS', label: 'AP Computer Science A' },
+    { value: 'SE', label: 'Software Engineering'},];
+
   return (
     <Menu>
       <div className="mt-auto m-auto w-50">
-        <Select options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
+        <Select placeholder="Pages" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
+        <p></p>
+        <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChange} styles={customStyles} isDisabled={isOpenable}/>
       </div>
 
     </Menu>
