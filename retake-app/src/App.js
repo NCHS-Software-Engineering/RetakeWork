@@ -13,7 +13,7 @@ import Login from './pages/Login.js';
 import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
 import Open from './pages/Open.js';
-
+import Import from './pages/Import.js';
 
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
                   <Route path="/Home" element={<><Home/></>} />
                   <Route path="/signup" element={<><Signup/></>} />
                   <Route path="/home" element={<><Home/></>}/>
+                  <Route path="/import" element={<><Import/></>}/>
               </Routes>
           </div>
      </Router>
