@@ -12,17 +12,18 @@ function App() {
 
     return (
         <body>
+
+            <Link to="/home"><button class="button3">home</button></Link>
+
             <div className="OpenPage">
 
                 <header className="Open-header">
 
                     <p>
-                        Retake App
-                    </p>
+                        Retake App         </p>
 
-                    <Link to="/login"><button class="button1">Log In </button></Link>
-                    <Link to="/signup"><button class="button2">Sign Up </button></Link>
-                    <Link to="/home"><button class="button3">Home </button></Link>
+                    <Link to="/login"><button class="loginbutton">Log In</button></Link>
+                    <Link to="/signup"><button class="signupbutton">Sign Up</button></Link>
 
 
 
