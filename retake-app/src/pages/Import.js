@@ -1,4 +1,4 @@
-import './Home.css';
+import './Import.css';
 import Sidebar from './Sidebar';
 import React from 'react';
 import {
@@ -26,11 +26,8 @@ function App() {
 
     
       <header className="Home-header">
-      <img src={logo} alt="Retake work app logo" style={{ width: '500px'}}/>
-        <p>
-          Retake App
-        </p>
-        
+      
+      <button className="button">Import</button>
           
        
       </header>
