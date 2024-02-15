@@ -11,6 +11,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import Login from './Login.js';
 import logo from './LogoNB.png';
+import Image from 'react-bootstrap/Image';
+import "./LogoNB.png";
 function App() {
   
     
@@ -26,7 +28,8 @@ function App() {
 
     
       <header className="Home-header">
-      <img src={logo} alt="Retake work app logo" style={{ width: '500px'}}/>
+      <Image src={logo} alt="Retake work app logo" style={{ width: '500px'}} fluid/>
+      
         <p>
           Retake App
         </p>
@@ -41,5 +44,10 @@ function App() {
     
   );
 }
+
+
+
+
+
 
 export default App;
