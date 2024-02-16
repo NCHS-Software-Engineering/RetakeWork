@@ -4,7 +4,7 @@
 
   
   .Home-header {
-    background-color: #7e787b;
+    background-color: #262124;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
     
   }
   .body{
-    background-color: #7e787b;
+    background-color: #262124;
   }
   .App-link {
     color: #61dafb;
