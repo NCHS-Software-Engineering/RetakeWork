@@ -10,9 +10,9 @@ import {
  
 import { useNavigate } from "react-router-dom";
 import Login from './Login.js';
-import logo from './LogoNB.png';
+import logo from './logoWhite.png';
 import Image from 'react-bootstrap/Image';
-import "./LogoNB.png";
+import "./logoWhite.png";
 function App() {
   
     
