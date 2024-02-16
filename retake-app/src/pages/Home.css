@@ -18,7 +18,9 @@
     color: #0E2140;
     
   }
-  
+  .body{
+    background-color: #7e787b;
+  }
   .App-link {
     color: #61dafb;
   }
@@ -30,6 +32,12 @@
     to {
       transform: rotate(360deg);
     }
+  }
+
+  .Home-header img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   

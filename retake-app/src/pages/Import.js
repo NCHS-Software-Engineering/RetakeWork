@@ -1,4 +1,4 @@
-import './Home.css';
+import './Import.css';
 import Sidebar from './Sidebar';
 import React from 'react';
 import {
@@ -10,9 +10,7 @@ import {
  
 import { useNavigate } from "react-router-dom";
 import Login from './Login.js';
-import logo from './logoWhite.png';
-import Image from 'react-bootstrap/Image';
-import "./logoWhite.png";
+import logo from './LogoNB.png';
 function App() {
   
     
@@ -28,12 +26,8 @@ function App() {
 
     
       <header className="Home-header">
-      <Image src={logo} alt="Retake work app logo" style={{ width: '500px'}} fluid/>
       
-        <p>
-          Retake App
-        </p>
-        
+      <button className="button">Import</button>
           
        
       </header>
@@ -44,10 +38,5 @@ function App() {
     
   );
 }
-
-
-
-
-
 
 export default App;
