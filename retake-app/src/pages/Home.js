@@ -28,11 +28,12 @@ function App() {
 
     
       <header className="Home-header">
-      <Image src={logo} alt="Retake work app logo" style={{ width: '500px'}} fluid/>
-      
-        <p>
+      <p>
           Retake App
         </p>
+        
+      <Image src={logo} alt="Retake work app logo" style={{ width: '800'}} fluid/>
+      
         
           
        
