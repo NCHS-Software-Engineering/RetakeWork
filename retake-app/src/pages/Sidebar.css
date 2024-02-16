@@ -9,12 +9,12 @@
   
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
-    background: #373a47;
+    background: #D7D1CF;
   }
   
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: #D7D1CF;
+    background: #9d0d0d;
   }
   
   /* Position and sizing of clickable cross button */
@@ -39,7 +39,7 @@
   
   /* General sidebar styles */
   .bm-menu {
-    background: #7E787B;
+    background: #262124;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }
@@ -51,7 +51,7 @@
   
   /* Wrapper for item list */
   .bm-item-list {
-    color: #b8b7ad;
+    color: #262124;
     padding: 0.8em;
   }
   
@@ -68,7 +68,7 @@
 }
 
 .bm-item:hover {
-  color: #34bbbb;
+  color: #fa3e00;
 }
   
   /* Styling of overlay */
