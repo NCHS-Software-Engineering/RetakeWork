@@ -10,7 +10,7 @@ import {
  
 import { useNavigate } from "react-router-dom";
 import Login from './Login.js';
-import logo from './Logo.jpg';
+import logo from './LogoNB.png';
 function App() {
   
     
@@ -20,6 +20,10 @@ function App() {
       <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
       
     </div>
+    
+      <img src={logo} alt="Retake work app logo" style={{ width: '400px'}}/>
+    
+    
       <header className="Home-header">
 
 
@@ -30,7 +34,7 @@ function App() {
           
        
       </header>
-      <img src={logo} alt="Retake work app logo" style={{ width: '400px'}}/>
+      
      
     </div>
     
