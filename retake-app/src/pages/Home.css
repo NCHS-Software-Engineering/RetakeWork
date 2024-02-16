@@ -15,8 +15,8 @@
     padding-top: 0px;
     margin-top: 0px;
     font-size: calc(60px + 2vmin);
-    color: #0E2140;
-    
+    color: #ffffff;
+    /*0E2140 is the previous color*/
   }
   .body{
     background-color: #262124;
@@ -38,6 +38,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 800px; 
   }
   
   
