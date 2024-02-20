@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import './Sidebar.css';
 import Select from "react-select";
+import { PiSignOutBold } from "react-icons/pi";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,7 +19,7 @@ let isOpenable = false
 export default props => {
   const [selected, setSelected] = useState(null);
   const handleChange = (selectedOption) => {
-  
+
     if (selectedOption.value === "login") {
       window.location.href = "./login";
     }
@@ -27,10 +29,10 @@ export default props => {
     if (selectedOption.value === "signup") {
       window.location.href = "./signup";
     }
-if(selectedOption.value === "home"){
+    if (selectedOption.value === "home") {
       isOpenable = true;
     }
-    
+
   };
 
 
@@ -49,18 +51,18 @@ if(selectedOption.value === "home"){
     }),
   };
 
-  
+
 
   const options1 = [
     { value: 'signup', label: 'Sign Up' },
     { value: 'home', label: 'Home' },
-    { value: 'login', label: 'Log In'},
-  {value: 'default', label: 'Default'},];
+    { value: 'login', label: 'Log In' },
+    { value: 'default', label: 'Default' },];
 
   const classOptions = [
     { value: 'prog1', label: 'Programming 1' },
     { value: 'APCS', label: 'AP Computer Science A' },
-    { value: 'SE', label: 'Software Engineering'},];
+    { value: 'SE', label: 'Software Engineering' },];
 
   return (
     <Menu>
@@ -69,8 +71,13 @@ if(selectedOption.value === "home"){
         <p></p>
         <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChange} styles={customStyles} isDisabled={isOpenable}/>
       </div>
+      <div className = "signout">
+        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
 
+      </div>
     </Menu>
+
+
   );
 };
 

@@ -76,4 +76,16 @@
     background: rgba(0, 0, 0, 0.3);
   }
 
+  .signout {
+    position: absolute;
+    bottom: 0;
+    width: 220px;
+  }
+
+  .signoutbutton{
+    font-size:small;
+    width: 100%;
+  }
+  
+
   
