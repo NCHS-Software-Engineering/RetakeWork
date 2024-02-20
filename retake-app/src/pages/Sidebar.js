@@ -38,19 +38,21 @@ export default props => {
 
 
   const customStyles = {
-    singleValue: (base) => ({
-      ...base,
-      padding: "5px 10px",
-      borderRadius: 5,
-      background: selected,
-      selected: "true",
-      color: "#37527F",
-      display: "flex",
-      width: "fit-content",
-
+    control:  (provided, state)=> ({
+      ...provided,
+      width: 210,
+      position: 'relative',
+      top: 40,
+      // height: 25,
+      // minHeight: 10,
+      // overflow:'hidden'
     }),
-  };
-
+    menu: (provided, state) => ({
+      ...provided,
+      width: 210,
+      position: 'relative',
+      top: 40
+    })};
 
 
   const options1 = [
@@ -80,4 +82,3 @@ export default props => {
 
   );
 };
-
