@@ -14,26 +14,52 @@ import {
 
 
 
-let isOpenable = false
+
 
 export default props => {
-  const [selected, setSelected] = useState(null);
+
+  const [isOpenableClasses, setSelectedClasses] = useState(true);
+
   const handleChange = (selectedOption) => {
 
     if (selectedOption.value === "login") {
       window.location.href = "./login";
+      setSelectedClasses(true);
     }
     if (selectedOption.value === "default") {
       window.location.href = "./";
+      setSelectedClasses(true);
     }
     if (selectedOption.value === "signup") {
       window.location.href = "./signup";
+      setSelectedClasses(true);
     }
     if (selectedOption.value === "home") {
-      isOpenable = true;
+      setSelectedClasses(false);
     }
 
   };
+
+  const handleChangeClasses = (selectedOption) => {
+
+    if (selectedOption.value === "login") {
+      window.location.href = "./login";
+      setSelectedClasses(true);
+    }
+    if (selectedOption.value === "default") {
+      window.location.href = "./";
+      setSelectedClasses(true);
+    }
+    if (selectedOption.value === "signup") {
+      window.location.href = "./signup";
+      setSelectedClasses(true);
+    }
+    if (selectedOption.value === "home") {
+      setSelectedClasses(false);
+    }
+
+  };
+
 
 
 
@@ -71,7 +97,9 @@ export default props => {
       <div className="mt-auto m-auto w-50">
         <Select placeholder="Pages" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
         <p></p>
-        <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChange} styles={customStyles} isDisabled={isOpenable}/>
+        <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChangeClasses} styles={customStyles} isDisabled={isOpenableClasses}/>
+        <p></p>
+        <Select placeholder="Test" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
       </div>
       <div className = "signout">
         <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
