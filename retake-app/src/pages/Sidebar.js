@@ -20,6 +20,7 @@ export default props => {
 
   const [isOpenableClasses, setSelectedClasses] = useState(true);
   const [testOptions, setTests] = useState([]);
+  const [studentOptions, setStudents] = useState([]);
   const handleChange = (selectedOption) => {
 
     if (selectedOption.value === "login") {
@@ -48,6 +49,12 @@ export default props => {
       { value: 'test2', label: 'Chapter 2 Test' },
       { value: 'test3', label: 'Chapter 3 Test' },
       { value: 'test4', label: 'Chapter 4 Test' }]);
+
+        setStudents([
+          {value: 'student1', label: 'Henry Anderson'},
+          {value: 'student2', label: 'Doran Sanford'},
+          {value: 'student3', label: 'Conner Furby'},])
+
       setSelectedClasses(false);
     }
     if (selectedOption.value === "APCS") {
@@ -55,6 +62,12 @@ export default props => {
       { value: 'test5', label: 'Unit 1: Primitive Types Test' },
       { value: 'test6', label: 'Unit 5: Writing Classes Test' },
       { value: 'test7', label: 'Unit 10: Recursion Test' }]);
+
+        setStudents([
+          {value: 'student4', label: 'Sam Abud'},
+          {value: 'student5', label: 'Jacob Wachtor'},
+          {value: 'student6', label: 'Jake Moore'},])
+
       setSelectedClasses(false);
     }
     if (selectedOption.value === "SE") {
@@ -62,6 +75,13 @@ export default props => {
       { value: 'test9', label: 'Chapter 15 Exam' },
       { value: 'test10', label: 'Maze Lab' },
       { value: 'test11', label: 'Chapter 17 Test' }]);
+
+        setStudents([
+          {value: 'student7', label: 'Ahkil Kanuri'},
+          {value: 'student8', label: 'Alex Ung'},
+          {value: 'student9', label: 'Will Stenzel'},
+          {value: 'student10', label: 'Samantha Pan'},])
+
       setSelectedClasses(false);
     }
 
@@ -110,6 +130,7 @@ export default props => {
         <p></p>
         <Select placeholder="Test" options = {testOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
         <p></p>
+        <Select placeholder="Students" options = {studentOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
       </div>
       <div className = "signout">
         <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
