@@ -3,6 +3,7 @@ import { slide as Menu } from 'react-burger-menu';
 import './Sidebar.css';
 import Select from "react-select";
 import { PiSignOutBold } from "react-icons/pi";
+import Child from './SelectQs.js';
 
 import {
   BrowserRouter as Router,
@@ -14,6 +15,10 @@ import {
 
 
 
+const Parent = () => {
+  const data = "Data from Parent to Child";
+  <Child data={data} />
+};
 
 
 export default props => {
@@ -87,6 +92,10 @@ export default props => {
 
   };
 
+  const handleStudentChange = (selectedOption) => {
+    window.location.href = "./questions";
+  };
+
 
 
 
@@ -122,7 +131,9 @@ export default props => {
   
 
   return (
+    
     <Menu>
+      
       <div className="mt-auto m-auto w-50">
         <Select placeholder="Pages" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
         <p></p>
@@ -130,13 +141,14 @@ export default props => {
         <p></p>
         <Select placeholder="Test" options = {testOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
         <p></p>
-        <Select placeholder="Students" options = {studentOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
+        <Select placeholder="Students" options = {studentOptions} autoFocus={true} onChange={handleStudentChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
       </div>
       <div className = "signout">
         <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
 
       </div>
     </Menu>
+    
 
 
   );

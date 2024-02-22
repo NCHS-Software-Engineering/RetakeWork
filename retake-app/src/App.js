@@ -14,6 +14,7 @@ import Home from './pages/Home.js';
 import Signup from './pages/Signup.js';
 import Open from './pages/Open.js';
 import Import from './pages/Import.js';
+import Questions from './pages/SelectQs.js';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                   <Route path="/signup" element={<><Signup/></>} />
                   <Route path="/home" element={<><Home/></>}/>
                   <Route path="/import" element={<><Import/></>}/>
+                  <Route path="/questions" element={<><Questions/></>}/>
               </Routes>
           </div>
      </Router>
