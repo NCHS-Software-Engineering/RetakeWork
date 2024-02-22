@@ -32,6 +32,8 @@ function App() {
           Retake App
         </p>
         
+       
+
       <Image src={logo} alt="Retake work app logo" style={{ width: '800'}} fluid/>
       
         
