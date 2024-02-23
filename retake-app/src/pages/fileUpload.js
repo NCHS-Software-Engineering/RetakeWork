@@ -1,6 +1,5 @@
-
+import "./fileUpload.css"
 import axios from "axios";
-
 import React, { Component } from "react";
 
 class fileUpload extends Component {
@@ -42,7 +41,7 @@ class fileUpload extends Component {
 	fileData = () => {
 		if (this.state.selectedFile) {
 			return (
-				<div>
+				<div className="details">
 					<h2>File Details:</h2>
 					<p>
 						File Name:{" "}
@@ -76,8 +75,8 @@ class fileUpload extends Component {
 	render() {
 		return (
 			<div>
-				<h1 className="head">GeeksforGeeks</h1>
-				<h3>File Upload using React!</h3>
+				<h1 className="head">Test File</h1>
+				<h3>Upload file for this test!</h3>
 				<div>
 					<input
 						type="file"
