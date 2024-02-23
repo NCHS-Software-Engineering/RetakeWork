@@ -20,14 +20,16 @@ function App() {
     
    
     return(
+      
       <body>
         
         <div className="SelectQsPage">
              <div className="SelectQsPage" id="outer-container">
             <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-            <h1>props.data</h1>
+            
         </div>
         </div>
+        <button className='testButton'>1</button>
       </body>
       );
       

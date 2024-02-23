@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 
 
-
+//<Select placeholder="Students" options = {studentOptions} autoFocus={true} onChange={handleStudentChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
 
 const Parent = () => {
   const data = "Data from Parent to Child";
@@ -42,6 +42,9 @@ export default props => {
     }
     if (selectedOption.value === "home") {
      ;
+    }
+    if (selectedOption.value === "qs") {
+      window.location.href = "./questions";
     }
 
   };
@@ -121,7 +124,8 @@ export default props => {
     { value: 'signup', label: 'Sign Up' },
     { value: 'home', label: 'Home' },
     { value: 'login', label: 'Log In' },
-    { value: 'default', label: 'Default' },];
+    { value: 'default', label: 'Default' },
+    {value: 'qs', label: 'Select Questions'},];
 
   const classOptions = [
     { value: 'prog1', label: 'Programming 1' },
@@ -141,7 +145,7 @@ export default props => {
         <p></p>
         <Select placeholder="Test" options = {testOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
         <p></p>
-        <Select placeholder="Students" options = {studentOptions} autoFocus={true} onChange={handleStudentChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
+        
       </div>
       <div className = "signout">
         <Link to="/"><button class="signoutbutton">Sign Out</button></Link>

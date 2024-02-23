@@ -1,10 +1,7 @@
 import React from 'react';
 import './Login.css';
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
+    BrowserRouter as Link,
   } from "react-router-dom";
 
 
