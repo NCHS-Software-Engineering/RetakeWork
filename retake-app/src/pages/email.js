@@ -14,28 +14,27 @@ import logo from './logoWhite.png';
 import Image from 'react-bootstrap/Image';
 
 
-
-function App() {
+const Email = () => {
   
     
    
     return(
       
-      <body>
-        
-        <div className="email">
-             <div className="email" id="outer-container">
-            <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-            
+        <body>
+        <div className='screen'>
+        <div className='box'>
+            <form action="">
+                <h1>Email</h1>
+
+                
+            </form>
         </div>
         </div>
-        
-        
-      </body>
+        </body>
       );
       
     
   }
   
 
-  export default App;
+  export default Email;
