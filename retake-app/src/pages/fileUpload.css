@@ -8,11 +8,10 @@ h3 {
   color: #D7D1CF;
 }
 
-
   
 /* Styles for the upload button */
-button {
-  background-color: #5584B9; /* Green */
+.fileButton {
+  background-color: #5584B9; 
   border: none;
   color: white;
   padding: 10px 20px;
@@ -25,7 +24,7 @@ button {
   border-radius: 4px;
 }
   
-button:hover {
+.fileButton:hover {
   background-color: #37527F;
 }
 

@@ -18,31 +18,22 @@ function App() {
     
   return (
     <body>
-    <div className="HomePage">
-       <div className="HomePage" id="outer-container">
-      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-      
-    </div>
-    
-      
-
-    
-      <header className="Home-header">
-      <p>
-          Retake App
-        </p>
+      <div className="HomePage">
+        <div className="HomePage" id="outer-container">
+        <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
         
-       
-
-      <Image src={logo} alt="Retake work app logo" style={{ width: '800'}} fluid/>
-      
-        
+        </div>
+          <header className="Home-header">
+          <p>
+              Retake App
+            </p>
           
-       
-      </header>
-      
-     
-    </div>
+          <Image src={logo} alt="Retake work app logo" style={{ width: '800'}} fluid/>
+          
+          </header>
+          
+        
+        </div>
     </body>
     
   );

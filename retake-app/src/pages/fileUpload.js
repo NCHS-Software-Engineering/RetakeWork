@@ -82,7 +82,7 @@ class fileUpload extends Component {
 						type="file"
 						onChange={this.onFileChange}
 					/>
-					<button onClick={this.onFileUpload}>
+					<button className = "fileButton" onClick={this.onFileUpload}>
 						Upload!
 					</button>
 				</div>

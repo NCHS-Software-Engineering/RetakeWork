@@ -29,7 +29,12 @@ function App() {
             
         </div>
         </div>
+        <div id="buttons">
         <button className='testButton'>1</button>
+        <button className='testButton'>2</button>
+        <button className='testButton'>3</button>
+        </div>
+        
       </body>
       );
       
