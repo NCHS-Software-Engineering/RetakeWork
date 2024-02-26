@@ -23,13 +23,17 @@ function App() {
       
       <body>
         
+        
         <div className="SelectQsPage">
              <div className="SelectQsPage" id="outer-container">
             <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
             
         </div>
         </div>
-        <div id="buttons">
+        <div className="buttons">
+        <button className='testButton'>1</button>
+        <button className='testButton'>2</button>
+        <button className='testButton'>3</button>
         <button className='testButton'>1</button>
         <button className='testButton'>2</button>
         <button className='testButton'>3</button>
