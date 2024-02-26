@@ -46,6 +46,9 @@ export default props => {
     if (selectedOption.value === "qs") {
       window.location.href = "./questions";
     }
+    if (selectedOption.value === "email") {
+      window.location.href = "./email";
+    }
 
   };
 
