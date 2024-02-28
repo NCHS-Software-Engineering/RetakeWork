@@ -8,6 +8,16 @@ import {
   } from "react-router-dom";
 
 const Email = () => {
+    var change = 'copy';
+    function copyChange() {
+        if(change === 'copy'){
+            change = 'copied';
+          }
+          else{
+            change = 'copied';
+          }
+          alert(change);
+    }
     return (
         
         <body>
@@ -25,7 +35,8 @@ const Email = () => {
 
                 
             </form>
-            <button className = 'copyButton'>Copy</button>
+            <button className = 'copyButton' onClick={copyChange}>Copy</button>
+            
         </div>
         </div>
         </body>
