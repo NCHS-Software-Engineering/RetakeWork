@@ -1,23 +1,27 @@
+import { UPLOADING } from 'dropzone';
 import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
- 
-import { useNavigate } from "react-router-dom";
-import Login from './Login.js';
-import logo from './logoWhite.png';
-import Image from 'react-bootstrap/Image';
+
 
 
 
 function App() {
   
-    
+var nameOfClass = 'off';
+
+  function colorchange() {
+
+    if(nameOfClass === 'off'){
+      nameOfClass = 'on';
+    }
+    else{
+      nameOfClass = 'off';
+    }
+
+    alert(nameOfClass);
+
+}
    
     return(
       
@@ -31,12 +35,9 @@ function App() {
         </div>
         </div>
         <div className="buttons">
-        <button className='testButton'>1</button>
-        <button className='testButton'>2</button>
-        <button className='testButton'>3</button>
-        <button className='testButton'>1</button>
-        <button className='testButton'>2</button>
-        <button className='testButton'>3</button>
+        <button className={nameOfClass}  onClick={colorchange} >1</button>
+        <button className='on'>2</button>
+        
         </div>
         
       </body>
