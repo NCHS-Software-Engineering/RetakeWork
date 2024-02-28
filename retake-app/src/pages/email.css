@@ -41,7 +41,7 @@ form p {
     text-align: center;
 }
 
-button{
+.copyButton{
     margin-top: 925px;
     margin-left: 600px;
     width: 22%;
@@ -54,7 +54,7 @@ button{
     cursor: pointer;
 }
 
-button:hover {
+.copyButton:hover {
     background-color: #999999;
     color: white;
   }

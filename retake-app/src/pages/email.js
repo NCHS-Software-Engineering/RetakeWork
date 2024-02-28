@@ -25,7 +25,7 @@ const Email = () => {
 
                 
             </form>
-            <button>Copy</button>
+            <button className = 'copyButton'>Copy</button>
         </div>
         </div>
         </body>
