@@ -29,7 +29,7 @@ const Login = () => {
     <a href='#' >Forgot password?</a>
 </div>
 
-<Link to="/home"><button type='submit'>Login</button></Link>
+<Link to="/home"><button className='logButtonIn' type='submit'>Login</button></Link>
 
 <div className="register-link">
     <p>Click here to <Link to="/signup">sign up</Link></p>
