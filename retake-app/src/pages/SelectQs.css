@@ -1,15 +1,58 @@
-.testButton{
+.off{
     width: 50px;
     height: 50px;
     text-align: center;
     border-radius: 10%;
     box-shadow: none;
     background-color: tomato;
-    hover: teal;
+    border: none;
+    margin: 5px;
+    
 }
+
+.off:hover{
+    background-color: #6696ff;
+    cursor: pointer;
+}
+
+
+.on{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10%;
+    box-shadow: none;
+    background-color: rgb(247, 0, 255);
+    border: none;
+    margin: 5px;
+    
+}
+
+.on:hover{
+    background-color: #15ff00;
+    cursor: pointer;
+}
+
+
 
 .buttons{
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  display: block;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #080710;
+    color: #ffffff;
 }

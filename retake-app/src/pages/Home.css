@@ -4,6 +4,7 @@
 
   
   .Home-header {
+    font-family: 'Courier New', monospace;
     background-color: #262124;
     min-height: 100vh;
     display: flex;
@@ -11,7 +12,7 @@
     align-items: top;
     justify-content: top;
     text-align: right;
-    padding-right: 10px;
+    padding-right: 100px;
     padding-top: 0px;
     margin-top: 0px;
     font-size: calc(60px + 2vmin);
