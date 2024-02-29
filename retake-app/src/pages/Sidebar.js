@@ -49,6 +49,9 @@ export default props => {
     if (selectedOption.value === "email") {
       window.location.href = "./email";
     }
+    if (selectedOption.value === "upload") {
+      window.location.href = "./upload";
+    }
 
   };
 
@@ -129,7 +132,8 @@ export default props => {
     { value: 'login', label: 'Log In' },
     { value: 'default', label: 'Default' },
     {value: 'qs', label: 'Select Questions'},
-    {value: 'email', label: 'Email'}];
+    {value: 'email', label: 'Email'},
+    {value: 'upload', label: 'Upload'}];
 
   const classOptions = [
     { value: 'prog1', label: 'Programming 1' },
