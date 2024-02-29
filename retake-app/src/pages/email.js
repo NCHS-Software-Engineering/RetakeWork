@@ -23,7 +23,7 @@ const Email = () => {
         <body>
         <div className='screen'>
         <div className='box'>
-            <form action="">
+            <form action="" className='emailForm'>
                 <h1>Email</h1>
                 <p>Hello Student, 
                 </p>
