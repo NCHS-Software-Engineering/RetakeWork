@@ -48,13 +48,13 @@ input{
     font-weight: 300;
 }
 ::placeholder{
-    color: #e5e5e5;
+    color: #ffffff;
 }
-button{
+.logButtonIn{
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
-    color: #080710;
+    color: #000000;
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
@@ -62,7 +62,7 @@ button{
     cursor: pointer;
 }
 
-button:hover {
+.logButtonIn:hover {
     background-color: #999999;
     color: white;
   }

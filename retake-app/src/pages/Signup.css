@@ -56,7 +56,7 @@ input{
 ::placeholder{
     color: #e5e5e5;
 }
-button{
+.signButtonUp{
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
@@ -68,7 +68,7 @@ button{
     cursor: pointer;
 }
 
-button:hover {
+.signButtonUp:hover {
     background-color: #999999;
     color: white;
   }
