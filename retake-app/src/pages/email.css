@@ -58,3 +58,40 @@ form p {
     background-color: #999999;
     color: white;
   }
+
+.copy{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10%;
+    box-shadow: none;
+    background-color: #999999;
+    color: white;
+    border: none;
+    margin: 5px;
+    
+}
+
+.copy:hover{
+    background-color: #999999;
+    cursor: pointer;
+}
+
+
+.Copied{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10%;
+    box-shadow: none;
+    background-color: #999999;
+    color: white;
+    border: none;
+    margin: 5px;
+    
+}
+
+.Copied:hover{
+    background-color: #999999;
+    cursor: pointer;
+}

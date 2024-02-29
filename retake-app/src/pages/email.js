@@ -11,10 +11,10 @@ const Email = () => {
     var change = 'copy';
     function copyChange() {
         if(change === 'copy'){
-            change = 'copied';
+            change = 'Copied';
           }
           else{
-            change = 'copied';
+            change = 'Copied';
           }
           alert(change);
     }
