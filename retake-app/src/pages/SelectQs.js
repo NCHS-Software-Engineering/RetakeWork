@@ -35,8 +35,29 @@ var nameOfClass = 'off';
         </div>
         </div>
         <div className="buttons">
-        <button className={nameOfClass}  onClick={colorchange} >1</button>
-        <button className='on'>2</button>
+        <label className='ButtonsQs' role='group'>
+        <input type="checkbox" />
+        My Value
+        <input type="checkbox" />
+        My Value
+        <input type="checkbox" />
+        My Value
+        <br></br>
+        <input type="checkbox" />
+        My Value
+        <input type="checkbox" />
+        My Value
+        <input type="checkbox" />
+        My Value
+        <br></br>
+        <input type="checkbox" />
+        My Value
+        <input type="checkbox" />
+        My Value
+        <input type="checkbox" />
+        My Value
+        <br></br>
+      </label>
         
         </div>
         

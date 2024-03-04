@@ -17,6 +17,7 @@ import Import from './pages/Import.js';
 import Upload from './pages/fileUpload.js';
 import Questions from './pages/SelectQs.js';
 import Email from './pages/email.js';
+import UploadQ from './pages/fileUpload.js';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                   <Route path="/questions" element={<><Questions/></>}/>
                   <Route path="/upload" element={<><Upload/></>}/>
                   <Route path="/email" element={<><Email/></>}/>
+                  <Route path="/upload" element={<><UploadQ/></>}/>
 
 
               </Routes>
