@@ -1,4 +1,5 @@
 import React from 'react';
+import Sidebar from './Sidebar';
 import './email.css';
 import {
     BrowserRouter as Router,
@@ -21,6 +22,7 @@ const Email = () => {
     return (
         
         <body>
+        <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
         <div className='screen'>
         <div className='box'>
             <form action="" className='emailForm'>

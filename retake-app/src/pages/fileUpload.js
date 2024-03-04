@@ -1,4 +1,5 @@
 import "./fileUpload.css"
+import Sidebar from './Sidebar';
 import axios from "axios";
 import React, { Component, useState } from "react";
 import ReactDom from 'react-dom';
@@ -104,6 +105,8 @@ class fileUpload extends Component {
 		
 		return (
 			<div>
+				<Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+
 				<h1 className="head">Test File</h1>
 				<h3>Upload file for this test!</h3>
 				<div>
