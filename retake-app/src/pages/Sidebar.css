@@ -85,7 +85,19 @@
   .signoutbutton{
     font-size:small;
     width: 100%;
+     margin-top: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
   }
-  
+  .signoutbutton:hover{
+    background-color: #999999;
+    color: white;
+  }
 
   
