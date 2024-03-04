@@ -37,6 +37,7 @@ const Email = () => {
             </form>
             <button className = 'copyButton' onClick={copyChange}>Copy</button>
             
+            
         </div>
         </div>
         </body>
