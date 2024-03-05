@@ -2,26 +2,23 @@ import { UPLOADING } from 'dropzone';
 import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
-
+import Select, { MultiValue } from "react-select";
+import { useState } from "react";
 
 
 
 function App() {
+
+  const options = [
+    { value: "blues", label: "Blues" },
+    { value: "rock", label: "Rock" },
+    { value: "jazz", label: "Jazz" },
+    { value: "orchestra", label: "Orchestra" },
+  ];
+
+const [selectedOptions, setSelectedOptions] = useState([]);
   
-var nameOfClass = 'off';
 
-  function colorchange() {
-
-    if(nameOfClass === 'off'){
-      nameOfClass = 'on';
-    }
-    else{
-      nameOfClass = 'off';
-    }
-
-    alert(nameOfClass);
-
-}
    
     return(
       
@@ -33,34 +30,27 @@ var nameOfClass = 'off';
             <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
             
         </div>
-        </div>
-        <div className="buttons">
-        <label className='ButtonsQs' role='group'>
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <br></br>
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <br></br>
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <br></br>
-      </label>
-        
+        <div className = 'selectQsStuff'>
+        <Select
+        className='selectQs'
+        defaultValue={selectedOptions}
+        onChange={setSelectedOptions}
+        options={options}
+        isMulti
+      />
+      <table className = "selectQsTable"> 
+      <tbody>
+        <tr>
+          {selectedOptions.map(label => (
+            <td>{label.label}</td>
+          ))}
+          </tr>
+
+        </tbody>
+      </table>
         </div>
         
+        </div>
       </body>
       );
       
