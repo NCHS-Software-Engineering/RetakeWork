@@ -37,6 +37,24 @@ body{
   margin: 20px;
 }
 
+.button3 {
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button3:hover {
+  background-color: #999999;
+  color: white;
+}
+
 .OpenPage .loginbutton {
   position: relative;
   margin-top: 30px;
