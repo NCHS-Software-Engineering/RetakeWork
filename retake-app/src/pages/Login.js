@@ -6,16 +6,50 @@ import {
     Route,
     Link,
   } from "react-router-dom";
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 
 const Login = () => {
-    /*const responseMessage = (response) => {
+    const [ user, setUser ] = useState([]);
+    const [ profile, setProfile ] = useState([]);
+
+    const login = useGoogleLogin({
+        onSuccess: (codeResponse) => setUser(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });
+
+    useEffect(
+        () => {
+            if (user) {
+                axios
+                    .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                        headers: {
+                            Authorization: `Bearer ${user.access_token}`,
+                            Accept: 'application/json'
+                        }
+                    })
+                    .then((res) => {
+                        setProfile(res.data);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        },
+        [ user ]
+    );
+
+    // log out function to log the user out of google and set the profile array to null
+    const logOut = () => {
+        googleLogout();
+        setProfile(null);
+    };
+
+    const responseMessage = (response) => {
         console.log(response);
       };
       const errorMessage = (error) => {
           console.log(error);
-      }; */
+      }; 
 
     return (
         <body>
@@ -39,17 +73,18 @@ const Login = () => {
 
                 <Link to="/home"><button className = 'logButtonIn' type='submit'>Login</button></Link>
 
-                {/* <div className="register-link">
-                    <p>Click here to <Link to="/signup">sign up</Link></p>
-                </div>
+                
                 <div>
                 <h2>React Google Login</h2>
                 <br />
                 <br />
                 <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
                 </div>
- */}
+ 
                 <div class="go"><i class="fab fa-google"></i>  Google</div>
+                <div className="register-link">
+                    <p>Click here to <Link to="/signup">sign up</Link></p>
+                </div>
             </form>
         </div>
         </div>
