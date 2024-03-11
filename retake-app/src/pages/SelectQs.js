@@ -38,16 +38,7 @@ const [selectedOptions, setSelectedOptions] = useState([]);
         options={options}
         isMulti
       />
-      <table className = "selectQsTable"> 
-      <tbody>
-        <tr>
-          {selectedOptions.map(label => (
-            <td>{label.label}</td>
-          ))}
-          </tr>
-
-        </tbody>
-      </table>
+      
         </div>
         
         </div>

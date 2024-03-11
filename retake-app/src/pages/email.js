@@ -23,6 +23,7 @@ const Email = () => {
         
         <body>
         <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+        
         <div className='screen'>
         <div className='box'>
             <form action="" className='emailForm'>
