@@ -19,7 +19,7 @@ const Login = () => {
         onError: (error) => console.log('Login Failed:', error)
     });
 
-    useEffect(
+   /*  useEffect(
         () => {
             if (user) {
                 axios
@@ -36,7 +36,7 @@ const Login = () => {
             }
         },
         [ user ]
-    );
+    ); */
 
     // log out function to log the user out of google and set the profile array to null
     const logOut = () => {
@@ -57,7 +57,7 @@ const Login = () => {
         <div className='box'>
             <form action="">
                 <h1>Login</h1>
-
+                
                 <div className='username'>
                     <input type="text" placeholder='Username' required />
                 </div>
