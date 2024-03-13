@@ -19,6 +19,7 @@ import Upload from './pages/fileUpload.js';
 import Questions from './pages/SelectQs.js';
 import Email from './pages/email.js';
 import UploadQ from './pages/fileUpload.js';
+import PopupReact from 'react-popup/dist/Popup.react.js';
 
 
 
