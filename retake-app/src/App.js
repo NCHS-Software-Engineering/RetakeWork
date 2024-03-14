@@ -20,10 +20,24 @@ import Questions from './pages/SelectQs.js';
 import Email from './pages/email.js';
 import UploadQ from './pages/fileUpload.js';
 import PopupReact from 'react-popup/dist/Popup.react.js';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
+import ReactDOM from 'react-dom/client';
+import SERVER from './server.js';
 
 
 function App() {
+
+  var googleKey = process.env.GOOGLECLIENTID;
+console.log(googleKey);
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <GoogleOAuthProvider clientId= {googleKey}>
+      <React.StrictMode>
+          <App />
+      </React.StrictMode>
+  </GoogleOAuthProvider>,
+); 
 
   return (
     
@@ -41,7 +55,8 @@ function App() {
                   <Route path="/upload" element={<><Upload/></>}/>
                   <Route path="/email" element={<><Email/></>}/>
                   <Route path="/upload" element={<><UploadQ/></>}/>
-
+                  <Route path="/upload" element={<><UploadQ/></>}/>
+                  <Route path="/login2" element={<><SERVER/></>}/>
 
               </Routes>
           </div>

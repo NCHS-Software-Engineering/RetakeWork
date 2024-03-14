@@ -81,7 +81,7 @@ const Login = () => {
                 <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
                 </div>
  
-                <div class="go"><i class="fab fa-google"></i>  Google</div>
+                <div class="go"><i class="fab fa-google" Link to = "/login2"></i>  Google</div>
                 <div className="register-link">
                     <p>Click here to <Link to="/signup">sign up</Link></p>
                 </div>
