@@ -23,7 +23,6 @@ import PopupReact from 'react-popup/dist/Popup.react.js';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import ReactDOM from 'react-dom/client';
-import SERVER from './server.js';
 
 
 function App() {
@@ -56,7 +55,6 @@ root.render(
                   <Route path="/email" element={<><Email/></>}/>
                   <Route path="/upload" element={<><UploadQ/></>}/>
                   <Route path="/upload" element={<><UploadQ/></>}/>
-                  <Route path="/login2" element={<><SERVER/></>}/>
 
               </Routes>
           </div>
