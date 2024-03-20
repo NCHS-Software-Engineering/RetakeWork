@@ -27,16 +27,7 @@ import ReactDOM from 'react-dom/client';
 
 function App() {
 
-  var googleKey = process.env.GOOGLECLIENTID;
-console.log(googleKey);
- const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <GoogleOAuthProvider clientId= {googleKey}>
-      <React.StrictMode>
-          <App />
-      </React.StrictMode>
-  </GoogleOAuthProvider>,
-); 
+ 
 
   return (
     
