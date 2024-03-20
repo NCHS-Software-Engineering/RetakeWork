@@ -14,7 +14,7 @@ function App() {
             <div className="OpenPage">
                 <header className="Open-header">
                     <p>Retake App</p>
-                    <Link to="/login"><button class="loginbutton">Log In</button></Link>
+                    <Link to="/Login"><button class="loginbutton">Log In</button></Link>
                     <Link to="/signup"><button class="signupbutton">Sign Up</button></Link>
                 </header>
             </div>
