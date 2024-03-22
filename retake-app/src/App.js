@@ -11,8 +11,8 @@ import {
  
 import { useNavigate } from "react-router-dom";
 import Login from './pages/Login.js';
-import Home from './pages/Home.js';
-import Signup from './pages/Signup.js';
+import Home from './pages/OldHome.js';
+import Signup from './pages/OldSignup.js';
 import Open from './pages/Open.js';
 import Import from './pages/Import.js';
 import Upload from './pages/fileUpload.js';
@@ -21,14 +21,15 @@ import Email from './pages/email.js';
 import UploadQ from './pages/fileUpload.js';
 import PopupReact from 'react-popup/dist/Popup.react.js';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Index from './index.js';
 
 import ReactDOM from 'react-dom/client';
 
 
-function App() {
+{/*function App() {
 
  
-
+  console.log(process.env);
   return (
     
     <div className="App">
@@ -45,8 +46,7 @@ function App() {
                   <Route path="/upload" element={<><Upload/></>}/>
                   <Route path="/email" element={<><Email/></>}/>
                   <Route path="/upload" element={<><UploadQ/></>}/>
-                  <Route path="/upload" element={<><UploadQ/></>}/>
-
+                  <Route path="/login2" element={<><Index/></>}/>
               </Routes>
           </div>
      </Router>
@@ -55,4 +55,48 @@ function App() {
   );
 }
 
+export default App;*/}
+
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Home, Landing, Login, Signup } from "./screens";
+
+useEffect(() => {
+  const theUser = localStorage.getItem("user");
+
+  if (theUser && !theUser.includes("undefined")) {
+    setUser(JSON.parse(theUser));
+  }
+}, []);
+
+
+const App = () => {
+  const [user, setUser] = useState({});
+
+  return (
+    <BrowserRouter>
+      <Routes>
+      <Route
+  path="/"
+  element={user?.email ? <Navigate to="/home" /> : <Landing />}
+  />
+  <Route
+    path="/signup"
+    element={user?.email ? <Navigate to="/home" /> : <Signup />}
+  />
+  <Route
+    path="/login"
+    element={user?.email ? <Navigate to="/home" /> : <Login />}
+  />
+  <Route
+    path="/home"
+    element={user?.email ? <Home user={user} /> : <Navigate to="/" />}
+  />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
 export default App;
+
