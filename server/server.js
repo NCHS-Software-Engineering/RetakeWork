@@ -13,6 +13,7 @@ app.use(cors());
 //   password: '#usi=rltACUtR!=0ubO#',
 //   database: 'redhawks_retake'
 // });
+
 app.use((req, res, next) => {
   console.log('Time: ', Date.now());
   next();
@@ -20,12 +21,11 @@ app.use((req, res, next) => {
 
 app.put('/testing', (req, res) => {
   console.log('Request type: ', req.method);
-  next();
 });
 
 
 app.get('/login', (req, res) => {
-  res.send('hi');
+  console.log("hi");
 });
 
 
@@ -39,4 +39,4 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(3000, () => console.log('Example app is listening on port 3000.'));
+app.listen(8000, () => console.log('Example app is listening on port 8000.'));
