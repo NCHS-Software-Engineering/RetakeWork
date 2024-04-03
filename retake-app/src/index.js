@@ -6,14 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
 root.render(
-  <GoogleOAuthProvider clientId="325867374050-58t8688kosk35pieu0unrho7br57pbrg.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </GoogleOAuthProvider>
 );
+
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

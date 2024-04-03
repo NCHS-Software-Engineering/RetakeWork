@@ -10,14 +10,15 @@ import {
 
 function App() {
 
-    // const responseMessage = (response) => {
-    //     console.log(response);
-    // };
-    // const errorMessage = (error) => {
-    //     console.log(error);
-    // };
+    const responseMessage = (response) => {
+        console.log(response);
+    };
+    const errorMessage = (error) => {
+        console.log(error);
+    };
 
     return (
+        
         <body>
             <Link to="/home"><button class="button3">home</button></Link>
             <div className="OpenPage">
@@ -25,7 +26,7 @@ function App() {
                     <p>Retake App</p>
                     <Link to="/login"><button class="loginbutton">Log In</button></Link>
                     <Link to="/signup"><button class="signupbutton">Sign Up</button></Link>
-                   
+                    <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
                 </header>
             </div>
           
