@@ -1,9 +1,9 @@
-import React from 'react';
+{/*import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './src/App';
+import reportWebVitals from './src/reportWebVitals';
 //import REACT_APP_GOOGLECLIENTID from './.env';
 import {
   BrowserRouter as Router,
@@ -16,11 +16,11 @@ import {
 
 
 
-//const googleKey = REACT_APP_GOOGLECLIENTID;
-//console.log(googleKey);
+const googleKey =process.env.REACT_APP_GOOGlE_CLIENT_ID;
+console.log(googleKey);
  const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GoogleOAuthProvider clientId="325867374050-58t8688kosk35pieu0unrho7br57pbrg.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId={googleKey}>
       <React.StrictMode>
           <App />
       </React.StrictMode>
@@ -45,4 +45,4 @@ const logIn = () => {
     );
 };
  
-export default logIn;
+export default logIn;*/}

@@ -1,0 +1,27 @@
+{/*<div>
+                <h2>React Google Login</h2>
+                <br />
+                <br />
+                <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+                </div>
+ 
+            <div class="go"><i class="fab fa-google" Link to = "/login2"></i>  Google</div>*/}
+
+
+            const logOut = () => {
+        googleLogout();
+        setProfile(null);
+    };
+
+    const responseMessage = (response) => {
+        console.log(response);
+      };
+      const errorMessage = (error) => {
+          console.log(error);
+      }; 
+
+
+      const login = useGoogleLogin({
+        onSuccess: (codeResponse) => setUser(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });

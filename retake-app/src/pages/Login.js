@@ -10,11 +10,7 @@ import { GoogleLogin, googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-
-
 const Login = () => {
-    
-
     const [ user, setUser ] = useState([]);
     const [ profile, setProfile ] = useState([]);
 
@@ -85,7 +81,7 @@ const Login = () => {
                 <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
                 </div>
  
-                <div class="go"><i class="fab fa-google" Link to = "/login2"></i>  Google</div>
+                <div class="go"><i class="fab fa-google"></i>  Google</div>
                 <div className="register-link">
                     <p>Click here to <Link to="/signup">sign up</Link></p>
                 </div>

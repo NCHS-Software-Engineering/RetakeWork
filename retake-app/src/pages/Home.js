@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
  
 import { useNavigate } from "react-router-dom";
-import Login from './Login.jsx';
+import Login from './Login.js';
 import logo from './logoWhite.png';
 import Image from 'react-bootstrap/Image';
 import "./logoWhite.png";
