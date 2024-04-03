@@ -7,31 +7,39 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-
  
 import { useNavigate } from "react-router-dom";
 import Login from './pages/Login.js';
-import Home from './pages/OldHome.js';
-import Signup from './pages/OldSignup.js';
+import Home from './pages/Home.js';
+import Signup from './pages/Signup.js';
 import Open from './pages/Open.js';
 import Import from './pages/Import.js';
 import Upload from './pages/fileUpload.js';
 import Questions from './pages/SelectQs.js';
 import Email from './pages/email.js';
 import UploadQ from './pages/fileUpload.js';
-import PopupReact from 'react-popup/dist/Popup.react.js';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import Index from './index.js';
 
-import ReactDOM from 'react-dom/client';
+async function postData(url = "", data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: "follow", // manual, *follow, error
+    referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
 
-
-{/*function App() {
-
- 
-  console.log(process.env);
+function App() {
+  
   return (
-    
     <div className="App">
        <Router>
           <div className="container">
@@ -46,7 +54,8 @@ import ReactDOM from 'react-dom/client';
                   <Route path="/upload" element={<><Upload/></>}/>
                   <Route path="/email" element={<><Email/></>}/>
                   <Route path="/upload" element={<><UploadQ/></>}/>
-                  <Route path="/login2" element={<><Index/></>}/>
+
+
               </Routes>
           </div>
      </Router>
@@ -55,48 +64,4 @@ import ReactDOM from 'react-dom/client';
   );
 }
 
-export default App;*/}
-
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Home, Landing, Login, Signup } from "./screens";
-
-useEffect(() => {
-  const theUser = localStorage.getItem("user");
-
-  if (theUser && !theUser.includes("undefined")) {
-    setUser(JSON.parse(theUser));
-  }
-}, []);
-
-
-const App = () => {
-  const [user, setUser] = useState({});
-
-  return (
-    <BrowserRouter>
-      <Routes>
-      <Route
-  path="/"
-  element={user?.email ? <Navigate to="/home" /> : <Landing />}
-  />
-  <Route
-    path="/signup"
-    element={user?.email ? <Navigate to="/home" /> : <Signup />}
-  />
-  <Route
-    path="/login"
-    element={user?.email ? <Navigate to="/home" /> : <Login />}
-  />
-  <Route
-    path="/home"
-    element={user?.email ? <Home user={user} /> : <Navigate to="/" />}
-  />
-      </Routes>
-    </BrowserRouter>
-  );
-};
-
 export default App;
-
