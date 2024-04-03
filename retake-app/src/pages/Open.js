@@ -1,5 +1,6 @@
 import './Open.css';
 import React from 'react';
+import { GoogleLogin } from '@react-oauth/google';
 import {
     BrowserRouter as Router,
     Routes,
@@ -8,6 +9,14 @@ import {
 } from "react-router-dom";
 
 function App() {
+
+    // const responseMessage = (response) => {
+    //     console.log(response);
+    // };
+    // const errorMessage = (error) => {
+    //     console.log(error);
+    // };
+
     return (
         <body>
             <Link to="/home"><button class="button3">home</button></Link>
@@ -16,9 +25,13 @@ function App() {
                     <p>Retake App</p>
                     <Link to="/login"><button class="loginbutton">Log In</button></Link>
                     <Link to="/signup"><button class="signupbutton">Sign Up</button></Link>
+                   
                 </header>
             </div>
+            <GoogleLogin />
         </body>
+                            
+
     );
 }
 
