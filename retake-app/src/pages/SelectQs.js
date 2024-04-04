@@ -34,30 +34,12 @@ var nameOfClass = 'off';
             
         </div>
         </div>
-        <div className="buttons">
-        <label className='ButtonsQs' role='group'>
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <br></br>
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <br></br>
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <input type="checkbox" />
-        My Value
-        <br></br>
-      </label>
+        <div className="textInput">
+        <input
+            placeholder='Type the questions the student got wrong, seperated by a comma with a space (1, 2, 3d, 5...)'
+            type="text"
+            
+         />
         
         </div>
         
