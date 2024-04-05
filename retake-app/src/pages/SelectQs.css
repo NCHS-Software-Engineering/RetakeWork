@@ -64,3 +64,17 @@
   top: 50%;
   left: 50%;
 }
+
+.clickToEmailButton {
+    background-color: #5584B9; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }

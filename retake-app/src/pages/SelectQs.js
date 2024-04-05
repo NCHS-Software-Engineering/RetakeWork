@@ -2,7 +2,12 @@ import { UPLOADING } from 'dropzone';
 import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
 
 
 
@@ -40,7 +45,7 @@ var nameOfClass = 'off';
             type="text"
             
          />
-        
+        <Link to="/email"><button button className = "clickToEmailButton" onClick={() => {}}>Next</button></Link>
         </div>
         
       </body>
