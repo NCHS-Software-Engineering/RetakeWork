@@ -3,10 +3,19 @@ import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
 
-
+function isEmpty(array){
+  if(array.length === 0){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 
 
 function App() {
+
+  const [questionsSelected, setQuestionsSelected] = React.useState([]);
   
 var nameOfClass = 'off';
 
@@ -34,14 +43,26 @@ var nameOfClass = 'off';
             
         </div>
         </div>
+      
         <div className="textInput">
+          
         <input
             placeholder='Type the questions the student got wrong, seperated by a comma with a space (1, 2, 3d, 5...)'
             type="text"
-            
+            onInput={(e) => setQuestionsSelected(e.target.value.split(','))}
          />
         
         </div>
+
+        {isEmpty(questionsSelected) ? (
+          <div>
+            <h1>Questions Selected: {questionsSelected}</h1>
+          </div>
+        ) : (
+          <div>
+            <h1>hi</h1>
+          </div>
+        )}
         
       </body>
       );
