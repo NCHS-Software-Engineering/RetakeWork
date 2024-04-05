@@ -4,7 +4,12 @@ import axios from "axios";
 import React, { Component, useState } from "react";
 import ReactDom from 'react-dom';
 import Popup from 'react-popup';
-
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link,
+  } from "react-router-dom";
 
 class fileUpload extends Component {
 	
@@ -114,10 +119,10 @@ class fileUpload extends Component {
 						type="file"
 						onChange={this.onFileChange}
 					/>
-					<button className = "fileButton" onClick={() => {
+					<Link to="/questions"><button button className = "fileButton" onClick={() => {
   						alert('File Successfully Uploaded!');
 						
-					}}>Upload</button>
+					}}>Upload</button></Link>
 					
 				</div>
 				{this.fileData()}
