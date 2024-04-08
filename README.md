@@ -1,5 +1,5 @@
-# retakeWork
-# test
+# RetakeWork
+# How to run
 
 After the conclusion of our second sprint, the frontend is nearly done. In order to run it through vscode or any other code editor/command line, install the packages in the common code snippets from the trello, linked below. Then use npm run.
 
