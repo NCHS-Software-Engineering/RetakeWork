@@ -10,70 +10,53 @@ import {
     Link,
 } from "react-router-dom";
 
+
 function App() {
+    const [user, setUser] = useState(null);
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const [user, setUser] = useState([]);
-    const [profile, setProfile] = useState([]);
+    useEffect(() => {
+        // Check if user is authenticated on component mount
+        checkAuthStatus();
+    }, []);
 
-    const login = useGoogleLogin({
-        onSuccess: (codeResponse) => setUser(codeResponse),
-        onError: (error) => console.log('Login Failed:', error)
-    });
-
-    useEffect(
-        () => {
-            if (user) {
-                axios
-                    .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-                        headers: {
-                            Authorization: `Bearer ${user.access_token}`,
-                            Accept: 'application/json'
-                        }
-                    })
-                    .then((res) => {
-                        setProfile(res.data);
-                    })
-                    .catch((err) => console.log(err));
-            }
-        },
-        [user]
-    );
-
-    // log out function to log the user out of google and set the profile array to null
-    const logOut = () => {
-        googleLogout();
-        setProfile(null);
+    const checkAuthStatus = () => {
+        axios.get('/api/auth/check')
+            .then(response => {
+                if (response.data.authenticated) {
+                    setUser(response.data.user);
+                    setProfile(response.data.user);
+                }
+            })
+            .catch(error => {
+                console.error('Error checking authentication status:', error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
+
+    const login = () => {
+        window.location.href = '/auth/google';
+    };
+
+    const logOut = () => {
+        axios.get('/api/auth/logout')
+            .then(() => {
+                setUser(null);
+                setProfile(null);
+            })
+            .catch(error => {
+                console.error('Error logging out:', error);
+            });
+    };
+
 
     return (
 
         <body>
-            {/* <div>
-            <h1>React Google Login</h1>
-            <br />
-            <br />
-            {profile ? (
-                <div>
-                    <img src={profile.picture} alt="user image" />
-                    <h3>User Logged in</h3>
-                    <p>Name: {profile.name}</p>
-                    <p>Email Address: {profile.email}</p>
-                    <br />
-                    <br />
-                    <button onClick={logOut}>Log out</button>
-                </div>
-            ) : (
-                <button onClick={login}>Sign in with Google 🚀 </button>
-            )}
-        </div> */}
-
-            {/* <div className="OpenPage">
-                <header className="Open-header">
-                    <p>Welcome to the retake app!</p>
-                    <GoogleLogin/>
-                </header>
-            </div> */}
-
+            
             <div>
 
                 
