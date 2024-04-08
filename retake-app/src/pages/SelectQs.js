@@ -3,14 +3,7 @@ import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
 
-function isEmpty(array){
-  if(array.length === 0){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
+
 
 
 function App() {
@@ -51,7 +44,7 @@ var nameOfClass = 'off';
             type="text"
             onInput={(e) => setQuestionsSelected(e.target.value.split(','))}
          />
-        
+        <Link to="/email"><button button className = "clickToEmailButton" onClick={() => {}}>Next</button></Link>
         </div>
 
         {isEmpty(questionsSelected) ? (
