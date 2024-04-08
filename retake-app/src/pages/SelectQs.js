@@ -2,6 +2,7 @@ import { UPLOADING } from 'dropzone';
 import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -47,7 +48,7 @@ var nameOfClass = 'off';
         <Link to="/email"><button button className = "clickToEmailButton" onClick={() => {}}>Next</button></Link>
         </div>
 
-        {isEmpty(questionsSelected) ? (
+        {/*{isEmpty(questionsSelected) ? (
           <div>
             <h1>Questions Selected: {questionsSelected}</h1>
           </div>
@@ -55,7 +56,7 @@ var nameOfClass = 'off';
           <div>
             <h1>hi</h1>
           </div>
-        )}
+        )}*/}
         
       </body>
       );
