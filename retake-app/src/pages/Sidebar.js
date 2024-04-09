@@ -62,7 +62,8 @@ export default props => {
       { value: 'test1', label: 'Chapter 1 Test' },
       { value: 'test2', label: 'Chapter 2 Test' },
       { value: 'test3', label: 'Chapter 3 Test' },
-      { value: 'test4', label: 'Chapter 4 Test' }]);
+      { value: 'test4', label: 'Chapter 4 Test' },
+      { value: 'addTest1', label: 'Add Test...'}]);
 
         setStudents([
           {value: 'student1', label: 'Henry Anderson'},
@@ -75,7 +76,8 @@ export default props => {
       setTests([
       { value: 'test5', label: 'Unit 1: Primitive Types Test' },
       { value: 'test6', label: 'Unit 5: Writing Classes Test' },
-      { value: 'test7', label: 'Unit 10: Recursion Test' }]);
+      { value: 'test7', label: 'Unit 10: Recursion Test' },
+      { value: 'addTest2', label: 'Add Test...'}]);
 
         setStudents([
           {value: 'student4', label: 'Sam Abud'},
@@ -88,7 +90,8 @@ export default props => {
       setTests([
       { value: 'test9', label: 'Chapter 15 Exam' },
       { value: 'test10', label: 'Maze Lab' },
-      { value: 'test11', label: 'Chapter 17 Test' }]);
+      { value: 'test11', label: 'Chapter 17 Test' },
+      { value: 'addTest3', label: 'Add Test...'}]);
 
         setStudents([
           {value: 'student7', label: 'Ahkil Kanuri'},
