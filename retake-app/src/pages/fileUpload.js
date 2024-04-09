@@ -5,14 +5,14 @@ import React, { Component, useState } from "react";
 import ReactDom from 'react-dom';
 import Popup from 'react-popup';
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
-  } from "react-router-dom";
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+} from "react-router-dom";
 
 class fileUpload extends Component {
-	
+
 	state = {
 		// Initially, no file is selected
 		selectedFile: null,
@@ -34,7 +34,7 @@ class fileUpload extends Component {
 
 		// Update the formData object
 		formData.append(
-			"myFile",
+			"testsheet",
 			this.state.selectedFile,
 			this.state.selectedFile.name
 		);
@@ -44,7 +44,16 @@ class fileUpload extends Component {
 
 		// Request made to the backend api
 		// Send formData object
-		axios.post("api/uploadfile", formData);
+		axios.post("http://localhost:8000/api/uploadfile", formData)
+			.then(response => {
+				console.log(response.data);
+				alert('File Successfully Uploaded!');
+			})
+			.catch(error => {
+				console.error('Error uploading file: ', error);
+				alert('Error uploading file');
+			});
+
 	};
 
 	/* const popup = ({ isOpen, togglePopup }) => {
@@ -103,11 +112,11 @@ class fileUpload extends Component {
 		}
 	};
 
-	
-		
-	
+
+
+
 	render() {
-		
+
 		return (
 			<div>
 				<Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
@@ -119,11 +128,13 @@ class fileUpload extends Component {
 						type="file"
 						onChange={this.onFileChange}
 					/>
-					<Link to="/questions"><button button className = "fileButton" onClick={() => {
+					{/* <Link to="/questions"><button button className = "fileButton" onClick={() => {
   						alert('File Successfully Uploaded!');
 						
-					}}>Upload</button></Link>
-					
+					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link> */}
+
+					<button onClick={this.onFileUpload}>Upload</button>
+
 				</div>
 				{this.fileData()}
 			</div>
