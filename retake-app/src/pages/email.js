@@ -7,6 +7,7 @@ import {
     Route,
     Link,
   } from "react-router-dom";
+  import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Email = () => {
     var change = 'copy';
@@ -18,13 +19,21 @@ const Email = () => {
             change = 'Copied';
           }
           alert(change);
+
+          
     }
+    
     return (
         
         <body>
         <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
         <div className='screen'>
         <div className='box'>
+
+       
+       
+
+        
             <form action="" className='emailForm'>
                 <h1>Email</h1>
                 <p>Hello Student, 
@@ -37,7 +46,18 @@ const Email = () => {
 
                 
             </form>
-            <button className = 'copyButton' onClick={copyChange}>Copy</button>
+            
+
+     <CopyToClipboard
+     text="Hello Student, 
+     
+     In order to qualify for a retake, please complete the worksheet attached to this email:
+
+     Thanks, Dr. Diller"
+     onCopy={() => alert("Copied")}>
+       <button className = 'copyButton'>Copy to clipboard</button>
+     </CopyToClipboard>
+     
             
             
         </div>
