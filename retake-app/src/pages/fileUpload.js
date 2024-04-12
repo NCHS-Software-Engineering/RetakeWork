@@ -28,7 +28,6 @@ class fileUpload extends Component {
 
 	// On file upload (click the upload button)
 	onFileUpload = () => {
-		const [isOpen, setIsOpen] = useState(false);
 		// Create an object of formData
 		const formData = new FormData();
 

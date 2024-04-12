@@ -4,6 +4,7 @@ import './Sidebar.css';
 import Select from "react-select";
 import { PiSignOutBold } from "react-icons/pi";
 import Child from './SelectQs.js';
+import axios from 'axios';
 
 import {
   BrowserRouter as Router,
@@ -26,6 +27,12 @@ export default props => {
   const [isOpenableClasses, setSelectedClasses] = useState(true);
   const [testOptions, setTests] = useState([]);
   const [studentOptions, setStudents] = useState([]);
+  const [userInput, setUserInput] = useState();
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [userId, setUserId] = useState();
+  const [classes, setClasses] = useState([]);
+
+  
   const handleChange = (selectedOption) => {
 
     if (selectedOption.value === "login") {
@@ -55,8 +62,11 @@ export default props => {
 
   };
 
-  const handleChangeClasses = (selectedOption) => {
+  
 
+  const handleChangeClasses = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    
     if (selectedOption.value === "prog1") {
       setTests([
       { value: 'test1', label: 'Chapter 1 Test' },
@@ -102,7 +112,29 @@ export default props => {
       setSelectedClasses(false);
     }
 
+    if(selectedOption.value === "userInput") {
+      setUserInput('');
+
+    }
+
   };
+
+  const createClass = async (className) => {
+    const res = await axios.post(
+      'http://localhost:8000/api/classes', 
+      { 
+        teacherFK: userId,
+        name: className,
+      },
+    )
+
+    debugger;
+    const data = await res.json();
+    debugger;
+    if (res.status === 200) {
+      setClasses([...classes, res.json()])
+    }
+};
 
   const handleStudentChange = (selectedOption) => {
     window.location.href = "./questions";
@@ -141,9 +173,23 @@ export default props => {
   const classOptions = [
     { value: 'prog1', label: 'Programming 1' },
     { value: 'APCS', label: 'AP Computer Science A' },
-    { value: 'SE', label: 'Software Engineering' },];
+    { value: 'SE', label: 'Software Engineering' },
+    { value: 'userInput', label: 'Enter new class' },];
+    
 
-  
+    // Function to handle user input change
+    const handleInputChange = (event) => {
+      setUserInput(event.target.value);
+    };
+    
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        createClass(event.target.value); 
+      }
+    }
+
+   
+
 
   return (
     
@@ -152,7 +198,25 @@ export default props => {
       <div className="mt-auto m-auto w-50">
         <Select placeholder="Pages" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
         <p></p>
-        <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChangeClasses} styles={customStyles}/>
+        <Select 
+          placeholder="Classes" 
+          options = {classOptions} 
+          autoFocus={true} 
+          onChange={handleChangeClasses} 
+          styles={customStyles}
+          />
+          <br></br>
+          <br></br>
+          {selectedOption && selectedOption.value === 'userInput' && (
+                <input
+                    type="text"
+                    value={userInput}
+                    onChange={handleInputChange}
+                    placeholder="Enter your own class"
+                    onKeyDown={handleKeyDown}
+                />
+            )}
+        
         <p></p>
         <Select placeholder="Test" options = {testOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
         <p></p>
@@ -167,4 +231,4 @@ export default props => {
 
 
   );
-};
+  };

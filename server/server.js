@@ -8,6 +8,7 @@ const path = require('path');
 const PORT = 8000;
 const app = express();
 app.use(cors());
+app.use(express.json());
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
@@ -59,6 +60,27 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
   console.log('File uploaded successfully');
   res.status(200).json({ message: 'File uploaded successfully' });
 });
+//insert teacher accounts into database
+app.post('/api/teachers', (req, res) => {
+
+
+})  
+
+
+//insert classes into database
+app.post('/api/classes', (req, res)=> {
+  console.log('here in the class creation route')
+
+  const classname = req.body.name;
+  const teacherFK = req.body.teacherFK;
+
+  connection.query("INSERT INTO class (teacher_fk, name) VALUES (?, ?)", [teacherFK, classname], (err,result)=>{
+     if(err) {
+     console.log(err)
+     } 
+     res.send(JSON.stringify(result));
+  });   
+})
 
 
 app.listen(PORT, () => console.log('Example app is listening on port 8000.'));
