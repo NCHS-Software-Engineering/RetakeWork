@@ -28,7 +28,6 @@ class fileUpload extends Component {
 
 	// On file upload (click the upload button)
 	onFileUpload = () => {
-		const [isOpen, setIsOpen] = useState(false);
 		// Create an object of formData
 		const formData = new FormData();
 
@@ -122,7 +121,7 @@ class fileUpload extends Component {
 				<Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
 
 				<h1 className="head">Test File</h1>
-				<h3>Upload file for this test!</h3>
+				<h3>Upload file for this test or paste a link into the textbox!</h3>
 				<div>
 					<input
 						type="file"
@@ -134,6 +133,12 @@ class fileUpload extends Component {
 					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
 
 					{/* <button onClick={this.onFileUpload}>Upload</button> */}
+
+					<input
+           				placeholder='Paste a link to a worksheet'
+            			type="text"
+            			
+         />
 
 				</div>
 				{this.fileData()}
