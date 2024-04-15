@@ -16,7 +16,7 @@ require('dotenv').config();
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawks_retake',
-  password: '#usi=rltACUtR!=0ubO#',
+  password: `${process.env.REACT_APP_DB_PASSWORD}`,
   database: 'redhawks_retake'
 });
 
@@ -41,9 +41,9 @@ app.use(passport.session());
 
 // Configure Google OAuth strategy
 passport.use(new GoogleStrategy({
-  clientID: '325867374050-58t8688kosk35pieu0unrho7br57pbrg.apps.googleusercontent.com',
-  clientSecret:'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',
-  callbackURL: 'http://localhost:3001/auth/google/callback'
+  clientID: `${process.env.REACT_APP_CLIENT_ID}`,
+  clientSecret:`${process.env.REACT_APP_CLIENT_SECRET}`,
+  callbackURL: 'http://localhost:8000/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
   // Save user profile to session or database
   return done(null, profile);

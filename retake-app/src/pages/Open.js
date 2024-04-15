@@ -38,7 +38,7 @@ function App() {
     };
 
     const login = () => {
-        window.location.href = '/auth/google';
+        window.location.href = 'http://localhost:8000/auth/google';
     };
 
     const logOut = () => {
