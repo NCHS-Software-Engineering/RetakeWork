@@ -83,7 +83,7 @@ app.post('/api/classes', (req, res)=> {
 })
 
 
-app.post('/api/selectQs', (req, res) => {
+
 
 
 app.listen(PORT, () => console.log('Example app is listening on port 8000.'));

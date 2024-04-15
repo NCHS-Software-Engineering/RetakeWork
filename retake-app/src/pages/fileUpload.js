@@ -10,6 +10,7 @@ import {
 	Route,
 	Link,
 } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 class fileUpload extends Component {
 
@@ -104,7 +105,7 @@ class fileUpload extends Component {
 				<div>
 					<br />
 					<h4 className="text">
-						Choose file and Press Upload button
+						Choose file and Press Next button
 					</h4>
 				</div>
 			);
