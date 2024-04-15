@@ -128,12 +128,12 @@ class fileUpload extends Component {
 						type="file"
 						onChange={this.onFileChange}
 					/>
-					{/* <Link to="/questions"><button button className = "fileButton" onClick={() => {
+					<Link to="/questions"><button button className = "fileButton" onClick={() => {
   						alert('File Successfully Uploaded!');
 						
-					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link> */}
+					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
 
-					<button onClick={this.onFileUpload}>Upload</button>
+					{/* <button onClick={this.onFileUpload}>Upload</button> */}
 
 				</div>
 				{this.fileData()}
