@@ -16,7 +16,7 @@ require('dotenv').config();
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawks_retake',
-  password: `${process.env.REACT_APP_DB_PASSWORD}`,
+  password: process.env.REACT_APP_DB_PASSWORD,
   database: 'redhawks_retake'
 });
 
@@ -30,7 +30,7 @@ connection.connect((err) => {
 
 // Set up session middleware
 app.use(session({
-  secret: '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', // Change this to a secure random string
+  secret: `${process.env.REACT_APP_CLIENT_SECRET}`, // Change this to a secure random string
   resave: false,
   saveUninitialized: true
 }));
@@ -66,7 +66,7 @@ app.get('/auth/google', passport.authenticate('google', {
 
 // Google OAuth callback route
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/',
+  successRedirect: 'http://localhost:3000/home',
   failureRedirect: '/login'
 }));
 
