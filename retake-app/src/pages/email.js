@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import './email.css';
+import fileUpload from './fileUpload';
 import {
     BrowserRouter as Router,
     Routes,
@@ -39,7 +40,7 @@ const Email = () => {
                 <p>Hello Student, 
                 </p>
                 <p>In order to qualify for a retake, please complete the worksheet attached to this email:
-
+                
                 </p>
                 <p> Thanks, Dr. Diller</p>
                 

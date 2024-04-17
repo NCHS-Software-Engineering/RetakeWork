@@ -134,14 +134,13 @@ class fileUpload extends Component {
 					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
 
 					{/* <button onClick={this.onFileUpload}>Upload</button> */}
-
-					<input
-           				placeholder='Paste a link to a worksheet'
-            			type="text"
-            			
-         />
-
+					<div className ="wrap">
+						<input  value={this.state.link} onChange={(e)=>{this.setState({link: e.target.value})}} placeholder='Paste a link to a worksheet' type="text" id="link" />
+						<h1 className="string">Link entered: {this.state.link}</h1>
+					</div>
+		 
 				</div>
+				
 				{this.fileData()}
 			</div>
 		);
