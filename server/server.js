@@ -16,7 +16,7 @@ require('dotenv').config();
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawks_retake',
-  password: `${process.env.REACT_APP_DB_PASSWORD}`,
+  password: process.env.REACT_APP_DB_PASSWORD,
   database: 'redhawks_retake'
 });
 
@@ -66,7 +66,7 @@ app.get('/auth/google', passport.authenticate('google', {
 
 // Google OAuth callback route
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/',
+  successRedirect: 'http://localhost:3000/home',
   failureRedirect: '/login'
 }));
 
