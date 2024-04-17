@@ -30,7 +30,7 @@ connection.connect((err) => {
 
 // Set up session middleware
 app.use(session({
-  secret: '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', // Change this to a secure random string
+  secret: process.env.REACT_APP_CLIENT_SECRET, // Change this to a secure random string
   resave: false,
   saveUninitialized: true
 }));
@@ -42,7 +42,7 @@ app.use(passport.session());
 // Configure Google OAuth strategy
 passport.use(new GoogleStrategy({
   clientID: `${process.env.REACT_APP_CLIENT_ID}`,
-  clientSecret:`${process.env.REACT_APP_CLIENT_SECRET}`,
+  clientSecret: `${process.env.REACT_APP_CLIENT_SECRET}`,
   callbackURL: 'http://localhost:8000/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
   // Save user profile to session or database
