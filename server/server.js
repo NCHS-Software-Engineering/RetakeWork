@@ -60,12 +60,21 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
   console.log('File uploaded successfully');
   res.status(200).json({ message: 'File uploaded successfully' });
 });
-//insert teacher accounts into database
+
+//insert teacher accounts into database - passport??
 app.post('/api/teachers', (req, res) => {
-
-
+  res.send("POST Request Called")
 })  
 
+//delete teacher from database
+app.delete('/api/teachers', (req, res) => { 
+  res.send("DELETE Request Called") 
+})
+
+//get classes under teacher from database 
+app.get('/api/classes', (req, res) => {
+  res.send("GET Request Called")
+})
 
 //insert classes into database
 app.post('/api/classes', (req, res)=> {
@@ -81,6 +90,28 @@ app.post('/api/classes', (req, res)=> {
      res.send(JSON.stringify(result));
   });   
 })
+
+//delete class from database
+app.delete('/api/classes', (req, res) => { 
+  res.send("DELETE Request Called") 
+})
+
+//get tests from class to populate dropdown
+app.get('/api/tests', (req, res) => {
+  res.send("GET Request Called")
+})
+
+//post test from class to database
+app.post('/api/tests', (req, res) => {
+  res.send("POST Request Called")
+})
+
+//delete test from class 
+app.delete('/api/tests', (req, res) => {
+  res.send("DELETE Request Called")
+})
+
+
 
 
 app.listen(PORT, () => console.log('Example app is listening on port 8000.'));
