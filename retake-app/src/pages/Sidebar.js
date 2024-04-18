@@ -27,7 +27,7 @@ const Parent = () => {
 export default props => {
 
   const [isOpenableClasses, setSelectedClasses] = useState(true);
-  const [testOptions, setTests] = useState([]);
+  const [testOptions, setTestOptions] = useState([]);
   const [studentOptions, setStudents] = useState([]);
   const [userInput, setUserInput] = useState();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -36,6 +36,7 @@ export default props => {
   const [classId, setClassId] = useState(1);
   const [userId, setUserId] = useState(1);
   const [classes, setClasses] = useState([]);
+  const [tests, setTests] = useState([]);
 
   
   const handleChange = (selectedOption) => {
@@ -73,7 +74,7 @@ export default props => {
     setSelectedClass(selectedClass);
     
     if (selectedClass.value === "prog1") {
-      setTests([
+      setTestOptions([
       { value: 'test1', label: 'Chapter 1 Test' },
       { value: 'test2', label: 'Chapter 2 Test' },
       { value: 'test3', label: 'Chapter 3 Test' },
@@ -88,7 +89,7 @@ export default props => {
       setSelectedClasses(false);
     }
     if (selectedClass.value === "APCS") {
-      setTests([
+      setTestOptions([
       { value: 'test5', label: 'Unit 1: Primitive Types Test' },
       { value: 'test6', label: 'Unit 5: Writing Classes Test' },
       { value: 'test7', label: 'Unit 10: Recursion Test' },
@@ -102,7 +103,7 @@ export default props => {
       setSelectedClasses(false);
     }
     if (selectedClass.value === "SE") {
-      setTests([
+      setTestOptions([
       { value: 'test9', label: 'Chapter 15 Exam' },
       { value: 'test10', label: 'Maze Lab' },
       { value: 'test11', label: 'Chapter 17 Test' },
@@ -125,19 +126,25 @@ export default props => {
   
 
   const createClass = async (className) => {
-    const res = await axios.post(
-      'http://localhost:8000/api/classes', 
-      { 
-        teacherFK: userId,
-        name: className,
-      },
-    )
+    try {
+      const res = await axios.post(
+        'http://localhost:8000/api/classes', 
+        { 
+          teacherFK: userId,
+          name: className,
+        },
+      )
 
-    debugger;
-    const data = await res.json();
-    debugger;
-    if (res.status === 200) {
-      setClasses([...classes, res.json()])
+      //debugger;
+      const data = await res.data;
+      //debugger;
+      if (res.status === 200) {
+        setClasses([...classes, data])
+        alert('Class Successfully Created!');
+
+      }
+    } catch (error) {
+      console.error('Error creating test:', error);
     }
   };
 
@@ -151,11 +158,12 @@ export default props => {
       },
     )
 
-    debugger;
-    const data = await res.json();
-    debugger;
+    //debugger;
+    const data = await res.data;
+    //debugger;
     if (res.status === 200) {
-      setTests([...classes, res.json()])
+      setTests([...tests, res.data])
+      alert('Test Successfully Created!');
     }
   };
 
