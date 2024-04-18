@@ -67,8 +67,23 @@ app.get('/auth/google', passport.authenticate('google', {
 // Google OAuth callback route
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: 'http://localhost:3000/home',
-  failureRedirect: '/login'
-}));
+  failureRedirect: 'http://localhost:3000/'
+}), (req, res) => {
+  // Extract user information from the profile
+  const { username, email } = req.user; // Access the authenticated user's profile information
+
+  // Make a POST request to the endpoint for adding a new user
+  axios.post('http://localhost:8000/api/users', { username, email })
+    .then(response => {
+      console.log('New user added successfully');
+    })
+    .catch(error => {
+      console.error('Error adding new user:', error);
+    });
+
+  // Redirect the user to the home page
+  res.redirect('http://localhost:3000/home');
+});
 
 // Route to check if user is authenticated
 app.get('/api/auth/check', (req, res) => {
@@ -83,6 +98,23 @@ app.get('/api/auth/check', (req, res) => {
 app.get('/api/auth/logout', (req, res) => {
   req.logout();
   res.redirect('/');
+});
+
+// Route to add a new user account
+app.post('/api/users', (req, res) => {
+  const { username, email } = req.body;
+  // You may need additional validation here to sanitize and validate the input data
+
+  const sql = `INSERT INTO teacher (username, email) VALUES (?, ?)`;
+  connection.query(sql, [username, email], (err, results) => {
+    if (err) {
+      console.error("Error inserting new user:", err);
+      res.status(500).json({ error: "Error inserting new user" });
+    } else {
+      console.log("New user inserted:", results);
+      res.status(201).json({ message: "New user inserted successfully" });
+    }
+  });
 });
 
 app.listen(PORT, () => console.log('Example app is listening on port 8000.'));
