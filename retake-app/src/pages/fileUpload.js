@@ -10,6 +10,7 @@ import {
 	Route,
 	Link,
 } from "react-router-dom";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 class fileUpload extends Component {
 
@@ -104,7 +105,7 @@ class fileUpload extends Component {
 				<div>
 					<br />
 					<h4 className="text">
-						Choose file and Press Upload button
+						Choose file and Press Next button
 					</h4>
 				</div>
 			);
@@ -127,20 +128,19 @@ class fileUpload extends Component {
 						type="file"
 						onChange={this.onFileChange}
 					/>
-					{/* <Link to="/questions"><button button className = "fileButton" onClick={() => {
+					<Link to="/questions"><button button className = "fileButton" onClick={() => {
   						alert('File Successfully Uploaded!');
 						
-					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link> */}
+					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
 
-					<button onClick={this.onFileUpload}>Upload</button>
-
-					<input
-           				placeholder='Paste a link to a worksheet'
-            			type="text"
-            			
-         />
-
+					{/* <button onClick={this.onFileUpload}>Upload</button> */}
+					<div className ="wrap">
+						<input  value={this.state.link} onChange={(e)=>{this.setState({link: e.target.value})}} placeholder='Paste a link to a worksheet' type="text" id="link" />
+						<h1 className="string">Link entered: {this.state.link}</h1>
+					</div>
+		 
 				</div>
+				
 				{this.fileData()}
 			</div>
 		);
