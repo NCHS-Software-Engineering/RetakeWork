@@ -36,19 +36,19 @@ connection.connect((err) => {
 // Multer configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, '..', 'retake-app', 'src', 'assets')); // Set destination folder for uploaded files
+    cb(null, path.join(__dirname, '..', 'retake-app', 'src', 'assets')); // Set destination folder for uploaded files
   },
   filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // Set filename
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // Set filename
   }
 });
 
 // File filter function to accept only PDF and CSV files
 const fileFilter = (req, file, cb) => {
   if (file.mimetype === 'application/pdf' || file.mimetype === 'text/csv') {
-      cb(null, true); // Accept the file
+    cb(null, true); // Accept the file
   } else {
-      cb(new Error('Only PDF and CSV files are allowed')); // Reject the file
+    cb(new Error('Only PDF and CSV files are allowed')); // Reject the file
   }
 };
 
@@ -64,41 +64,61 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
 //insert teacher accounts into database - passport??
 app.post('/api/teachers', (req, res) => {
   res.send("POST Request Called")
-})  
+})
 
 //delete teacher from database
-app.delete('/api/teachers', (req, res) => { 
-  res.send("DELETE Request Called") 
+app.delete('/api/teachers', (req, res) => {
+  res.send("DELETE Request Called")
 })
 
 //get classes under teacher from database 
 app.get('/api/classes', (req, res) => {
-  res.send("GET Request Called")
-})
+
+  connection.query(`
+      SELECT *
+      FROM class
+      `, (err, result) => {
+        console.log("getting classes")
+    if (err) throw err;
+    return res.json({ result });
+  });
+});
+
+
+
 
 //insert classes into database
-app.post('/api/classes', (req, res)=> {
+app.post('/api/classes', (req, res) => {
   console.log('here in the class creation route')
 
   const classname = req.body.name;
   const teacherFK = req.body.teacherFK;
 
-  connection.query("INSERT INTO class (teacher_fk, name) VALUES (?, ?)", [teacherFK, classname], (err,result)=>{
-     if(err) {
-     console.log(err)
-     } 
-     res.send(JSON.stringify(result));
-  });   
+  connection.query("INSERT INTO class (teacher_fk, name) VALUES (?, ?)", [teacherFK, classname], (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    res.send(JSON.stringify(result));
+  });
 })
 
 //delete class from database
-app.delete('/api/classes', (req, res) => { 
-  res.send("DELETE Request Called") 
+app.delete('/api/classes', (req, res) => {
+  res.send("DELETE Request Called")
 })
 
 //get tests from class to populate dropdown
-app.get('/api/tests', (req, res) => {
-  res.send("GET Request Called")
+app.get('/api/tests/:id', (req, res) => {
+  console.log("getting tests")
+  const testId = req.params.id;
+  connection.query(`
+      SELECT *
+      FROM test WHERE test.id = ${testId}
+      `, (err, result) => {
+        console.log("getting classes")
+    if (err) throw err;
+    return res.json({ result });
+  });
 })
 
 //post test from class to database
