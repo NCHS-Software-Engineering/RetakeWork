@@ -12,10 +12,6 @@ import {
 } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // MyContext.js
-import createContext from 'react';
-
-// Create a context
-const MyContext = createContext();
 
 class fileUpload extends Component {
 
