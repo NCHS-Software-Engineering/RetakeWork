@@ -52,7 +52,7 @@ const Email = () => {
      <CopyToClipboard
      text="Hello Student, 
      
-     In order to qualify for a retake, please complete the worksheet attached to this email:
+     In order to qualify for a retake, please complete the worksheet attached to this email                       
 
      Thanks, Dr. Diller"
      onCopy={() => alert("Copied")}>

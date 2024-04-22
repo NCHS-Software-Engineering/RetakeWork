@@ -11,6 +11,7 @@ import {
 	Link,
 } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+// MyContext.js
 
 class fileUpload extends Component {
 
