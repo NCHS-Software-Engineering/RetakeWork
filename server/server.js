@@ -73,7 +73,6 @@ app.delete('/api/teachers', (req, res) => {
 
 //get classes under teacher from database 
 app.get('/api/classes', (req, res) => {
-
   connection.query(`
       SELECT *
       FROM class
@@ -83,8 +82,6 @@ app.get('/api/classes', (req, res) => {
     return res.json({ result });
   });
 });
-
-
 
 
 //insert classes into database
@@ -104,7 +101,7 @@ app.post('/api/classes', (req, res) => {
 
 //delete class from database
 app.delete('/api/classes', (req, res) => {
-  res.send("DELETE Request Called")
+  console.log('here in the class creation route')
 })
 
 //get tests from class to populate dropdown
@@ -139,7 +136,7 @@ app.post('/api/tests', (req, res) => {
 
 //delete test from class 
 app.delete('/api/tests', (req, res) => {
-  res.send("DELETE Request Called")
+  console.log('here in the test deletion route')
 })
 
 

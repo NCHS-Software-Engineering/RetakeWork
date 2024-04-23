@@ -73,18 +73,7 @@ export default props => {
     disableOpenable(false);
     console.log("test dropdown")
     setSelectedClass(selectedClass);
-    const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
-    const data = await res.json();
-    //populate test options with data from class table
-  
-      console.log(data)
-      const tests = data.result.map((entry) => {
-        return { value: entry.id, label: entry.name }
-      });
-      console.log(tests)
-      setTestOptions([...tests, { value: 'addTest', label: 'Add Test...' }]);
     
-
 
     
     /* if (selectedClass.value === "prog1") {
@@ -135,7 +124,19 @@ export default props => {
     if (selectedClass.value === "addClass") {
       setUserInput('');
     }
-
+    else {
+      const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
+      const data = await res.json();
+      //populate test options with data from class table
+    
+        console.log(data)
+        const tests = data.result.map((entry) => {
+          return { value: entry.id, label: entry.name }
+        });
+        console.log(tests)
+        setTestOptions([...tests, { value: 'addTest', label: 'Add Test...' }]);
+      
+    }
   };
 
 
@@ -216,13 +217,7 @@ export default props => {
     { value: 'email', label: 'Email' },
     { value: 'upload', label: 'Upload' }];
 
-  const classOptions1 = [
-    { value: 'prog1', label: 'Programming 1' },
-    { value: 'APCS', label: 'AP Computer Science A' },
-    { value: 'SE', label: 'Software Engineering' },
-    { value: 'addClass', label: 'Add class...' },];
-
-
+  
 
   const handleChangeTest = (selectedTest) => {
     setSelectedTest(selectedTest);
