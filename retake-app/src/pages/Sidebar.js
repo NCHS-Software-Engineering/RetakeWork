@@ -73,7 +73,7 @@ export default props => {
     disableOpenable(false);
     console.log("test dropdown")
     setSelectedClass(selectedClass);
-    const res = await fetch(`http://localhost:8000/api/tests?id=${selectedClass.value}`);
+    const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
     const data = await res.json();
     //populate test options with data from class table
   
@@ -164,10 +164,10 @@ export default props => {
 
   const createTest = async (testName) => {
     const res = await axios.post(
-      'http://localhost:8000/api/classes',
+      'http://localhost:8000/api/tests',
       {
         teacherFK: userId,
-        classFK: selectedClass.id,
+        classFK: selectedClass.value,
         name: testName,
       },
     )

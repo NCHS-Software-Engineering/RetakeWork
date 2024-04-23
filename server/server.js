@@ -108,12 +108,12 @@ app.delete('/api/classes', (req, res) => {
 })
 
 //get tests from class to populate dropdown
-app.get('/api/tests/:id', (req, res) => {
+app.get('/api/tests/:classId', (req, res) => {
   console.log("getting tests")
-  const testId = req.params.id;
+  const classId = req.params.classId;
   connection.query(`
       SELECT *
-      FROM test WHERE test.id = ${testId}
+      FROM test WHERE test.class_fk = ${classId}
       `, (err, result) => {
         console.log("getting classes")
     if (err) throw err;
@@ -123,7 +123,18 @@ app.get('/api/tests/:id', (req, res) => {
 
 //post test from class to database
 app.post('/api/tests', (req, res) => {
-  res.send("POST Request Called")
+  console.log('here in the test creation route')
+
+  const testName = req.body.name;
+  const teacherFK = req.body.teacherFK;
+  const classFK = req.body.classFK;
+
+  connection.query("INSERT INTO test (class_fk, teacher_fk, name) VALUES (?, ?, ?)", [classFK, teacherFK, testName], (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    res.send(JSON.stringify(result));
+  });
 })
 
 //delete test from class 
