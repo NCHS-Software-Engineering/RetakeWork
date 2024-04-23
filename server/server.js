@@ -5,11 +5,14 @@ const multer = require('multer');
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const axios = require('axios');
 
 
 const PORT = 8000;
 const app = express();
 app.use(cors());
+app.use(express.json());
+
 const mysql = require('mysql2');
 require('dotenv').config();
 
@@ -43,10 +46,22 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
   clientID: `${process.env.REACT_APP_CLIENT_ID}`,
   clientSecret: `${process.env.REACT_APP_CLIENT_SECRET}`,
-  callbackURL: 'http://localhost:8000/auth/google/callback'
-}, (accessToken, refreshToken, profile, done) => {
+  callbackURL: 'http://localhost:8000/auth/google/callback',
+  passReqToCallback: true
+}, (req, accessToken, refreshToken, profile, done) => {
   // Save user profile to session or database
-  return done(null, profile);
+
+  const user = {
+    username: profile.displayName,
+    email: profile.emails[0].value,
+  };
+
+  req.user = user; 
+
+  console.log(req.user);
+
+  return done(null, user);
+
 }));
 
 // Serialize user object to store in session
@@ -68,21 +83,25 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: 'http://localhost:3000/home',
   failureRedirect: 'http://localhost:3000/'
-}), (req, res) => {
-  // Extract user information from the profile
-  const { username, email } = req.user; // Access the authenticated user's profile information
+}), async (req, res) => {
+  try {
 
-  // Make a POST request to the endpoint for adding a new user
-  axios.post('http://localhost:8000/api/users', { username, email })
-    .then(response => {
-      console.log('New user added successfully');
-    })
-    .catch(error => {
-      console.error('Error adding new user:', error);
-    });
+    console.log("Callback hit", req.user);
 
-  // Redirect the user to the home page
-  res.redirect('http://localhost:3000/home');
+
+    // Extract user information from the profile
+    const { username, email } = req.user;
+
+    // Make a POST request to the endpoint for adding a new user
+    await axios.post('http://localhost:8000/api/users', { username, email });
+
+    // Redirect the user to the home page
+    res.redirect('http://localhost:3000/home');
+  } catch (error) {
+    console.error('Error adding new user:', error);
+    // Handle error
+    res.status(500).send('Error adding new user');
+  }
 });
 
 // Route to check if user is authenticated
@@ -97,23 +116,37 @@ app.get('/api/auth/check', (req, res) => {
 // Logout route
 app.get('/api/auth/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect('http://localhost:3000/');
 });
 
 // Route to add a new user account
 app.post('/api/users', (req, res) => {
   const { username, email } = req.body;
-  // You may need additional validation here to sanitize and validate the input data
 
-  const sql = `INSERT INTO teacher (username, email) VALUES (?, ?)`;
-  connection.query(sql, [username, email], (err, results) => {
-    if (err) {
-      console.error("Error inserting new user:", err);
-      res.status(500).json({ error: "Error inserting new user" });
-    } else {
-      console.log("New user inserted:", results);
-      res.status(201).json({ message: "New user inserted successfully" });
+  // Check if the user already exists in the database
+  const selectSql = `SELECT * FROM teacher WHERE email = ?`;
+  connection.query(selectSql, [email], (selectErr, selectResults) => {
+    if (selectErr) {
+      console.error("Error checking for existing user:", selectErr);
+      return res.status(500).json({ error: "Error checking for existing user" });
     }
+
+    // If a user with the same email already exists, return an error
+    if (selectResults.length > 0) {
+      return res.status(409).json({ error: "User with the same email already exists" });
+    }
+
+
+    const sql = `INSERT INTO teacher ( username, email) VALUES ( ?, ?)`;
+    connection.query(sql, [username, email], (err, results) => {
+      if (err) {
+        console.error("Error inserting new user:", err);
+        res.status(500).json({ error: "Error inserting new user" });
+      } else {
+        console.log("New user inserted:", results);
+        res.status(201).json({ message: "New user inserted successfully" });
+      }
+    });
   });
 });
 
