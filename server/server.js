@@ -91,7 +91,7 @@ app.post('/api/classes', (req, res) => {
   const classname = req.body.name;
   const teacherFK = req.body.teacherFK;
 
-  connection.query("INSERT INTO class (Steacher_fk, name) VALUES (?, ?)", [teacherFK, classname], (err, result) => {
+  connection.query("INSERT INTO class (teacher_fk, name) VALUES (?, ?)", [teacherFK, classname], (err, result) => {
     if (err) {
       console.log(err)
     }

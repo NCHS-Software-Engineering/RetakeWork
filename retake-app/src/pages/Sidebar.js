@@ -75,52 +75,6 @@ export default props => {
     setSelectedClass(selectedClass);
     
 
-    
-    /* if (selectedClass.value === "prog1") {
-      setTestOptions([
-      { value: 'test1', label: 'Chapter 1 Test' },
-      { value: 'test2', label: 'Chapter 2 Test' },
-      { value: 'test3', label: 'Chapter 3 Test' },
-      { value: 'test4', label: 'Chapter 4 Test' },
-      { value: 'addTest', label: 'Add Test...'}]);
-
-        setStudents([
-          {value: 'student1', label: 'Henry Anderson'},
-          {value: 'student2', label: 'Doran Sanford'},
-          {value: 'student3', label: 'Conner Furby'},])
-
-      setSelectedClasses(false);
-    }
-    if (selectedClass.value === "APCS") {
-      setTestOptions([
-      { value: 'test5', label: 'Unit 1: Primitive Types Test' },
-      { value: 'test6', label: 'Unit 5: Writing Classes Test' },
-      { value: 'test7', label: 'Unit 10: Recursion Test' },
-      { value: 'addTest', label: 'Add Test...'}]);
-
-        setStudents([
-          {value: 'student4', label: 'Sam Abud'},
-          {value: 'student5', label: 'Jacob Wachtor'},
-          {value: 'student6', label: 'Jake Moore'},])
-
-      setSelectedClasses(false);
-    }
-    if (selectedClass.value === "SE") {
-      setTestOptions([
-      { value: 'test9', label: 'Chapter 15 Exam' },
-      { value: 'test10', label: 'Maze Lab' },
-      { value: 'test11', label: 'Chapter 17 Test' },
-      { value: 'addTest', label: 'Add Test...'}]);
-
-        setStudents([
-          {value: 'student7', label: 'Ahkil Kanuri'},
-          {value: 'student8', label: 'Alex Ung'},
-          {value: 'student9', label: 'Will Stenzel'},
-          {value: 'student10', label: 'Samantha Pan'},])
-
-      setSelectedClasses(false);
-    } */
-
     if (selectedClass.value === "addClass") {
       setUserInput('');
     }
