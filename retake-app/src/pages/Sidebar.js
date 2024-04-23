@@ -156,7 +156,7 @@ export default props => {
         
       </div>
       <div className = "signout">
-        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
+        <Link to="http://localhost:8000/api/auth/logout"><button class="signoutbutton">Sign Out</button></Link>
 
       </div>
     </Menu>
