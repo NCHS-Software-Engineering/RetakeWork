@@ -16,7 +16,7 @@ require('dotenv').config();
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawks_retake',
-  password: process.env.REACT_APP_DB_PASSWORD,
+  password: `${process.env.REACT_APP_DB_PASSWORD}`,
   database: 'redhawks_retake'
 });
 
