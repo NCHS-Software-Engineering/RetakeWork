@@ -11,6 +11,7 @@ import {
   Routes,
   Route,
   Link,
+  useNavigate,
 } from "react-router-dom";
 
 const baseURL = "http://localhost:8000/";
@@ -173,7 +174,19 @@ export default props => {
     { value: 'email', label: 'Email' },
     { value: 'upload', label: 'Upload' }];
 
-  
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    console.log("function called");
+    axios.get('http://localhost:8000/api/auth/logout')
+      .then(() => {
+        // Redirect the user after successful logout
+        navigate('/');
+      })
+      .catch((err) => {
+        console.error('Logout failed:', err);
+      });
+  };
 
   const handleChangeTest = (selectedTest) => {
     setSelectedTest(selectedTest);
@@ -275,7 +288,10 @@ export default props => {
 
       </div>
       <div className="signout">
-        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
+        <button className = "signButtonUp" onClick={() => {
+          console.log("Logout button clicked");
+          logOut(); // Call the logout function
+        }}>Sign Out</button>
 
       </div>
     </Menu>
