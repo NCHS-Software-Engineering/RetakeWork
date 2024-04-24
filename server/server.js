@@ -135,8 +135,18 @@ app.post('/api/tests', (req, res) => {
 })
 
 //delete test from class 
-app.delete('/api/tests', (req, res) => {
+app.delete('/api/tests/:testId', (req, res) => {
   console.log('here in the test deletion route')
+  const testId = req.params.testId;
+  connection.query(`
+    DELETE FROM test WHERE test.id = ${testId}`
+    , (err, result) => {
+    if (err) {
+      console.log(err)
+    }
+    res.send(JSON.stringify(result));
+  });
+
 })
 
 
