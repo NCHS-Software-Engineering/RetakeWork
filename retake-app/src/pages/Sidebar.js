@@ -4,12 +4,14 @@ import './Sidebar.css';
 import Select from "react-select";
 import { PiSignOutBold } from "react-icons/pi";
 import Child from './SelectQs.js';
+import axios from 'axios';
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
+  useNavigate,
 } from "react-router-dom";
 
 
@@ -23,6 +25,7 @@ const Parent = () => {
 
 export default props => {
 
+
   const [isOpenableClasses, setSelectedClasses] = useState(true);
   const [testOptions, setTests] = useState([]);
   const [studentOptions, setStudents] = useState([]);
@@ -30,18 +33,18 @@ export default props => {
 
     if (selectedOption.value === "login") {
       window.location.href = "./login";
-    
+
     }
     if (selectedOption.value === "default") {
       window.location.href = "./";
-     
+
     }
     if (selectedOption.value === "signup") {
       window.location.href = "./signup";
-   
+
     }
     if (selectedOption.value === "home") {
-     ;
+      ;
     }
     if (selectedOption.value === "qs") {
       window.location.href = "./questions";
@@ -59,42 +62,42 @@ export default props => {
 
     if (selectedOption.value === "prog1") {
       setTests([
-      { value: 'test1', label: 'Chapter 1 Test' },
-      { value: 'test2', label: 'Chapter 2 Test' },
-      { value: 'test3', label: 'Chapter 3 Test' },
-      { value: 'test4', label: 'Chapter 4 Test' }]);
+        { value: 'test1', label: 'Chapter 1 Test' },
+        { value: 'test2', label: 'Chapter 2 Test' },
+        { value: 'test3', label: 'Chapter 3 Test' },
+        { value: 'test4', label: 'Chapter 4 Test' }]);
 
-        setStudents([
-          {value: 'student1', label: 'Henry Anderson'},
-          {value: 'student2', label: 'Doran Sanford'},
-          {value: 'student3', label: 'Conner Furby'},])
+      setStudents([
+        { value: 'student1', label: 'Henry Anderson' },
+        { value: 'student2', label: 'Doran Sanford' },
+        { value: 'student3', label: 'Conner Furby' },])
 
       setSelectedClasses(false);
     }
     if (selectedOption.value === "APCS") {
       setTests([
-      { value: 'test5', label: 'Unit 1: Primitive Types Test' },
-      { value: 'test6', label: 'Unit 5: Writing Classes Test' },
-      { value: 'test7', label: 'Unit 10: Recursion Test' }]);
+        { value: 'test5', label: 'Unit 1: Primitive Types Test' },
+        { value: 'test6', label: 'Unit 5: Writing Classes Test' },
+        { value: 'test7', label: 'Unit 10: Recursion Test' }]);
 
-        setStudents([
-          {value: 'student4', label: 'Sam Abud'},
-          {value: 'student5', label: 'Jacob Wachtor'},
-          {value: 'student6', label: 'Jake Moore'},])
+      setStudents([
+        { value: 'student4', label: 'Sam Abud' },
+        { value: 'student5', label: 'Jacob Wachtor' },
+        { value: 'student6', label: 'Jake Moore' },])
 
       setSelectedClasses(false);
     }
     if (selectedOption.value === "SE") {
       setTests([
-      { value: 'test9', label: 'Chapter 15 Exam' },
-      { value: 'test10', label: 'Maze Lab' },
-      { value: 'test11', label: 'Chapter 17 Test' }]);
+        { value: 'test9', label: 'Chapter 15 Exam' },
+        { value: 'test10', label: 'Maze Lab' },
+        { value: 'test11', label: 'Chapter 17 Test' }]);
 
-        setStudents([
-          {value: 'student7', label: 'Ahkil Kanuri'},
-          {value: 'student8', label: 'Alex Ung'},
-          {value: 'student9', label: 'Will Stenzel'},
-          {value: 'student10', label: 'Samantha Pan'},])
+      setStudents([
+        { value: 'student7', label: 'Ahkil Kanuri' },
+        { value: 'student8', label: 'Alex Ung' },
+        { value: 'student9', label: 'Will Stenzel' },
+        { value: 'student10', label: 'Samantha Pan' },])
 
       setSelectedClasses(false);
     }
@@ -109,7 +112,7 @@ export default props => {
 
 
   const customStyles = {
-    control:  (provided, state)=> ({
+    control: (provided, state) => ({
       ...provided,
       width: 210,
       position: 'relative',
@@ -123,7 +126,8 @@ export default props => {
       width: 210,
       position: 'relative',
       top: 40
-    })};
+    })
+  };
 
 
   const options1 = [
@@ -131,36 +135,51 @@ export default props => {
     { value: 'home', label: 'Home' },
     { value: 'login', label: 'Log In' },
     { value: 'default', label: 'Default' },
-    {value: 'qs', label: 'Select Questions'},
-    {value: 'email', label: 'Email'},
-    {value: 'upload', label: 'Upload'}];
+    { value: 'qs', label: 'Select Questions' },
+    { value: 'email', label: 'Email' },
+    { value: 'upload', label: 'Upload' }];
 
   const classOptions = [
     { value: 'prog1', label: 'Programming 1' },
     { value: 'APCS', label: 'AP Computer Science A' },
     { value: 'SE', label: 'Software Engineering' },];
 
-  
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    console.log("function called");
+    axios.get('http://localhost:8000/api/auth/logout')
+      .then(() => {
+        // Redirect the user after successful logout
+        navigate('/');
+      })
+      .catch((err) => {
+        console.error('Logout failed:', err);
+      });
+  };
 
   return (
-    
+
     <Menu>
-      
+
       <div className="mt-auto m-auto w-50">
-        <Select placeholder="Pages" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
+        <Select placeholder="Pages" options={options1} autoFocus={true} onChange={handleChange} styles={customStyles} />
         <p></p>
-        <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChangeClasses} styles={customStyles}/>
+        <Select placeholder="Classes" options={classOptions} autoFocus={true} onChange={handleChangeClasses} styles={customStyles} />
         <p></p>
-        <Select placeholder="Test" options = {testOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
+        <Select placeholder="Test" options={testOptions} autoFocus={true} onChange={handleChange} styles={customStyles} isDisabled={isOpenableClasses} />
         <p></p>
-        
+
       </div>
-      <div className = "signout">
-        <Link to="http://localhost:8000/api/auth/logout"><button class="signoutbutton">Sign Out</button></Link>
+      <div className="signout">
+        <button className = "signButtonUp" onClick={() => {
+          console.log("Logout button clicked");
+          logOut(); // Call the logout function
+        }}>Sign Out</button>
 
       </div>
     </Menu>
-    
+
 
 
   );

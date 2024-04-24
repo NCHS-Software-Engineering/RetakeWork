@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 const mysql = require('mysql2');
+
+
 require('dotenv').config();
 
 const connection = mysql.createConnection({
@@ -60,6 +62,11 @@ passport.use(new GoogleStrategy({
 
   console.log(req.user);
 
+  const { username, email } = req.user;
+
+  
+  axios.post('http://localhost:8000/api/users', { username, email });
+
   return done(null, user);
 
 }));
@@ -83,26 +90,8 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: 'http://localhost:3000/home',
   failureRedirect: 'http://localhost:3000/'
-}), async (req, res) => {
-  try {
 
-    console.log("Callback hit", req.user);
-
-
-    // Extract user information from the profile
-    const { username, email } = req.user;
-
-    // Make a POST request to the endpoint for adding a new user
-    await axios.post('http://localhost:8000/api/users', { username, email });
-
-    // Redirect the user to the home page
-    res.redirect('http://localhost:3000/home');
-  } catch (error) {
-    console.error('Error adding new user:', error);
-    // Handle error
-    res.status(500).send('Error adding new user');
-  }
-});
+}));
 
 // Route to check if user is authenticated
 app.get('/api/auth/check', (req, res) => {
@@ -115,8 +104,15 @@ app.get('/api/auth/check', (req, res) => {
 
 // Logout route
 app.get('/api/auth/logout', (req, res) => {
-  req.logout();
-  res.redirect('http://localhost:3000/');
+  console.log("logged out");
+  req.logout((err) => {
+    if (err) {
+      console.error("Error during logout:", err);
+      res.status(500).send("Logout failed");
+    } else {
+      res.redirect('http://localhost:3000/'); // Redirecting to front-end
+    }
+  });
 });
 
 // Route to add a new user account
@@ -128,12 +124,12 @@ app.post('/api/users', (req, res) => {
   connection.query(selectSql, [email], (selectErr, selectResults) => {
     if (selectErr) {
       console.error("Error checking for existing user:", selectErr);
-      return res.status(500).json({ error: "Error checking for existing user" });
+      return; //res.status(500).json({ error: "Error checking for existing user" });
     }
 
     // If a user with the same email already exists, return an error
     if (selectResults.length > 0) {
-      return res.status(409).json({ error: "User with the same email already exists" });
+      return;// res.status(409).json({ error: "User with the same email already exists" });
     }
 
 
