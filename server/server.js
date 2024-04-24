@@ -160,7 +160,14 @@ app.delete('/api/tests/:testId', (req, res) => {
 
 
 
+app.get('/api/tests/selected/:testId', (req, res)=>{
+  const testID = req.body.id;
 
+  
+  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
+if (err) throw err;
+return res.json({ result });});
+})
 
 
 // Set up session middleware
