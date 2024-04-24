@@ -110,6 +110,7 @@ export default props => {
       if (res.status === 200) {
         setClasses([...classes, data])
         alert('Class Successfully Created!');
+        window.location.reload();
 
       }
     } catch (error) {
@@ -133,6 +134,7 @@ export default props => {
     if (res.status === 200) {
       setTests([...tests, res.data])
       alert('Test Successfully Created!');
+      window.location.reload();
     }
   };
 
@@ -179,6 +181,7 @@ export default props => {
       setUserInput('');
 
     }
+    
   }
 
   // Function to handle user input change
