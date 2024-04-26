@@ -111,10 +111,31 @@ class fileUpload extends Component {
 				</div>
 			);
 		}
+
+
+
 	};
 
 
+	questions = () => {
 
+		const [questionsSelected, setQuestionsSelected] = React.useState([]);
+
+		var nameOfClass = 'off';
+
+		function colorchange() {
+
+			if (nameOfClass === 'off') {
+				nameOfClass = 'on';
+			}
+			else {
+				nameOfClass = 'off';
+			}
+
+			alert(nameOfClass);
+
+		}
+	};
 
 	render() {
 
@@ -122,17 +143,7 @@ class fileUpload extends Component {
 			<div>
 				<Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
 
-				<h1 className="head">Test File</h1>
-				<h3>Upload file for this test or paste a link into the textbox!</h3>
-				<div>
-					<input
-						type="file"
-						onChange={this.onFileChange}
-					/>
-					<Link to="/questions"><button button className = "fileButton" onClick={() => {
-  						alert('File Successfully Uploaded!');
-						
-					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
+
 
 					{/* <button onClick={this.onFileUpload}>Upload</button> */}
 					<div className ="wrap">
@@ -143,9 +154,78 @@ class fileUpload extends Component {
 				</div>
 				
 				
-			</div>
-		);
+
+				
+					fileUpload.state ? (
+						<body>
+
+
+							<div className="SelectQsPage">
+								<div className="SelectQsPage" id="outer-container">
+									<Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+
+								</div>
+							</div>
+
+							<div className="textInput">
+
+								<input
+									placeholder='Type the questions the student got wrong, seperated by a comma with a space (1, 2, 3d, 5...)'
+									type="text"
+									onInput={(e) => this.questions.setQuestionsSelected(e.target.value.split(','))}
+								/>
+								<Link to="/email"><button button className="clickToEmailButton" onClick={() => { }}>Next</button></Link>
+							</div>
+
+							{/*{isEmpty(questionsSelected) ? (
+				  <div>
+					<h1>Questions Selected: {questionsSelected}</h1>
+				  </div>
+				) : (
+				  <div>
+					<h1>hi</h1>
+				  </div>
+				)}*/}
+
+						</body>
+					) : (
+						<div>
+
+							<h1 className="head">Test File</h1>
+							<h3>Upload file for this test or paste a link into the textbox!</h3>
+							<div>
+								<input
+									type="file"
+									onChange={this.onFileChange}
+								/>
+								<Link to="/questions"><button button className="fileButton" onClick={() => {
+									alert('File Successfully Uploaded!');
+
+								}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
+
+								{/* <button onClick={this.onFileUpload}>Upload</button> */}
+								<div className="wrap">
+									<input value={this.state.link} onChange={(e) => { this.setState({ link: e.target.value }) }} placeholder='Paste a link to a worksheet' type="text" id="link" />
+									<h1 className="string">Link entered: {this.state.link}</h1>
+								</div>
+
+							</div>
+
+							{/* <button onClick={this.onFileUpload}>Upload</button> */}
+							<div className="wrap">
+								<input value={this.state.link} onChange={(e) => { this.setState({ link: e.target.value }) }} placeholder='Paste a link to a worksheet' type="text" id="link" />
+								<h1 className="string">Link entered: {this.state.link}</h1>
+							</div>
+							{this.fileData()}
+						</div>)
+				
+
+
+			
+		)
 	}
 }
 
-export default fileUpload; 
+export default fileUpload;
+
+
