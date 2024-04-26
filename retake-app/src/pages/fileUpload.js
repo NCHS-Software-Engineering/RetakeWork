@@ -142,12 +142,7 @@ class fileUpload extends Component {
 		 
 				</div>
 				
-				{/* <button onClick={this.onFileUpload}>Upload</button> */}
-				<div className ="wrap">
-						<input  value={this.state.link} onChange={(e)=>{this.setState({link: e.target.value})}} placeholder='Paste a link to a worksheet' type="text" id="link" />
-						<h1 className="string">Link entered: {this.state.link}</h1>
-					</div>
-				{this.fileData()}
+				
 			</div>
 		);
 	}
