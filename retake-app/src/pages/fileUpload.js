@@ -5,16 +5,27 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
+
+
 class FileUpload extends Component {
+	
   state = {
     selectedFile: null,
-    link: ""
+    link: "",
+	questionsSelected: []
   };
 
+ questionsSelected = [];
+  
   onFileChange = (event) => {
     this.setState({
       selectedFile: event.target.files[0]
     });
+  };
+
+  onInputChanged = (e) => {
+    // Update questionsSelected state
+    this.setState({ questionsSelected: e.target.value.split(',') });
   };
 
   onButtonClick = () => {
@@ -22,6 +33,8 @@ class FileUpload extends Component {
       selectedFile: null
     });
   };
+
+  
 
   componentDidMount() {
     // Retrieve selectedFile from localStorage if available
@@ -58,6 +71,7 @@ class FileUpload extends Component {
     }
   };
 
+
   render() {
     const { selectedFile, link } = this.state;
 
@@ -76,9 +90,9 @@ class FileUpload extends Component {
               <input
                 placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...)'
                 type="text"
-                onInput={(e) => this.setState({ questionsSelected: e.target.value.split(',') })}
+                onInput={this.onInputChanged}
               />
-              <Link to="/email"><button className="clickToEmailButton">Next</button></Link>
+              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected }}}><button className="clickToEmailButton">Next</button></Link>
               <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
             </div>
           </body>
