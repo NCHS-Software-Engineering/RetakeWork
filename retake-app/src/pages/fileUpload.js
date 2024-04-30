@@ -9,6 +9,7 @@ import {
 	Routes,
 	Route,
 	Link,
+	useLocation,
 } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // MyContext.js
@@ -18,6 +19,8 @@ class fileUpload extends Component {
 	state = {
 		// Initially, no file is selected
 		selectedFile: null,
+		link: null,
+		selectedTest: null
 	};
 
 	// On file select (from the pop up)
@@ -26,6 +29,51 @@ class fileUpload extends Component {
 		this.setState({
 			selectedFile: event.target.files[0],
 		});
+	};
+
+	uploadFunction = (selectedTestValue) => {
+		// Use selectedTestValue as needed in upload.js
+		console.log("Selected test value in upload.js:", selectedTestValue);
+		this.setState({
+			selectedTest: selectedTestValue
+		})
+	}
+
+	componentDidMount() {
+		
+	}
+
+
+	// On link input
+	onLinkInput = (event) => {
+		// Update the state
+		this.setState({
+			link: event.target.value,
+		});
+		const location = window.location;
+		const searchParams = new URLSearchParams(location.search);
+		const selectedTestValue = searchParams.get('selectedTest');
+		console.log("Selected test value:", selectedTestValue);
+		console.log(this.state.link)
+		// Function to update the test with a new link
+		const updateTestLink = async (testId, newLink) => {
+			try {
+				// Fetch the existing test data
+				const response = await axios.get(`/api/tests/${testId}`);
+				const test = response.data;
+
+				// Update the link field with the new value
+				test.link = newLink;
+
+				// Send a PUT request to update the test
+				await axios.put(`/api/tests/${testId}`, test);
+
+				console.log('Test link updated successfully');
+			} catch (error) {
+				console.error('Error updating test link:', error);
+			}
+		};
+		
 	};
 
 	// On file upload (click the upload button)
@@ -129,24 +177,24 @@ class fileUpload extends Component {
 						type="file"
 						onChange={this.onFileChange}
 					/>
-					<Link to="/questions"><button button className = "fileButton" onClick={() => {
-  						alert('File Successfully Uploaded!');
-						
+					<Link to="/questions"><button button className="fileButton" onClick={() => {
+						alert('File Successfully Uploaded!');
+
 					}} formAction="http://localhost:8000/api/uploadfile" formMethod="post">Next</button></Link>
 
 					{/* <button onClick={this.onFileUpload}>Upload</button> */}
-					<div className ="wrap">
-						<input  value={this.state.link} onChange={(e)=>{this.setState({link: e.target.value})}} placeholder='Paste a link to a worksheet' type="text" id="link" />
+					<div className="wrap">
+						<input value={this.state.link} onChange={this.onLinkInput} placeholder='Paste a link to a worksheet' type="text" id="link" />
 						<h1 className="string">Link entered: {this.state.link}</h1>
 					</div>
-		 
+
 				</div>
-				
+
 				{/* <button onClick={this.onFileUpload}>Upload</button> */}
-				<div className ="wrap">
-						<input  value={this.state.link} onChange={(e)=>{this.setState({link: e.target.value})}} placeholder='Paste a link to a worksheet' type="text" id="link" />
-						<h1 className="string">Link entered: {this.state.link}</h1>
-					</div>
+				<div className="wrap">
+					<input value={this.state.link} onChange={(e) => { this.setState({ link: e.target.value }) }} placeholder='Paste a link to a worksheet' type="text" id="link" />
+					<h1 className="string">Link entered: {this.state.link}</h1>
+				</div>
 				{this.fileData()}
 			</div>
 		);
