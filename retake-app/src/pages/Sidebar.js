@@ -46,7 +46,7 @@ export default props => {
       .catch((error) => {
         console.error("Error checking authentication:", error);
       });
-  }, [user]); // The empty array ensures this effect runs once when the component is mounted
+  }, []); // The empty array ensures this effect runs once when the component is mounted
 
 
 
@@ -277,6 +277,7 @@ export default props => {
     <Menu>
 
       <div className="mt-auto m-auto w-50">
+        <p1>HI {user.username}</p1>
         <Select
           placeholder="Pages"
           options={options1}
