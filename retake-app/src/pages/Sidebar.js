@@ -277,6 +277,7 @@ export default props => {
     <Menu>
 
       <div className="mt-auto m-auto w-50">
+        <p1>HI {user.username}</p1>
         <Select
           placeholder="Pages"
           options={options1}
