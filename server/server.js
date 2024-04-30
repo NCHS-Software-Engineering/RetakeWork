@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -18,7 +17,7 @@ app.use(express.json());
 
 const mysql = require('mysql2');
 
-
+const selectedTest = 
 require('dotenv').config();
 
 const connection = mysql.createConnection({
@@ -73,15 +72,6 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
   res.status(200).json({ message: 'File uploaded successfully' });
 });
 
-//insert teacher accounts into database - passport??
-app.post('/api/teachers', (req, res) => {
-  res.send("POST Request Called")
-})
-
-//delete teacher from database
-app.delete('/api/teachers', (req, res) => {
-  res.send("DELETE Request Called")
-})
 
 //get classes under teacher from database 
 app.get('/api/classes', (req, res) => {
@@ -173,6 +163,14 @@ if (err) throw err;
 return res.json({ result });});
 })
 
+app.get('/api/tests/selected/select/:testId', (req, res)=>{
+  const testID = req.body.id;
+
+  
+  connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
+if (err) throw err;
+return res.json({ result });});
+})
 
 // Set up session middleware
 app.use(session({
@@ -200,7 +198,6 @@ passport.use(new GoogleStrategy({
   };
 
   req.user = user; 
-
   console.log(req.user);
 
   const { username, email } = req.user;
@@ -212,6 +209,7 @@ passport.use(new GoogleStrategy({
 
 }));
 
+
 // Serialize user object to store in session
 passport.serializeUser((user, done) => {
   done(null, user);
@@ -220,6 +218,12 @@ passport.serializeUser((user, done) => {
 // Deserialize user object from session
 passport.deserializeUser((user, done) => {
   done(null, user);
+});
+
+// Accessing authenticated user in a route handler
+app.get('/profile', (req, res) => {
+  const user = req.user; // Access authenticated user's information
+  res.render('profile', { user });
 });
 
 // Google OAuth login route
@@ -231,8 +235,15 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: 'http://localhost:3000/',
   failureRedirect: 'http://localhost:3000/'
-
 }));
+
+// Route handler for the home page
+app.get('/home', (req, res) => {
+  // Access authenticated user's information from req.user
+  const user = req.user;
+  // Use user information as needed
+  res.json(user);
+});
 
 // Route to check if user is authenticated
 app.get('/api/auth/check', (req, res) => {
@@ -275,8 +286,7 @@ app.post('/api/users', (req, res) => {
       return;// res.status(409).json({ error: "User with the same email already exists" });
     }
 
-
-    const sql = `INSERT INTO teacher ( username, email) VALUES ( ?, ?)`;
+    const sql = `INSERT INTO teacher (username, email) VALUES ( ?, ?)`;
     connection.query(sql, [username, email], (err, results) => {
       if (err) {
         console.error("Error inserting new user:", err);
@@ -288,5 +298,8 @@ app.post('/api/users', (req, res) => {
     });
   });
 });
+
+
+
 
 app.listen(PORT, () => console.log('Example app is listening on port 8000.'));

@@ -1,27 +1,85 @@
 import "./fileUpload.css";
 import Sidebar from './Sidebar';
 import axios from "axios";
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { Component, useState } from "react";
+import ReactDom from 'react-dom';
+import Popup from 'react-popup';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+	useLocation,
+} from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
 
 class FileUpload extends Component {
-	
+
+
   state = {
     selectedFile: null,
     link: "",
-	questionsSelected: []
+    test: null,
+    questionsSelected: []
   };
 
- questionsSelected = [];
-  
+  questionsSelected = [];
+
   onFileChange = (event) => {
+    const currentTest = localStorage.getItem("test")
+    console.log(currentTest)
     this.setState({
-      selectedFile: event.target.files[0]
+      selectedFile: event.target.files[0],
+      test: currentTest
     });
   };
+
+	uploadFunction = (selectedTestValue) => {
+		// Use selectedTestValue as needed in upload.js
+		console.log("Selected test value in upload.js:", selectedTestValue);
+		this.setState({
+			selectedTest: selectedTestValue
+		})
+	}
+
+	componentDidMount() {
+		
+	}
+
+
+	// On link input
+	onLinkInput = (event) => {
+		// Update the state
+		this.setState({
+			link: event.target.value,
+		});
+		const location = window.location;
+		const searchParams = new URLSearchParams(location.search);
+		const selectedTestValue = searchParams.get('selectedTest');
+		console.log("Selected test value:", selectedTestValue);
+		console.log(this.state.link)
+		// Function to update the test with a new link
+		const updateTestLink = async (testId, newLink) => {
+			try {
+				// Fetch the existing test data
+				const response = await axios.get(`/api/tests/${testId}`);
+				const test = response.data;
+
+				// Update the link field with the new value
+				test.link = newLink;
+
+				// Send a PUT request to update the test
+				await axios.put(`/api/tests/${testId}`, test);
+
+				console.log('Test link updated successfully');
+			} catch (error) {
+				console.error('Error updating test link:', error);
+			}
+		};
+		
+	};
 
   onInputChanged = (e) => {
     // Update questionsSelected state
@@ -34,7 +92,14 @@ class FileUpload extends Component {
     });
   };
 
-  
+  onLinkTyped = (e) => {
+    this.setState({
+      link: e.target.value,
+      test: localStorage.getItem("test")
+    })
+  }
+
+
 
   componentDidMount() {
     // Retrieve selectedFile from localStorage if available
@@ -92,7 +157,7 @@ class FileUpload extends Component {
                 type="text"
                 onInput={this.onInputChanged}
               />
-              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected }}}><button className="clickToEmailButton">Next</button></Link>
+              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton">Next</button></Link>
               <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
             </div>
           </body>
@@ -111,7 +176,7 @@ class FileUpload extends Component {
                 //window.location.reload();
               }}>Next</button>
               <div className="wrap">
-                <input value={link} onChange={(e) => { this.setState({ link: e.target.value }) }} placeholder='Paste a link to a worksheet' type="text" id="link" />
+                <input value={link} onChange={this.onLinkTyped} placeholder='Paste a link to a worksheet' type="text" id="link" />
                 <h1 className="string">Link entered: {link}</h1>
               </div>
             </div>

@@ -13,9 +13,9 @@ import {
 
 
 function App() {
-
-
     const [user, setUser] = useState(null);
+
+
 
     useEffect(() => {
         console.log("getting user");
@@ -48,9 +48,7 @@ function App() {
 
 
     return (
-
         <body>
-            
             <div>
 
                 
@@ -73,10 +71,7 @@ function App() {
                     </div>
                 )}
             </div>
-
         </body>
-
-
     );
 }
 
