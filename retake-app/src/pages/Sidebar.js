@@ -16,6 +16,9 @@ import {
 
 const baseURL = "http://localhost:8000/";
 
+const email = localStorage.getItem('myString');
+
+console.log(email)
 
 const Parent = () => {
   const data = "Data from Parent to Child";
@@ -34,7 +37,7 @@ export default props => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedTest, setSelectedTest] = useState(null);
   const [classId, setClassId] = useState(1);
-  const [userId, setUserId] = useState(1);
+  const [user, setUser] = useState(1);
   const [classes, setClasses] = useState([]);
   const [tests, setTests] = useState([]);
 
@@ -72,7 +75,7 @@ export default props => {
 
   const handleChangeClasses = async (selectedClass) => {
     disableOpenable(false);
-    console.log("test dropdown")
+    console.log("handling class choice")
     setSelectedClass(selectedClass);
     
 
@@ -120,7 +123,7 @@ export default props => {
       const res = await axios.post(
         'http://localhost:8000/api/classes',
         {
-          teacherFK: userId,
+          teacherFK: user,
           name: className,
         },
       )
@@ -143,7 +146,7 @@ export default props => {
     const res = await axios.post(
       'http://localhost:8000/api/tests',
       {
-        teacherFK: userId,
+        teacherFK: user,
         classFK: selectedClass.value,
         name: testName,
       },
@@ -196,7 +199,29 @@ export default props => {
 
   
 
- 
+  const logOut = () => {
+    console.log("function called");
+    axios.get('http://localhost:8000/api/auth/logout')
+      .then(() => {
+        // Redirect the user after successful logout
+        navigate('/');
+      })
+      .catch((err) => {
+        console.error('Logout failed:', err);
+      });
+  };
+
+  const handleChangeTest = (selectedTest) => {
+    setSelectedTest(selectedTest);
+    console.log("handling test selection")
+    console.log(selectedTest.value)
+    if (selectedTest.value === "addTest") {
+      setUserInput('');
+    }
+    // Redirect to another page with the selected test value in the URL
+    window.location.href = `/upload?selectedTest=${selectedTest.value}`;
+   
+  }
 
   // Function to handle user input change
   const handleInputChange = (event) => {
@@ -214,10 +239,22 @@ export default props => {
     }
   }
 
+  
+
   //populate class options with data from class table
   useEffect(() => {
+    fetch('/home')
+        .then(response => response.json())
+        .then(data => {
+          setUser(data);
+          console.log(data)
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+        });
     async function fetchData() {
-      const value = await fetch('http://localhost:8000/api/classes');
+      const value = await fetch(`http://localhost:8000/api/classes`);
+      
       const data = await value.json();
       console.log(data)
       const classes = data.result.map((entry) => {

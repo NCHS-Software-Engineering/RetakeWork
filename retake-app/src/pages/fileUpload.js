@@ -1,8 +1,16 @@
 import "./fileUpload.css";
 import Sidebar from './Sidebar';
 import axios from "axios";
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { Component, useState } from "react";
+import ReactDom from 'react-dom';
+import Popup from 'react-popup';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+	useLocation,
+} from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
@@ -27,6 +35,51 @@ class FileUpload extends Component {
       test: currentTest
     });
   };
+
+	uploadFunction = (selectedTestValue) => {
+		// Use selectedTestValue as needed in upload.js
+		console.log("Selected test value in upload.js:", selectedTestValue);
+		this.setState({
+			selectedTest: selectedTestValue
+		})
+	}
+
+	componentDidMount() {
+		
+	}
+
+
+	// On link input
+	onLinkInput = (event) => {
+		// Update the state
+		this.setState({
+			link: event.target.value,
+		});
+		const location = window.location;
+		const searchParams = new URLSearchParams(location.search);
+		const selectedTestValue = searchParams.get('selectedTest');
+		console.log("Selected test value:", selectedTestValue);
+		console.log(this.state.link)
+		// Function to update the test with a new link
+		const updateTestLink = async (testId, newLink) => {
+			try {
+				// Fetch the existing test data
+				const response = await axios.get(`/api/tests/${testId}`);
+				const test = response.data;
+
+				// Update the link field with the new value
+				test.link = newLink;
+
+				// Send a PUT request to update the test
+				await axios.put(`/api/tests/${testId}`, test);
+
+				console.log('Test link updated successfully');
+			} catch (error) {
+				console.error('Error updating test link:', error);
+			}
+		};
+		
+	};
 
   onInputChanged = (e) => {
     // Update questionsSelected state
