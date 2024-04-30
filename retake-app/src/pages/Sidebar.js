@@ -14,6 +14,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 
+
+
 const baseURL = "http://localhost:8000/";
 
 const email = localStorage.getItem('myString');
@@ -97,26 +99,6 @@ export default props => {
     }
   };
 
-  const handleChangeTest = async (selectedTest) => {
-    setSelectedTest(selectedTest);
-    localStorage.getItem("test", "thisTest")
-    console.log("handle change test")
-    if (selectedTest.value === "addTest") {
-      setUserInput('');
-
-    }
-    /* else{
-      const res = axios.post(
-        `http://localhost:8000/api/tests/selected/${selectedTest.value}`
-        {
-          test = selectedTest.value,
-        })
-      //const data = await res.json();
-      //localStorage.setItem('data',JSON.stringify(data));
-    } */
-    
-  }
-
 
   const createClass = async (className) => {
     try {
@@ -198,6 +180,7 @@ export default props => {
     { value: 'upload', label: 'Upload' }];
 
   
+const navigate = useNavigate();
 
   const logOut = () => {
     console.log("function called");
