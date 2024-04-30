@@ -1,16 +1,8 @@
 import "./fileUpload.css";
 import Sidebar from './Sidebar';
 import axios from "axios";
-import React, { Component, useState } from "react";
-import ReactDom from 'react-dom';
-import Popup from 'react-popup';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Link,
-	useLocation,
-} from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link, useLocation } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
@@ -93,6 +85,7 @@ class FileUpload extends Component {
   };
 
   onLinkTyped = (e) => {
+    console.log(localStorage.getItem("test"))
     this.setState({
       link: e.target.value,
       test: localStorage.getItem("test")
