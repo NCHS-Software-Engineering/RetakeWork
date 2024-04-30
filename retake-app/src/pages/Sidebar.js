@@ -30,6 +30,26 @@ const Parent = () => {
 
 export default props => {
 
+  const [user, setUser] = useState({ username: '', email: '' }); // Default empty user
+
+
+  useEffect(() => {
+    console.log("getting user");
+
+    axios.get('http://localhost:8000/api/auth/check', { withCredentials: true }) // Make an HTTP GET request to check authentication
+      .then((response) => {
+        if (response.data.authenticated) {
+          
+          setUser(response.data.user); // Store user data in state
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking authentication:", error);
+      });
+  }, [user]); // The empty array ensures this effect runs once when the component is mounted
+
+
+
   const [isOpenableClasses, disableOpenable] = useState(true);
   const [testOptions, setTestOptions] = useState([]);
   const [classOptions, setClassOptions] = useState([]);
@@ -39,7 +59,6 @@ export default props => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedTest, setSelectedTest] = useState(null);
   const [classId, setClassId] = useState(1);
-  const [user, setUser] = useState(1);
   const [classes, setClasses] = useState([]);
   const [tests, setTests] = useState([]);
 
@@ -79,7 +98,7 @@ export default props => {
     disableOpenable(false);
     console.log("handling class choice")
     setSelectedClass(selectedClass);
-    
+
 
     if (selectedClass.value === "addClass") {
       setUserInput('');
@@ -88,14 +107,14 @@ export default props => {
       const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
       const data = await res.json();
       //populate test options with data from class table
-    
-        console.log(data)
-        const tests = data.result.map((entry) => {
-          return { value: entry.id, label: entry.name }
-        });
-        console.log(tests)
-        setTestOptions([...tests, { value: 'addTest', label: 'Add Test...' }]);
-      
+
+      console.log(data)
+      const tests = data.result.map((entry) => {
+        return { value: entry.id, label: entry.name }
+      });
+      console.log(tests)
+      setTestOptions([...tests, { value: 'addTest', label: 'Add Test...' }]);
+
     }
   };
 
@@ -179,8 +198,8 @@ export default props => {
     { value: 'email', label: 'Email' },
     { value: 'upload', label: 'Upload' }];
 
-  
-const navigate = useNavigate();
+
+  const navigate = useNavigate();
 
   const logOut = () => {
     console.log("function called");
@@ -203,7 +222,7 @@ const navigate = useNavigate();
     }
     // Redirect to another page with the selected test value in the URL
     window.location.href = `/upload?selectedTest=${selectedTest.value}`;
-   
+
   }
 
   // Function to handle user input change
@@ -222,22 +241,22 @@ const navigate = useNavigate();
     }
   }
 
-  
+
 
   //populate class options with data from class table
   useEffect(() => {
     fetch('/home')
-        .then(response => response.json())
-        .then(data => {
-          setUser(data);
-          console.log(data)
-        })
-        .catch(error => {
-          console.error('Error fetching user data:', error);
-        });
+      .then(response => response.json())
+      .then(data => {
+        setUser(data);
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error fetching user data:', error);
+      });
     async function fetchData() {
       const value = await fetch(`http://localhost:8000/api/classes`);
-      
+
       const data = await value.json();
       console.log(data)
       const classes = data.result.map((entry) => {
@@ -250,7 +269,7 @@ const navigate = useNavigate();
     fetchData();
   }, []);
 
-  
+
 
 
   return (
@@ -283,7 +302,7 @@ const navigate = useNavigate();
             onKeyDown={handleKeyDownClass}
           />
         )}
-        
+
 
         <p></p>
         <Select
