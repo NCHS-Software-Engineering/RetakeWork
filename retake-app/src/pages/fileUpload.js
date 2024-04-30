@@ -36,13 +36,9 @@ class FileUpload extends Component {
 		})
 	}
 
-	componentDidMount() {
-		
-	}
-
 
 	// On link input
-	onLinkInput = (event) => {
+	onLink = (event) => {
 		// Update the state
 		this.setState({
 			link: event.target.value,
@@ -75,7 +71,7 @@ class FileUpload extends Component {
 
   onInputChanged = (e) => {
     // Update questionsSelected state
-    this.setState({ questionsSelected: e.target.value.split(',') });
+    this.setState({ questionsSelected: e.target.value });
   };
 
   onButtonClick = () => {
@@ -84,13 +80,13 @@ class FileUpload extends Component {
     });
   };
 
-  onLinkTyped = (e) => {
+  /* onLinkTyped = (e) => {
     console.log(localStorage.getItem("test"))
     this.setState({
       link: e.target.value,
       test: localStorage.getItem("test")
     })
-  }
+  } */
 
 
 
