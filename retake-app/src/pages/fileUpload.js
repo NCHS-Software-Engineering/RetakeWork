@@ -8,18 +8,23 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
 class FileUpload extends Component {
-	
+
+
   state = {
     selectedFile: null,
     link: "",
-	questionsSelected: []
+    test: null,
+    questionsSelected: []
   };
 
- questionsSelected = [];
-  
+  questionsSelected = [];
+
   onFileChange = (event) => {
+    const currentTest = localStorage.getItem("test")
+    console.log(currentTest)
     this.setState({
-      selectedFile: event.target.files[0]
+      selectedFile: event.target.files[0],
+      test: currentTest
     });
   };
 
@@ -34,7 +39,14 @@ class FileUpload extends Component {
     });
   };
 
-  
+  onLinkTyped = (e) => {
+    this.setState({
+      link: e.target.value,
+      test: localStorage.getItem("test")
+    })
+  }
+
+
 
   componentDidMount() {
     // Retrieve selectedFile from localStorage if available
@@ -92,7 +104,7 @@ class FileUpload extends Component {
                 type="text"
                 onInput={this.onInputChanged}
               />
-              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected }}}><button className="clickToEmailButton">Next</button></Link>
+              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton">Next</button></Link>
               <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
             </div>
           </body>
@@ -111,7 +123,7 @@ class FileUpload extends Component {
                 //window.location.reload();
               }}>Next</button>
               <div className="wrap">
-                <input value={link} onChange={(e) => { this.setState({ link: e.target.value }) }} placeholder='Paste a link to a worksheet' type="text" id="link" />
+                <input value={link} onChange={this.onLinkTyped} placeholder='Paste a link to a worksheet' type="text" id="link" />
                 <h1 className="string">Link entered: {link}</h1>
               </div>
             </div>

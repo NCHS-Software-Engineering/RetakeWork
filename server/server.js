@@ -16,7 +16,7 @@ app.use(express.json());
 
 const mysql = require('mysql2');
 
-
+const selectedTest = 
 require('dotenv').config();
 
 const connection = mysql.createConnection({
@@ -170,6 +170,14 @@ if (err) throw err;
 return res.json({ result });});
 })
 
+app.get('/api/tests/selected/select/:testId', (req, res)=>{
+  const testID = req.body.id;
+
+  
+  connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
+if (err) throw err;
+return res.json({ result });});
+})
 
 // Set up session middleware
 app.use(session({
@@ -283,5 +291,8 @@ app.post('/api/users', (req, res) => {
     });
   });
 });
+
+
+
 
 app.listen(PORT, () => console.log('Example app is listening on port 8000.'));

@@ -94,6 +94,26 @@ export default props => {
     }
   };
 
+  const handleChangeTest = async (selectedTest) => {
+    setSelectedTest(selectedTest);
+    localStorage.getItem("test", "thisTest")
+    console.log("handle change test")
+    if (selectedTest.value === "addTest") {
+      setUserInput('');
+
+    }
+    /* else{
+      const res = axios.post(
+        `http://localhost:8000/api/tests/selected/${selectedTest.value}`
+        {
+          test = selectedTest.value,
+        })
+      //const data = await res.json();
+      //localStorage.setItem('data',JSON.stringify(data));
+    } */
+    
+  }
+
 
   const createClass = async (className) => {
     try {
@@ -174,28 +194,9 @@ export default props => {
     { value: 'email', label: 'Email' },
     { value: 'upload', label: 'Upload' }];
 
-  const navigate = useNavigate();
+  
 
-  const logOut = () => {
-    console.log("function called");
-    axios.get('http://localhost:8000/api/auth/logout')
-      .then(() => {
-        // Redirect the user after successful logout
-        navigate('/');
-      })
-      .catch((err) => {
-        console.error('Logout failed:', err);
-      });
-  };
-
-  const handleChangeTest = (selectedTest) => {
-    setSelectedTest(selectedTest);
-    if (selectedTest.value === "addTest") {
-      setUserInput('');
-
-    }
-    
-  }
+ 
 
   // Function to handle user input change
   const handleInputChange = (event) => {
@@ -288,10 +289,7 @@ export default props => {
 
       </div>
       <div className="signout">
-        <button className = "signButtonUp" onClick={() => {
-          console.log("Logout button clicked");
-          logOut(); // Call the logout function
-        }}>Sign Out</button>
+        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
 
       </div>
     </Menu>
