@@ -10,6 +10,8 @@ const axios = require('axios');
 
 const PORT = 8000;
 const app = express();
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -29,6 +31,7 @@ const corsOptions = {
   origin: 'http://localhost:3000', // Allow requests from this origin
   methods: ['GET', 'POST'], // Allow only GET and POST requests
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow only specific headers
+  credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -230,7 +233,7 @@ app.get('/auth/google', passport.authenticate('google', {
 
 // Google OAuth callback route
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: 'http://localhost:3000/home',
+  successRedirect: 'http://localhost:3000/',
   failureRedirect: 'http://localhost:3000/'
 }));
 
@@ -245,8 +248,10 @@ app.get('/home', (req, res) => {
 // Route to check if user is authenticated
 app.get('/api/auth/check', (req, res) => {
   if (req.isAuthenticated()) {
-    res.status(200).json({ authenticated: true, user: req.user});
+    console.log(req.user);
+    res.status(200).json({ authenticated: true, user: req.user });
   } else {
+    console.log("failed authenticate");
     res.status(401).json({ authenticated: false });
   }
 });
