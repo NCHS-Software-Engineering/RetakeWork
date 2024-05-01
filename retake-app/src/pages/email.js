@@ -10,6 +10,11 @@ import {
   } from "react-router-dom";
   import { CopyToClipboard } from "react-copy-to-clipboard";
 
+
+  const location = window.location;
+  const searchParams = new URLSearchParams(location.search);
+  const selectedTestValue = searchParams.get('selectedQuestions');
+
 const Email = () => {
     var change = 'copy';
     function copyChange() {

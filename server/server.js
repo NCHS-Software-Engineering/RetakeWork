@@ -17,8 +17,8 @@ app.use(express.json());
 
 const mysql = require('mysql2');
 
-const selectedTest = 
-require('dotenv').config();
+const selectedTest =
+  require('dotenv').config();
 
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
@@ -79,7 +79,7 @@ app.get('/api/classes', (req, res) => {
       SELECT *
       FROM class
       `, (err, result) => {
-        console.log("getting classes")
+    console.log("getting classes")
     if (err) throw err;
     return res.json({ result });
   });
@@ -101,7 +101,7 @@ app.post('/api/classes', (req, res) => {
   });
 })
 
-//delete class from database
+//delete class from database **Currently not being used in the frontend yet
 app.delete('/api/classes', (req, res) => {
   console.log('here in the class creation route')
 })
@@ -114,7 +114,7 @@ app.get('/api/tests/:classId', (req, res) => {
       SELECT *
       FROM test WHERE test.class_fk = ${classId}
       `, (err, result) => {
-        console.log("getting classes")
+    console.log("getting classes")
     if (err) throw err;
     return res.json({ result });
   });
@@ -133,43 +133,73 @@ app.post('/api/tests', (req, res) => {
       console.log(err)
     }
     res.send(JSON.stringify(result));
-    
+
   });
 })
 
-//delete test from class 
+//delete test from class **Currently not being used in the frontend yet
 app.delete('/api/tests/:testId', (req, res) => {
   console.log('here in the test deletion route')
   const testId = req.params.testId;
   connection.query(`
     DELETE FROM test WHERE test.id = ${testId}`
     , (err, result) => {
-    if (err) {
-      console.log(err)
+      if (err) {
+        console.log(err)
+      }
+      res.send(JSON.stringify(result));
+    });
+
+})
+
+// put link into existing test
+app.put('/api/tests/:testId', async (req, res) => {
+  const { id } = req.params; // Extract test ID from request parameters
+    const { link } = req.body; // Extract new link from request body
+
+    try {
+        // Find the test by ID
+        let test = await test.findById(id);
+
+        if (!test) {
+            return res.status(404).json({ msg: 'Test not found' });
+        }
+
+        // Update the link field with the new value
+        test.link = link;
+
+        // Save the updated test data
+        await test.save();
+
+        console.log('Test link updated successfully');
+        res.json({ msg: 'Test link updated successfully' });
+    } catch (error) {
+        console.error('Error updating test link:', error.message);
+        res.status(500).json({ msg: 'Server error' });
     }
-    res.send(JSON.stringify(result));
+});
+
+
+app.get('/api/tests/selected/:testId', (req, res) => {
+  const testID = req.body.id;
+
+
+  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result) => {
+    console.log("sending test data")
+    if (err) throw err;
+    return res.json({ result });
   });
-
 })
 
-
-
-app.get('/api/tests/selected/:testId', (req, res)=>{
+app.get('/api/tests/selected/select/:testId', (req, res) => {
   const testID = req.body.id;
 
-  
-  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
-if (err) throw err;
-return res.json({ result });});
-})
 
-app.get('/api/tests/selected/select/:testId', (req, res)=>{
-  const testID = req.body.id;
-
-  
-  connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
-if (err) throw err;
-return res.json({ result });});
+  connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result) => {
+    console.log("sending test data")
+    if (err) throw err;
+    return res.json({ result });
+  });
 })
 
 // Set up session middleware
@@ -197,12 +227,12 @@ passport.use(new GoogleStrategy({
     email: profile.emails[0].value,
   };
 
-  req.user = user; 
+  req.user = user;
   console.log(req.user);
 
   const { username, email } = req.user;
 
-  
+
   axios.post('http://localhost:8000/api/users', { username, email });
 
   return done(null, user);

@@ -28,153 +28,177 @@ class FileUpload extends Component {
     });
   };
 
-	uploadFunction = (selectedTestValue) => {
-		// Use selectedTestValue as needed in upload.js
-		console.log("Selected test value in upload.js:", selectedTestValue);
-		this.setState({
-			selectedTest: selectedTestValue
-		})
-	}
-
-
-	// On link input
-	onLink = (event) => {
-		// Update the state
-		this.setState({
-			link: event.target.value,
-		});
-		const location = window.location;
-		const searchParams = new URLSearchParams(location.search);
-		const selectedTestValue = searchParams.get('selectedTest');
-		console.log("Selected test value:", selectedTestValue);
-		console.log(this.state.link)
-		// Function to update the test with a new link
-		const updateTestLink = async (testId, newLink) => {
-			try {
-				// Fetch the existing test data
-				const response = await axios.get(`/api/tests/${testId}`);
-				const test = response.data;
-
-				// Update the link field with the new value
-				test.link = newLink;
-
-				// Send a PUT request to update the test
-				await axios.put(`/api/tests/${testId}`, test);
-
-				console.log('Test link updated successfully');
-			} catch (error) {
-				console.error('Error updating test link:', error);
-			}
-		};
-		
-	};
-
-  onInputChanged = (e) => {
-    // Update questionsSelected state
-    this.setState({ questionsSelected: e.target.value });
-  };
-
-  onButtonClick = () => {
+  uploadFunction = (selectedTestValue) => {
+    // Use selectedTestValue as needed in upload.js
+    console.log("Selected test value in upload.js:", selectedTestValue);
     this.setState({
-      selectedFile: null
-    });
-  };
+      selectedTest: selectedTestValue
+    })
+  }
 
-  /* onLinkTyped = (e) => {
-    console.log(localStorage.getItem("test"))
+
+
+handleKeyDownLink = async (e) => {
+  // Define the updateTestLink function outside of the handleKeyDownLink function
+ const updateTestLink = async (testId, newLink) => {
+  try {
+    console.log("updating the link to the test");
+    // Fetch the existing test data
+    const response = await axios.get(`/api/tests/${testId}`);
+    const test = response.data;
+
+    // Update the link field with the new value
+    test.link = newLink;
+
+    // Send a PUT request to update the test
+    await axios.put(`/api/tests/${testId}`, test);
+
+    console.log('Test link updated successfully');
+  } catch (error) {
+    console.error('Error updating test link:', error);
+  }
+};
+
+  if (e.key === 'Enter') {
+    const location = window.location;
+    const searchParams = new URLSearchParams(location.search);
+    const selectedTestValue = searchParams.get('selectedTest');
+    console.log("Selected test value:", selectedTestValue);
+    console.log(this.state.link);
+
+    // Update the state
+    await this.setState({
+      link: e.target.value,
+      test: selectedTestValue,
+    });
+    console.log(this.state.test, this.state.link)
+    alert("Link Uploaded!");
+
+    // Call the updateTestLink function with the updated state values
+    updateTestLink(this.state.test, this.state.link);
+  }
+};
+
+  
+
+  // On link input
+  onLinkTyped = (e) => {
     this.setState({
       link: e.target.value,
-      test: localStorage.getItem("test")
     })
-  } */
+  } 
 
 
 
-  componentDidMount() {
-    // Retrieve selectedFile from localStorage if available
-    const selectedFile = localStorage.getItem("selectedFile");
-    if (selectedFile) {
-      this.setState({ selectedFile: JSON.parse(selectedFile) });
-    }
+
+
+
+
+onInputChanged = (e) => {
+  // Update questionsSelected state
+  this.setState({ questionsSelected: e.target.value });
+};
+
+onButtonClick = () => {
+  this.setState({
+    selectedFile: null
+  });
+};
+
+
+componentDidMount() {
+  // Retrieve selectedFile from localStorage if available
+  const selectedFile = localStorage.getItem("selectedFile");
+  if (selectedFile) {
+    this.setState({ selectedFile: JSON.parse(selectedFile) });
   }
+}
 
-  componentDidUpdate() {
-    // Save selectedFile to localStorage whenever it changes
-    const { selectedFile } = this.state;
-    localStorage.setItem("selectedFile", JSON.stringify(selectedFile));
-  }
+componentDidUpdate() {
+  // Save selectedFile to localStorage whenever it changes
+  const { selectedFile } = this.state;
+  localStorage.setItem("selectedFile", JSON.stringify(selectedFile));
+}
 
-  fileData = () => {
-    const { selectedFile } = this.state;
-    if (selectedFile) {
-      return (
-        <div className="details">
-          <h2>File Details:</h2>
-          <p>File Name: {selectedFile.name}</p>
-          <p>File Type: {selectedFile.type}</p>
-          <p>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <br />
-          <h4 className="text">Choose file and Press Next button</h4>
-        </div>
-      );
-    }
-  };
-
-
-  render() {
-    const { selectedFile, link } = this.state;
-
+fileData = () => {
+  const { selectedFile } = this.state;
+  if (selectedFile) {
+    return (
+      <div className="details">
+        <h2>File Details:</h2>
+        <p>File Name: {selectedFile.name}</p>
+        <p>File Type: {selectedFile.type}</p>
+        <p>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
+      </div>
+    );
+  } else {
     return (
       <div>
-        <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-
-        {selectedFile ? (
-          <body>
-            <div className="SelectQsPage">
-              <div className="SelectQsPage" id="outer-container">
-                <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-              </div>
-            </div>
-            <div className="textInput">
-              <input
-                placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...)'
-                type="text"
-                onInput={this.onInputChanged}
-              />
-              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton">Next</button></Link>
-              <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
-            </div>
-          </body>
-        ) : (
-          <div>
-            <h1 className="head">Test File</h1>
-            <h3>Upload file for this test or paste a link into the textbox!</h3>
-            <div>
-              <input
-                type="file"
-                onChange={this.onFileChange}
-              />
-              <button className="fileButton" onClick={() => {
-                alert('File Successfully Uploaded!');
-                this.setState({ selectedFile: "hi" });
-                //window.location.reload();
-              }}>Next</button>
-              <div className="wrap">
-                <input value={link} onChange={this.onLinkTyped} placeholder='Paste a link to a worksheet' type="text" id="link" />
-                <h1 className="string">Link entered: {link}</h1>
-              </div>
-            </div>
-            {this.fileData()}
-          </div>
-        )}
+        <br />
+        <h4 className="text">Choose file and Press Next button</h4>
       </div>
     );
   }
+};
+
+
+render() {
+  const { selectedFile, link } = this.state;
+
+  return (
+    <div>
+      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+
+      {selectedFile ? (
+        <body>
+          <div className="SelectQsPage">
+            <div className="SelectQsPage" id="outer-container">
+              <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
+            </div>
+          </div>
+          <div className="textInput">
+            <input
+              placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...)'
+              type="text"
+              onInput={this.onInputChanged}
+            />
+            <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton" onclick={ window.location.href = `/upload?selectedQuestions=${this.state.questionsSelected.value}`}>Next</button></Link>
+           
+            <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
+          </div>
+        </body>
+      ) : (
+        <div>
+          <h1 className="head">Test File</h1>
+          <h3>Upload file for this test or paste a link into the textbox!</h3>
+          <div>
+            <input
+              type="file"
+              onChange={this.onFileChange}
+            />
+            <button className="fileButton" onClick={() => {
+              alert('File Successfully Uploaded!');
+              this.setState({ selectedFile: "hi" });
+              //window.location.reload();
+            }}>Next</button>
+            <div className="wrap">
+              <input
+                value={link}
+                onChange={this.onLinkTyped}
+                onKeyDown={this.handleKeyDownLink}
+                placeholder='Paste a link to a worksheet'
+                type="text"
+                id="link"
+              />
+              <h1 className="string">Link entered: {link}</h1>
+            </div>
+          </div>
+          {this.fileData()}
+        </div>
+      )}
+    </div>
+  );
+}
 }
 
 export default FileUpload;

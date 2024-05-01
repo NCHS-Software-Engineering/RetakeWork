@@ -221,7 +221,9 @@ export default props => {
       setUserInput('');
     }
     // Redirect to another page with the selected test value in the URL
-    window.location.href = `/upload?selectedTest=${selectedTest.value}`;
+    else{
+      window.location.href = `/upload?selectedTest=${selectedTest.value}`;
+    }
 
   }
 
