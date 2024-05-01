@@ -1,6 +1,6 @@
 import { UPLOADING } from 'dropzone';
 import './SelectQs.css';
-import Sidebar from './Sidebar';
+import Sidebar from '../pages/Sidebar';
 import React from 'react';
 import { Link } from 'react-router-dom';
 

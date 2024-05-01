@@ -38,11 +38,13 @@ class FileUpload extends Component {
 
 
 	// On link input
-	onLink = (event) => {
+	onLinkTyped = (event) => {
 		// Update the state
 		this.setState({
 			link: event.target.value,
+      test: localStorage.getItem("test")
 		});
+    
 		const location = window.location;
 		const searchParams = new URLSearchParams(location.search);
 		const selectedTestValue = searchParams.get('selectedTest');
@@ -80,13 +82,7 @@ class FileUpload extends Component {
     });
   };
 
-  /* onLinkTyped = (e) => {
-    console.log(localStorage.getItem("test"))
-    this.setState({
-      link: e.target.value,
-      test: localStorage.getItem("test")
-    })
-  } */
+  
 
 
 
