@@ -46,7 +46,7 @@ export default props => {
       .catch((error) => {
         console.error("Error checking authentication:", error);
       });
-  }, []); // The empty array ensures this effect runs once when the component is mounted
+  }, [user]); // The empty array ensures this effect runs once when the component is mounted
 
 
 
@@ -80,9 +80,9 @@ export default props => {
     if (selectedOption.value === "home") {
       ;
     }
-    if (selectedOption.value === "qs") {
-      window.location.href = "./questions";
-    }
+    // if (selectedOption.value === "qs") {
+    //   window.location.href = "./questions";
+    // }
     if (selectedOption.value === "email") {
       window.location.href = "./email";
     }
@@ -163,9 +163,9 @@ export default props => {
     }
   };
 
-  const handleStudentChange = (selectedOption) => {
-    window.location.href = "./questions";
-  };
+  // const handleStudentChange = (selectedOption) => {
+  //   window.location.href = "./questions";
+  // };
 
 
 
@@ -194,7 +194,7 @@ export default props => {
     { value: 'home', label: 'Home' },
     { value: 'login', label: 'Log In' },
     { value: 'default', label: 'Default' },
-    { value: 'qs', label: 'Select Questions' },
+    // { value: 'qs', label: 'Select Questions' },
     { value: 'email', label: 'Email' },
     { value: 'upload', label: 'Upload' }];
 
@@ -277,7 +277,6 @@ export default props => {
     <Menu>
 
       <div className="mt-auto m-auto w-50">
-        <p1>HI {user.username}</p1>
         <Select
           placeholder="Pages"
           options={options1}
