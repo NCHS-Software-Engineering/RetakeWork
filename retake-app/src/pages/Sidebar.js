@@ -46,7 +46,7 @@ export default props => {
       .catch((error) => {
         console.error("Error checking authentication:", error);
       });
-  }, [user]); // The empty array ensures this effect runs once when the component is mounted
+  }, []); // The empty array ensures this effect runs once when the component is mounted
 
 
 

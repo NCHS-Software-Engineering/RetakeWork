@@ -1,5 +1,5 @@
 import './Import.css';
-import Sidebar from './Sidebar';
+import Sidebar from '../pages/Sidebar.js';
 import React from 'react';
 import {
   BrowserRouter as Router,
