@@ -269,6 +269,10 @@ export default props => {
     fetchData();
   }, []);
 
+  const handleRefresh = () => {
+    window.location.reload(); // Reloads the current page
+  };
+
 
 
 
@@ -277,6 +281,7 @@ export default props => {
     <Menu>
 
       <div className="mt-auto m-auto w-50">
+        <p1 className="welcome-message">Hello {user.username}!</p1>
         <Select
           placeholder="Pages"
           options={options1}
@@ -328,7 +333,7 @@ export default props => {
 
       </div>
       <div className="signout">
-        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
+        <Link to="/"><button class="backbutton" onClick={handleRefresh}>Back to home</button></Link>
 
       </div>
     </Menu>
