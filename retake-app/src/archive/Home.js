@@ -1,5 +1,5 @@
 import './Home.css';
-import Sidebar from './Sidebar';
+import Sidebar from '../pages/Sidebar.js';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {

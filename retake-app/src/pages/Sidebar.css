@@ -82,7 +82,7 @@
     width: 220px;
   }
 
-  .signoutbutton{
+  .backbutton{
     font-size:small;
     width: 100%;
      margin-top: 50px;
@@ -95,9 +95,11 @@
     border-radius: 10px;
     cursor: pointer;
   }
-  .signoutbutton:hover{
+  .backbutton:hover{
     background-color: #999999;
     color: white;
   }
 
-  
+  .welcome-message{
+    color:#fa3e00;
+  }

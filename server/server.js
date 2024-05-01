@@ -278,7 +278,6 @@ app.get('/home', (req, res) => {
 // Route to check if user is authenticated
 app.get('/api/auth/check', (req, res) => {
   if (req.isAuthenticated()) {
-    console.log(req.user);
     res.status(200).json({ authenticated: true, user: req.user });
   } else {
     console.log("failed authenticate");
