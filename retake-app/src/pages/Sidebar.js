@@ -124,7 +124,7 @@ export default props => {
       const res = await axios.post(
         'http://localhost:8000/api/classes',
         {
-          teacherFK: user,
+          teacherFK: user.email,
           name: className,
         },
       )
@@ -147,7 +147,7 @@ export default props => {
     const res = await axios.post(
       'http://localhost:8000/api/tests',
       {
-        teacherFK: user,
+        teacherFK: user.email,
         classFK: selectedClass.value,
         name: testName,
       },
@@ -221,8 +221,9 @@ export default props => {
       setUserInput('');
     }
     // Redirect to another page with the selected test value in the URL
-    window.location.href = `/upload?selectedTest=${selectedTest.value}`;
-
+    else {
+      window.location.href = `/upload?selectedTest=${selectedTest.value}`;
+    }
   }
 
   // Function to handle user input change
@@ -249,7 +250,7 @@ export default props => {
       .then(response => response.json())
       .then(data => {
         setUser(data);
-        console.log(data)
+        
       })
       .catch(error => {
         console.error('Error fetching user data:', error);
