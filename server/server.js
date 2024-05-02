@@ -75,10 +75,14 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
 
 //get classes under teacher from database 
 app.get('/api/classes', (req, res) => {
+
+  const { username, email } = req.body;
+
   connection.query(`
       SELECT *
       FROM class
-      `, (err, result) => {
+      WHERE teacher_fk = ? 
+      `, [email], (err, result) => {
         console.log("getting classes")
     if (err) throw err;
     return res.json({ result });

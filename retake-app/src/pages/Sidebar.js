@@ -329,7 +329,7 @@ export default props => {
 
       </div>
       <div className="signout">
-        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
+        <Link to="/"><button class="signoutbutton">Back to home</button></Link>
 
       </div>
     </Menu>
