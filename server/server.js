@@ -158,6 +158,30 @@ app.delete('/api/tests/:testId', (req, res) => {
 
 
 
+app.put('/api/tests/:testId', (req, res) => {
+  const testId = req.params.testId;
+  const link = req.body.link;
+  console.log("hi", testId, link)
+
+  connection.query('UPDATE test SET link = ? WHERE id = ?', [link, testId], (error, results) => {
+    if (error) {
+      console.error('Error updating test link:', error);
+      return res.status(500).json({ message: 'Server error' });
+    }
+
+    // Check if the test was found and updated
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Test not found' });
+    }
+
+    // Return a success response
+    res.status(200).json({ message: 'Test link updated successfully' });
+  });  
+});
+
+
+
+
 app.get('/api/tests/selected/:testId', (req, res)=>{
   const testID = req.body.id;
 
@@ -244,9 +268,10 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 // Route handler for the home page
 app.get('/home', (req, res) => {
   // Access authenticated user's information from req.user
-  const user = req.user;
+  const {username, email} = req.body;
+  console.log(email)
   // Use user information as needed
-  res.json(user);
+  res.json(email);
 });
 
 // Route to check if user is authenticated
