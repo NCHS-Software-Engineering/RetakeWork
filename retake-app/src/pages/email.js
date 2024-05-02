@@ -14,7 +14,7 @@ import {
   const searchParams = new URLSearchParams(location.search);
   const selectedTestValue = searchParams.get('selectedQuestions');
 
-
+  const questions = localStorage.getItem('questions');
 const Email = () => {
     var change = 'copy';
     function copyChange() {
@@ -48,12 +48,12 @@ const Email = () => {
                 
                 </p>
                 <p> Thanks, Dr. Diller</p>
-                
+                `${questions}`
 
                 
             </form>
             
-
+      console.log(localStorage);
      <CopyToClipboard
      text="Hello Student, 
      

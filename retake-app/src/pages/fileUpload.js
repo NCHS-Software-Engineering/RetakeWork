@@ -7,9 +7,11 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
 
+
+
 class FileUpload extends Component {
 
-
+  
   state = {
     selectedFile: null,
     link: "",
@@ -27,6 +29,8 @@ class FileUpload extends Component {
       test: currentTest
     });
   };
+
+  
 
   uploadFunction = (selectedTestValue) => {
     // Use selectedTestValue as needed in upload.js
@@ -88,6 +92,8 @@ handleKeyDownLink = async (e) => {
 
   
 
+
+
   // On link input
   onLinkTyped = (e) => {
     this.setState({
@@ -98,7 +104,9 @@ handleKeyDownLink = async (e) => {
 
 onInputChanged = (e) => {
   // Update questionsSelected state
+  console.log(localStorage);
   this.setState({ questionsSelected: e.target.value });
+  localStorage.setItem('questions', e.value);
 };
 
 onButtonClick = () => {
