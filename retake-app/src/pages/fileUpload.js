@@ -165,13 +165,13 @@ componentDidMount() {
   if (selectedFile) {
     this.setState({ selectedFile: JSON.parse(selectedFile) });
   }
-}
+};
 
 componentDidUpdate() {
   // Save selectedFile to localStorage whenever it changes
   const { selectedFile } = this.state;
   localStorage.setItem("selectedFile", JSON.stringify(selectedFile));
-}
+};
 
 fileData = () => {
   const { selectedFile } = this.state;
