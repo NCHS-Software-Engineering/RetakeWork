@@ -142,7 +142,7 @@ class FileUpload extends Component {
                 type="text"
                 onInput={this.onInputChanged}
               />
-              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton">Next</button></Link>
+              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton" onClick={onclick={ window.location.href = `/upload?selectedQuestions=${this.state.questionsSelected.value}`}}>Next</button></Link>
               <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
             </div>
           </body>
