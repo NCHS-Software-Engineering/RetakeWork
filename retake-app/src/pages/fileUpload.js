@@ -197,16 +197,16 @@ class FileUpload extends Component {
         ) : (
           <div>
             <h1 className="head">Test File</h1>
-            <h3>Upload file for this test or paste a link into the textbox!</h3>
+            <h3>Paste a link into the textbox!</h3>
             <div>
-              <input
+              {/* <input
                 type="file"
                 onChange={this.onFileChange}
-              />
+              /> */}
               <button className="fileButton" onClick={() => {
                 alert('File Successfully Uploaded!');
                 this.setState({ selectedFile: "hi" });
-                //window.location.reload();
+                //window.location.reload(); 
               }}>Next</button>
               <div className="wrap">
               <input
