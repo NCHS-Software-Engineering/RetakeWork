@@ -74,9 +74,9 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
 
 
 //get classes under teacher from database 
-app.get('/api/classes', (req, res) => {
+app.get('/api/classes/:email', (req, res) => {
 
-  const { username, email } = req.body;
+  const email = req.params.email;
 
   connection.query(`
       SELECT *
@@ -280,7 +280,7 @@ app.get('/api/auth/check', (req, res) => {
     console.log(req.user);
     res.status(200).json({ authenticated: true, user: req.user });
   } else {
-    console.log("failed authenticate");
+    // console.log("failed authenticate");
     res.status(401).json({ authenticated: false });
   }
 });
