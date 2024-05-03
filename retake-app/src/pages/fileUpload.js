@@ -86,35 +86,12 @@ class FileUpload extends Component {
 
 
 
-
   // On link input
   onLinkTyped = (e) => {
     this.setState({
       link: e.target.value,
     })
   } 
-
-
-onInputChanged = (e) => {
-  // Update questionsSelected state
-  console.log(localStorage);
-  this.setState({ questionsSelected: e.target.value });
-  localStorage.setItem('questions', e.value);
-};
-
-onButtonClick = () => {
-  this.setState({
-    selectedFile: null
-  });
-};
-
-
-componentDidMount() {
-  // Retrieve selectedFile from localStorage if available
-  const selectedFile = localStorage.getItem("selectedFile");
-  if (selectedFile) {
-    this.setState({ selectedFile: JSON.parse(selectedFile) });
-  }
 
 
   onInputChanged = (e) => {
@@ -161,6 +138,9 @@ componentDidMount() {
     }
   });
   }
+
+
+
 
   componentDidUpdate() {
     // Save selectedFile to localStorage whenever it changes
@@ -247,5 +227,6 @@ componentDidMount() {
     );
   }
 }
+
 
 export default FileUpload;
