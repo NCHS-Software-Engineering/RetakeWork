@@ -56,7 +56,7 @@ function App() {
                     <div>
                         {/* <img src={profile.picture} alt="user image" /> */}
                         <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-                        <h1>Welcome {user.username}!</h1>
+                        <h1>Welcome, {user.username}!</h1>
                         <br/>
                         <br/>
                         <h3>Click the menu icon in the top left to continue...</h3>

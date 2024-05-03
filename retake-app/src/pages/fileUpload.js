@@ -42,55 +42,48 @@ class FileUpload extends Component {
 
 
 
-handleKeyDownLink = async (e) => {
-  // Define the updateTestLink function outside of the handleKeyDownLink function
- const updateTestLink = async (testId, newLink) => {
-  try {
-    console.log("updating the link to the test");
-    // Fetch the existing test data
-    const response = await axios.get(`http://localhost:8000/api/tests/${testId}`);
-    const test = response.data;
+  handleKeyDownLink = async (e) => {
+    // Define the updateTestLink function outside of the handleKeyDownLink function
+    const updateTestLink = async (testId, newLink) => {
+      try {
+        console.log("updating the link to the test");
+        // Fetch the existing test data
+        const response = await axios.get(`http://localhost:8000/api/tests/${testId}`);
+        const test = response.data;
 
-    // Update the link field with the new value
-    test.link = newLink;
+        // Update the link field with the new value
+        test.link = newLink;
 
-    // Send a PUT request to update the test
-    await axios.put(`http://localhost:8000/api/tests/${testId}`, test);
+        // Send a PUT request to update the test
+        await axios.put(`http://localhost:8000/api/tests/${testId}`, test);
 
-    console.log('Test link updated successfully');
-    return true;
-  } catch (error) {
-    console.error('Error updating test link:', error);
-    return false;
-  }
-};
+        console.log('Test link updated successfully');
+        return true;
+      } catch (error) {
+        console.error('Error updating test link:', error);
+        return false;
+      }
+    };
 
-  if (e.key === 'Enter') {
-    const location = window.location;
-    const searchParams = new URLSearchParams(location.search);
-    const selectedTestValue = searchParams.get('selectedTest');
-    console.log("Selected test value:", selectedTestValue);
-    console.log(this.state.link);
+    if (e.key === 'Enter') {
+      // Update the state
+      this.setState({
+        link: e.target.value,
+      });
+      console.log(this.state.test, this.state.link)
+      alert("Link Uploaded!");
 
-    // Update the state
-    await this.setState({
-      link: e.target.value,
-      test: selectedTestValue,
-    });
-    console.log(this.state.test, this.state.link)
-    alert("Link Uploaded!");
+      // Call the updateTestLink function with the updated state values
+      const success = await updateTestLink(this.state.test, this.state.link);
+      console.log(success)
+      // Redirect to select question page if the update is successful
+      if (success) {
+        window.location.href = `/questions`
+      }
+    }
+  };
 
-     // Call the updateTestLink function with the updated state values
-     const success = await updateTestLink(this.state.test, this.state.link);
-    console.log(success)
-     // Redirect to select question page if the update is successful
-     if(success) {
-      window.location.href = `/questions`
-     }     
-  }
-};
 
-  
 
 
 
@@ -122,44 +115,89 @@ componentDidMount() {
   if (selectedFile) {
     this.setState({ selectedFile: JSON.parse(selectedFile) });
   }
-}
 
-componentDidUpdate() {
-  // Save selectedFile to localStorage whenever it changes
-  const { selectedFile } = this.state;
-  localStorage.setItem("selectedFile", JSON.stringify(selectedFile));
-}
 
-fileData = () => {
-  const { selectedFile } = this.state;
-  if (selectedFile) {
-    return (
-      <div className="details">
-        <h2>File Details:</h2>
-        <p>File Name: {selectedFile.name}</p>
-        <p>File Type: {selectedFile.type}</p>
-        <p>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
-      </div>
-    );
-  } else {
+  onInputChanged = (e) => {
+    // Update questionsSelected state
+    this.setState({ questionsSelected: e.target.value });
+  };
+
+  onButtonClick = () => {
+    this.setState({
+      selectedFile: null,
+      link: null
+    });
+  };
+
+
+  async componentDidMount() {
+    const location = window.location;
+    const searchParams = new URLSearchParams(location.search);
+    const selectedTestValue = searchParams.get('selectedTest');
+    console.log("Selected test value:", selectedTestValue);
+     // Set state and use a callback to ensure it's updated before accessing it
+    this.setState({ test: selectedTestValue }, async () => {
+      console.log(this.state.test);
+
+    // Retrieve selectedFile from localStorage if available
+    const selectedFile = localStorage.getItem("selectedFile");
+    if (selectedFile) {
+      this.setState({ selectedFile: JSON.parse(selectedFile) });
+    }
+    //fetch test link from database
+    try {
+      console.log(this.state.test)
+      const workLink = await axios.get(`http://localhost:8000/api/test/link/${this.state.test}`);
+      const sololink = workLink.data.result[0].link
+      if (sololink) {
+        this.setState({ link: sololink })
+        
+      }
+      console.log(this.state.link)
+      // Handle response data here
+    } catch (error) {
+      console.error('Error fetching test link:', error);
+      // Handle error here
+    }
+  });
+  }
+
+  componentDidUpdate() {
+    // Save selectedFile to localStorage whenever it changes
+    const { selectedFile } = this.state;
+    localStorage.setItem("selectedFile", JSON.stringify(selectedFile));
+  }
+
+  fileData = () => {
+    const { selectedFile } = this.state;
+    if (selectedFile) {
+      return (
+        <div className="details">
+          <h2>File Details:</h2>
+          <p>File Name: {selectedFile.name}</p>
+          <p>File Type: {selectedFile.type}</p>
+          <p>Last Modified: {selectedFile.lastModifiedDate.toDateString()}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <br />
+          <h4 className="text">Choose file and Press Next button</h4>
+        </div>
+      );
+    }
+  };
+
+
+  render() {
+    const currentLink = this.state.link;
+    console.log(currentLink)
     return (
       <div>
-        <br />
-        <h4 className="text">Choose file and Press Next button</h4>
-      </div>
-    );
-  }
-};
+        <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
 
-
-render() {
-  const { selectedFile, link } = this.state;
-
-  return (
-    <div>
-      <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-
-        {selectedFile ? (
+        {currentLink ? (
           <body>
             <div className="SelectQsPage">
               <div className="SelectQsPage" id="outer-container">
@@ -191,8 +229,15 @@ render() {
                 //window.location.reload();
               }}>Next</button>
               <div className="wrap">
-                <input value={link} onChange={this.onLinkTyped} placeholder='Paste a link to a worksheet' type="text" id="link" />
-                <h1 className="string">Link entered: {link}</h1>
+              <input
+                value={currentLink}
+                onChange={this.onLinkTyped}
+                onKeyDown={this.handleKeyDownLink}
+                placeholder='Paste a link to a worksheet'
+                type="text"
+                id="link"
+              />                 
+              <h1 className="string">Link entered: {currentLink}</h1>
               </div>
             </div>
             {this.fileData()}

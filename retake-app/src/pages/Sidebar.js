@@ -39,7 +39,7 @@ export default props => {
     axios.get('http://localhost:8000/api/auth/check', { withCredentials: true }) // Make an HTTP GET request to check authentication
       .then((response) => {
         if (response.data.authenticated) {
-          
+
           setUser(response.data.user); // Store user data in state
         }
       })
@@ -246,18 +246,18 @@ export default props => {
 
   //populate class options with data from class table
   useEffect(() => {
-    fetch('/home')
-      .then(response => response.json())
-      .then(data => {
-        setUser(data);
-        
-      })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
-      });
-    async function fetchData() {
-      const value = await fetch(`http://localhost:8000/api/classes`);
+    // fetch('http://localhost:8000/home')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setUser(data);
 
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching user data:', error);
+    //   });
+    async function fetchData() {
+      const value = await fetch(`http://localhost:8000/api/classes/${user.email}`);
+  
       const data = await value.json();
       console.log(data)
       const classes = data.result.map((entry) => {
@@ -268,7 +268,7 @@ export default props => {
     }
 
     fetchData();
-  }, []);
+  }, [user.email]);
 
 
 
@@ -278,7 +278,7 @@ export default props => {
     <Menu>
 
       <div className="mt-auto m-auto w-50">
-        <p1>HI {user.username}</p1>
+        <p1>Current User: {user.username}</p1>
         <Select
           placeholder="Pages"
           options={options1}
@@ -330,7 +330,7 @@ export default props => {
 
       </div>
       <div className="signout">
-        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
+        <Link to="/"><button class="signoutbutton">Back to home</button></Link>
 
       </div>
     </Menu>
