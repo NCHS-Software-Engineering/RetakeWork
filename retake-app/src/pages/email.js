@@ -14,7 +14,10 @@ import {
   const searchParams = new URLSearchParams(location.search);
   const selectedTestValue = searchParams.get('selectedQuestions');
 
-  const questions = localStorage.getItem('questions');
+  const questions = localStorage.getItem('questionsChosen');
+
+console.log(localStorage);
+
 const Email = () => {
     var change = 'copy';
     function copyChange() {
@@ -44,16 +47,17 @@ const Email = () => {
                 <h1>Email</h1>
                 <p>Hello Student, 
                 </p>
-                <p>In order to qualify for a retake, please complete the worksheet attached to this email:
+                <p>In order to qualify for a retake, please complete questions {`${questions}`} from 
+ the worksheet attached to this email:
                 
                 </p>
                 <p> Thanks, Dr. Diller</p>
-                `${questions}`
+                
 
                 
             </form>
             
-      console.log(localStorage);
+      
      <CopyToClipboard
      text="Hello Student, 
      
