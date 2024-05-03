@@ -81,8 +81,7 @@ app.get('/api/classes', (req, res) => {
   connection.query(`
       SELECT *
       FROM class
-      WHERE teacher_fk = ? 
-      `, [email], (err, result) => {
+      `, (err, result) => {
         console.log("getting classes")
     if (err) throw err;
     return res.json({ result });
@@ -182,23 +181,23 @@ app.put('/api/tests/:testId', (req, res) => {
 
 
 
-app.get('/api/tests/selected/:testId', (req, res)=>{
-  const testID = req.body.id;
+app.get('/api/test/link/:testId', (req, res)=>{
+  const testID = req.params.testId;
 
-  
-  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
-if (err) throw err;
-return res.json({ result });});
+  connection.query(`SELECT link FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
+  console.log(result)
+  if (err) throw err;
+    return res.json({ result });});
 })
 
-app.get('/api/tests/selected/select/:testId', (req, res)=>{
+/* app.get('/api/tests/selected/select/:testId', (req, res)=>{
   const testID = req.body.id;
 
   
   connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
 if (err) throw err;
 return res.json({ result });});
-})
+}) */
 
 // Set up session middleware
 app.use(session({
