@@ -190,9 +190,9 @@ export default props => {
 
 
   const options1 = [
-    { value: 'signup', label: 'Sign Up' },
-    { value: 'home', label: 'Home' },
-    { value: 'login', label: 'Log In' },
+    // { value: 'signup', label: 'Sign Up' },
+    // { value: 'home', label: 'Home' },
+    // { value: 'login', label: 'Log In' },
     { value: 'default', label: 'Default' },
     { value: 'qs', label: 'Select Questions' },
     { value: 'email', label: 'Email' },
