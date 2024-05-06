@@ -163,7 +163,7 @@ class FileUpload extends Component {
       return (
         <div>
           <br />
-          <h4 className="text">Choose file and Press Next button</h4>
+          
         </div>
       );
     }
@@ -203,11 +203,6 @@ class FileUpload extends Component {
                 type="file"
                 onChange={this.onFileChange}
               /> */}
-              <button className="fileButton" onClick={() => {
-                alert('File Successfully Uploaded!');
-                this.setState({ selectedFile: "hi" });
-                //window.location.reload(); 
-              }}>Next</button>
               <div className="wrap">
               <input
                 value={currentLink}
@@ -216,8 +211,13 @@ class FileUpload extends Component {
                 placeholder='Paste a link to a worksheet'
                 type="text"
                 id="link"
-              />                 
-              <h1 className="string">Link entered: {currentLink}</h1>
+              />         
+              <button className="fileButton" onClick={() => {
+                alert('File Successfully Uploaded!');
+                this.setState({ selectedFile: "hi" });
+                //window.location.reload(); 
+              }}>Next</button>        
+              {/* <h1 className="string">Link entered: {currentLink}</h1> */}
               </div>
             </div>
             {this.fileData()}
