@@ -104,6 +104,8 @@ export default props => {
       setUserInput('');
     }
     else {
+      localStorage.setItem('selectedClass', selectedClass.value);
+      console.log(localStorage);
       const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
       const data = await res.json();
       //populate test options with data from class table
@@ -222,6 +224,8 @@ export default props => {
     }
     // Redirect to another page with the selected test value in the URL
     else {
+      localStorage.setItem('selectedTest',selectedTest.value);
+      console.log(localStorage);
       window.location.href = `/upload?selectedTest=${selectedTest.value}`;
     }
   }
