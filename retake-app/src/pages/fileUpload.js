@@ -169,7 +169,7 @@ class FileUpload extends Component {
       return (
         <div>
           <br />
-          <h4 className="text">Choose file and Press Next button</h4>
+          
         </div>
       );
     }
