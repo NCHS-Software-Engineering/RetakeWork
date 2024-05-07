@@ -88,7 +88,7 @@ class FileUpload extends Component {
         const success = await updateTestLink(this.state.test, this.state.link);
         console.log(success);
         if (success) {
-          window.location.reload();
+          //window.location.reload();
         }
       });
     }
