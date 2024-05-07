@@ -7,12 +7,15 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 
 
+
+
 class FileUpload extends Component {
 
-
+  
   state = {
     selectedFile: null,
     link: "",
+    inputLink: "",
     test: null,
     questionsSelected: []
   };
@@ -27,6 +30,8 @@ class FileUpload extends Component {
       test: currentTest
     });
   };
+
+  
 
   uploadFunction = (selectedTestValue) => {
     // Use selectedTestValue as needed in upload.js
@@ -60,8 +65,7 @@ class FileUpload extends Component {
         return false;
       }
     };
-
-    if (e.key === 'Enter') {
+    /* if (e.key === 'Enter') {
       // Update the state
       this.setState({
         link: e.target.value,
@@ -74,19 +78,29 @@ class FileUpload extends Component {
       console.log(success)
       // Redirect to select question page if the update is successful
       if (success) {
-        window.location.href = `/questions`
+        window.location.href = `/upload`
       }
+    } */
+      alert('Link Successfully Entered!');
+      console.log(this.state.inputLink)
+      this.setState({ link: this.state.inputLink }, async () => {
+        console.log(this.state.test, this.state.link);
+        const success = await updateTestLink(this.state.test, this.state.link);
+        console.log(success);
+        if (success) {
+          window.location.reload();
+        }
+      });
     }
-  };
-
 
 
   // On link input
-  onLinkTyped = (e) => {
+  onLinkTyped = async (e) => {
     this.setState({
-      link: e.target.value,
-    })
-  }
+      inputLink: e.target.value,
+    });
+    console.log(this.state.inputLink)
+  } 
 
 
   onInputChanged = (e) => {
@@ -97,7 +111,7 @@ class FileUpload extends Component {
   onButtonClick = () => {
     this.setState({
       selectedFile: null,
-      link: null
+      link: ""
     });
   };
 
@@ -112,10 +126,10 @@ class FileUpload extends Component {
       console.log(this.state.test);
 
     // Retrieve selectedFile from localStorage if available
-    const selectedFile = localStorage.getItem("selectedFile");
+    /* const selectedFile = localStorage.getItem("selectedFile");
     if (selectedFile) {
       this.setState({ selectedFile: JSON.parse(selectedFile) });
-    }
+    } */
     //fetch test link from database
     try {
       console.log(this.state.test)
@@ -123,7 +137,6 @@ class FileUpload extends Component {
       const sololink = workLink.data.result[0].link
       if (sololink) {
         this.setState({ link: sololink })
-        
       }
       console.log(this.state.link)
       // Handle response data here
@@ -133,6 +146,7 @@ class FileUpload extends Component {
     }
   });
   }
+
 
   componentDidUpdate() {
     // Save selectedFile to localStorage whenever it changes
@@ -155,7 +169,7 @@ class FileUpload extends Component {
       return (
         <div>
           <br />
-          <h4 className="text">Choose file and Press Next button</h4>
+          
         </div>
       );
     }
@@ -182,34 +196,32 @@ class FileUpload extends Component {
                 type="text"
                 onInput={this.onInputChanged}
               />
-              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}><button className="clickToEmailButton" >Next</button></Link>
-              <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
+              <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}>
+                <button className="clickToEmailButton" >Next</button></Link>
+                <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
             </div>
           </body>
         ) : (
           <div>
             <h1 className="head">Test File</h1>
-            <h3>Upload file for this test or paste a link into the textbox!</h3>
+            <h3>Paste a link into the textbox!</h3>
             <div>
-              <input
+              {/* <input
                 type="file"
                 onChange={this.onFileChange}
-              />
-              <button className="fileButton" onClick={() => {
-                alert('File Successfully Uploaded!');
-                this.setState({ selectedFile: "hi" });
-                //window.location.reload();
-              }}>Next</button>
+              /> */}
+              
               <div className="wrap">
               <input
-                value={currentLink}
+                value={this.state.inputLink}
                 onChange={this.onLinkTyped}
-                onKeyDown={this.handleKeyDownLink}
+                //onKeyDown={this.handleKeyDownLink}
                 placeholder='Paste a link to a worksheet'
                 type="text"
                 id="link"
-              />                 
-              <h1 className="string">Link entered: {currentLink}</h1>
+              />      
+              <button className="fileButton" onClick={this.handleKeyDownLink}>Next</button>           
+              <h1 className="string">Link entered: {this.state.inputLink}</h1>
               </div>
             </div>
             {this.fileData()}
@@ -219,5 +231,6 @@ class FileUpload extends Component {
     );
   }
 }
+
 
 export default FileUpload;

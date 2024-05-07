@@ -81,8 +81,8 @@ app.get('/api/classes/:email', (req, res) => {
   connection.query(`
       SELECT *
       FROM class
-      WHERE teacher_fk = ? 
-      `, [email], (err, result) => {
+      WHERE class.teacher_fk = '${email}'
+      `, (err, result) => {
         console.log("getting classes")
     if (err) throw err;
     return res.json({ result });
