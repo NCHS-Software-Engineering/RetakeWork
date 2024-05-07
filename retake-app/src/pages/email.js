@@ -14,7 +14,7 @@ import {
   const searchParams = new URLSearchParams(location.search);
   const selectedTestValue = searchParams.get('selectedQuestions');
 
-  const questions = localStorage.getItem('questionsChosen');
+  //const questions = localStorage.getItem('questionsChosen');
 
 console.log(localStorage);
 
@@ -47,7 +47,7 @@ const Email = () => {
                 <h1>Email</h1>
                 <p>Hello Student, 
                 </p>
-                <p>In order to qualify for a retake, please complete questions {`${questions}`} from 
+                <p>In order to qualify for a retake, please complete questions {`${localStorage.getItem('questionsChosen')}`} from 
  the worksheet attached to this email:
                 
                 </p>
