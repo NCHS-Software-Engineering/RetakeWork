@@ -190,9 +190,9 @@ export default props => {
 
 
   const options1 = [
-    { value: 'signup', label: 'Sign Up' },
-    { value: 'home', label: 'Home' },
-    { value: 'login', label: 'Log In' },
+    // { value: 'signup', label: 'Sign Up' },
+    // { value: 'home', label: 'Home' },
+    // { value: 'login', label: 'Log In' },
     { value: 'default', label: 'Default' },
     { value: 'qs', label: 'Select Questions' },
     { value: 'email', label: 'Email' },
@@ -246,15 +246,7 @@ export default props => {
 
   //populate class options with data from class table
   useEffect(() => {
-    // fetch('http://localhost:8000/home')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setUser(data);
-
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching user data:', error);
-    //   });
+    
     async function fetchData() {
       const value = await fetch(`http://localhost:8000/api/classes/${user.email}`);
   
