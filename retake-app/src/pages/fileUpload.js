@@ -17,7 +17,7 @@ class FileUpload extends Component {
     link: "",
     inputLink: "",
     test: null,
-    questionsSelected: []
+    questionsSelected: null
   };
 
   questionsSelected = [];
@@ -106,6 +106,8 @@ class FileUpload extends Component {
   onInputChanged = (e) => {
     // Update questionsSelected state
     this.setState({ questionsSelected: e.target.value });
+    localStorage.setItem('questionsChosen',this.state.questionsSelected);
+    console.log(localStorage);
   };
 
   onButtonClick = () => {
@@ -192,7 +194,7 @@ class FileUpload extends Component {
             </div>
             <div className="textInput">
               <input
-                placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...)'
+                placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...) and ending with a space.'
                 type="text"
                 onInput={this.onInputChanged}
               />
