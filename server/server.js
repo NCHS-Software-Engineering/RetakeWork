@@ -17,8 +17,8 @@ app.use(express.json());
 
 const mysql = require('mysql2');
 
-const selectedTest = 
-require('dotenv').config();
+const selectedTest =
+  require('dotenv').config();
 
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
@@ -83,7 +83,7 @@ app.get('/api/classes/:email', (req, res) => {
       FROM class
       WHERE class.teacher_fk = '${email}'
       `, (err, result) => {
-        console.log("getting classes")
+    console.log("getting classes")
     if (err) throw err;
     return res.json({ result });
   });
@@ -118,7 +118,7 @@ app.get('/api/tests/:classId', (req, res) => {
       SELECT *
       FROM test WHERE test.class_fk = ${classId}
       `, (err, result) => {
-        console.log("getting classes")
+    console.log("getting classes")
     if (err) throw err;
     return res.json({ result });
   });
@@ -137,7 +137,7 @@ app.post('/api/tests', (req, res) => {
       console.log(err)
     }
     res.send(JSON.stringify(result));
-    
+
   });
 })
 
@@ -148,11 +148,11 @@ app.delete('/api/tests/:testId', (req, res) => {
   connection.query(`
     DELETE FROM test WHERE test.id = ${testId}`
     , (err, result) => {
-    if (err) {
-      console.log(err)
-    }
-    res.send(JSON.stringify(result));
-  });
+      if (err) {
+        console.log(err)
+      }
+      res.send(JSON.stringify(result));
+    });
 
 })
 
@@ -176,28 +176,32 @@ app.put('/api/tests/:testId', (req, res) => {
 
     // Return a success response
     res.status(200).json({ message: 'Test link updated successfully' });
-  });  
+  });
 });
 
 
 
 
-app.get('/api/tests/selected/:testId', (req, res)=>{
+app.get('/api/tests/selected/:testId', (req, res) => {
   const testID = req.body.id;
 
-  
-  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
-if (err) throw err;
-return res.json({ result });});
+
+  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result) => {
+    console.log("sending test data")
+    if (err) throw err;
+    return res.json({ result });
+  });
 })
 
-app.get('/api/tests/selected/select/:testId', (req, res)=>{
+app.get('/api/tests/selected/select/:testId', (req, res) => {
   const testID = req.body.id;
 
-  
-  connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result)=>{console.log("sending test data")
-if (err) throw err;
-return res.json({ result });});
+
+  connection.query(`SELECT name FROM test WHERE test.id=${testID}`, (err, result) => {
+    console.log("sending test data")
+    if (err) throw err;
+    return res.json({ result });
+  });
 })
 
 // Set up session middleware
@@ -225,12 +229,12 @@ passport.use(new GoogleStrategy({
     email: profile.emails[0].value,
   };
 
-  req.user = user; 
+  req.user = user;
   console.log(req.user);
 
   const { username, email } = req.user;
 
-  
+
   axios.post('http://localhost:8000/api/users', { username, email });
 
   return done(null, user);
@@ -268,7 +272,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 // Route handler for the home page
 app.get('/home', (req, res) => {
   // Access authenticated user's information from req.user
-  const {username, email} = req.body;
+  const { username, email } = req.body;
   console.log(email)
   // Use user information as needed
   res.json(email);
@@ -325,6 +329,19 @@ app.post('/api/users', (req, res) => {
         res.status(201).json({ message: "New user inserted successfully" });
       }
     });
+  });
+});
+
+
+app.get('/api/pullURL/:id', (req, res) => {
+  const testID = req.params;
+
+  const pull = `SELECT link FROM test WHERE id = ?`;
+
+  connection.query(pull, [testID], (err, result) => {
+    console.log("getting classes")
+    if (err) throw err;
+    return res.json({ result });
   });
 });
 
