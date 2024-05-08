@@ -107,6 +107,8 @@ class FileUpload extends Component {
     // Update questionsSelected state
     this.setState({ questionsSelected: e.target.value });
     localStorage.setItem('questionsChosen',this.state.questionsSelected);
+    localStorage.setItem('selectedTest',this.state.test);
+
     console.log(localStorage);
   };
 

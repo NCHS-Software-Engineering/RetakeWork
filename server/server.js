@@ -332,7 +332,7 @@ app.post('/api/users', (req, res) => {
 });
 
 
-app.get('/api/pullURL/:id', (req, res) => {
+app.get('/api/link/:id', (req, res) => {
   const testID = req.params;
 
   const pull = `SELECT link FROM test WHERE id = ?`;
