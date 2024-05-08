@@ -52,7 +52,7 @@ const Email = () => {
                 
                 </p>
 
-                <p>Worksheet Link: {`${link}`}</p>
+                {/* <p>Worksheet Link: {`${link}`}</p> */}
                 <p>Thanks, Dr. Diller</p>
                 
 
@@ -61,11 +61,11 @@ const Email = () => {
             
       
      <CopyToClipboard
-     text="Hello Student, 
+     text='Hello Student, 
      
      In order to qualify for a retake, please complete the worksheet attached to this email                       
 
-     Thanks, Dr. Diller"
+     Thanks, Dr. Diller'
      onCopy={() => alert("Copied")}>
        <button className = 'copyButton'>Copy to clipboard</button>
      </CopyToClipboard>
