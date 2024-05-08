@@ -48,10 +48,12 @@ const Email = () => {
                 <p>Hello Student, 
                 </p>
                 <p>In order to qualify for a retake, please complete questions {`${localStorage.getItem('questionsChosen')}`} from 
- the worksheet attached to this email:
+ the worksheet attached to this email.
                 
                 </p>
-                <p> Thanks, Dr. Diller</p>
+
+                <p>Worksheet Link: {`${link}`}</p>
+                <p>Thanks, Dr. Diller</p>
                 
 
                 
