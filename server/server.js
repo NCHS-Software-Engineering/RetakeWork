@@ -182,12 +182,11 @@ app.put('/api/tests/:testId', (req, res) => {
 
 
 
-app.get('/api/tests/selected/:testId', (req, res) => {
-  const testID = req.body.id;
-
-
-  connection.query(`SELECT name, link FROM test WHERE test.id=${testID}`, (err, result) => {
+app.get('/api/test/link/:testId', (req, res) => {
+  const testID = req.params.testId;
+  connection.query(`SELECT link FROM test WHERE test.id=${testID}`, (err, result) => {
     console.log("sending test data")
+    console.log(result)
     if (err) throw err;
     return res.json({ result });
   });
