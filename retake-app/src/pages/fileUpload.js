@@ -117,6 +117,7 @@ class FileUpload extends Component {
     });
   };
 
+  
 
   async componentDidMount() {
     const location = window.location;
@@ -194,6 +195,7 @@ class FileUpload extends Component {
             </div>
             <div className="textInput">
               <input
+                
                 placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...) and ending with a space.'
                 type="text"
                 onInput={this.onInputChanged}
