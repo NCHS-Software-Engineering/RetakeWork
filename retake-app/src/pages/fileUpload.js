@@ -205,7 +205,7 @@ class FileUpload extends Component {
             <div className="textInput">
               <input
                 
-                placeholder='Type the questions the student got wrong, separated by a comma with a space (1, 2, 3d, 5...) and ending with a space.'
+                placeholder='Type the questions the student got wrong. (1, 2, 3d, 5...)'
                 type="text"
                 onInput={this.onInputChanged}
               />
