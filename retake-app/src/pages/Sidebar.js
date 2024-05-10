@@ -58,7 +58,6 @@ export default props => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedTest, setSelectedTest] = useState(null);
-  const [classId, setClassId] = useState(1);
   const [classes, setClasses] = useState([]);
   const [tests, setTests] = useState([]);
 
@@ -262,7 +261,8 @@ export default props => {
       console.log(classes)
       setClassOptions([...classes, { value: 'addClass', label: 'Add class...' }]);
     }
-
+    localStorage.setItem('teacher', user.username)
+    console.log(localStorage)
     fetchData();
   }, [user.email]);
 

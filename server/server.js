@@ -73,6 +73,7 @@ app.post('/api/uploadfile', upload.single('testsheet'), (req, res) => {
 });
 
 
+
 //get classes under teacher from database 
 app.get('/api/classes/:email', (req, res) => {
 
@@ -105,7 +106,7 @@ app.post('/api/classes', (req, res) => {
   });
 })
 
-//delete class from database
+//delete class from database (not using yet)
 app.delete('/api/classes', (req, res) => {
   console.log('here in the class creation route')
 })
@@ -141,7 +142,7 @@ app.post('/api/tests', (req, res) => {
   });
 })
 
-//delete test from class 
+//delete test from class (not using yet)
 app.delete('/api/tests/:testId', (req, res) => {
   console.log('here in the test deletion route')
   const testId = req.params.testId;

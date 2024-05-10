@@ -106,18 +106,25 @@ class FileUpload extends Component {
   onInputChanged = (e) => {
     // Update questionsSelected state
     this.setState({ questionsSelected: e.target.value });
+    
+  };
+
+  //button click to email page
+  onToEmail = (e) => {
+    this.setState({ questionsSelected: e.target.value });
     localStorage.setItem('questionsChosen',this.state.questionsSelected);
     localStorage.setItem('selectedTest',this.state.test);
 
     console.log(localStorage);
   };
 
+  //reupload button to clear link and/or file
   onButtonClick = () => {
     this.setState({
       selectedFile: null,
       link: ""
     });
-  };
+  }
 
   
 
@@ -203,7 +210,7 @@ class FileUpload extends Component {
                 onInput={this.onInputChanged}
               />
               <Link to={{ pathname: '/email', state: { questionsSelected: this.state.questionsSelected } }}>
-                <button className="clickToEmailButton" >Next</button></Link>
+                <button className="clickToEmailButton" onClick={this.onToEmail}>Next</button></Link>
                 <button className='newUpload' onClick={this.onButtonClick}>Reupload</button>
             </div>
           </body>
