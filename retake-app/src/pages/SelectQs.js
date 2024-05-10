@@ -41,7 +41,7 @@ var nameOfClass = 'off';
         <div className="textInput">
           
         <input
-            placeholder='Type the questions the student got wrong, seperated by a comma with a space (1, 2, 3d, 5...)'
+            placeholder='Type the questions the student should complete, seperated by a comma with a space (1, 2, 3d, 5...)'
             type="text"
             onInput={(e) => setQuestionsSelected(e.target.value.split(','))}
          />
