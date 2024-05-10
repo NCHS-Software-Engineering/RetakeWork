@@ -46,31 +46,28 @@ const Email = () => {
     fetchData();
   }, []);
 
-  const [options, setOptions] = useState({
-    mr: false,
-    ms: false,
-    mrs: false,
-    dr: false,
-  });
+  const [selectedOption, setSelectedOption] = useState(""); // State to store the selected option
 
-  // Function to handle checkbox change
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setOptions({ ...options, [name]: checked });
+
+  // Function to handle radio button change
+  const handleRadioChange = (event) => {
+    const { value } = event.target;
+    setSelectedOption(value); // Update the selected option
   };
 
   // Function to generate the salutation based on selected options
   const generateSalutation = () => {
-    if (options.mrs ) {
-      return "Mrs.";
-    } else if (options.mr) {
-      return "Mr.";
-    } else if (options.ms) {
-      return "Ms.";
-    } else if (options.dr) {
-      return "Dr.";
-    } else {
-      return "";
+    switch (selectedOption) {
+      case "mr":
+        return "Mr.";
+      case "ms":
+        return "Ms.";
+      case "mrs":
+        return "Mrs.";
+      case "dr":
+        return "Dr.";
+      default:
+        return "";
     }
   };
 
@@ -102,41 +99,45 @@ const Email = () => {
             </p>
             <p>Worksheet Link: <a href={link}>{link}</a></p>
             <div className="checkbox-container"> {/* Container for checkboxes */}
-              <label>
-                <input 
-                  type="checkbox"
-                  name="mr"
-                  checked={options.mr}
-                  onChange={handleCheckboxChange}
-                />
-                Mr.
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="ms"
-                  checked={options.ms}
-                  onChange={handleCheckboxChange}
-                />
-                Ms.
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="mrs"
-                  checked={options.mrs}
-                  onChange={handleCheckboxChange}
-                />
-                Mrs.
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  name="dr"
-                  checked={options.dr}
-                  onChange={handleCheckboxChange}
-                />
-                Dr.
+            <label>
+              <input 
+                type="radio"
+                name="salutation"
+                value="mr"
+                checked={selectedOption === "mr"}
+                onChange={handleRadioChange}
+              />
+              Mr.
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="salutation"
+                value="ms"
+                checked={selectedOption === "ms"}
+                onChange={handleRadioChange}
+              />
+              Ms.
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="salutation"
+                value="mrs"
+                checked={selectedOption === "mrs"}
+                onChange={handleRadioChange}
+              />
+              Mrs.
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="salutation"
+                value="dr"
+                checked={selectedOption === "dr"}
+                onChange={handleRadioChange}
+              />
+              Dr.
               </label>
             </div>
             <p>Thanks, {generateSalutation()} {lastName}</p>
