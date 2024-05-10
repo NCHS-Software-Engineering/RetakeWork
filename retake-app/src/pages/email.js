@@ -144,7 +144,7 @@ const Email = () => {
 
             <CopyToClipboard
               text={emailText}
-              onCopy={() => alert("Copied")}>
+              onCopy={() => alert("Copied. To paste, do ctrl + shift + v to paste WITHOUT formating")}>
               <button className='copyButton'>Copy to clipboard</button>
             </CopyToClipboard>
           </form>
