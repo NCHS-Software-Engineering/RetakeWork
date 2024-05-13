@@ -333,13 +333,17 @@ app.post('/api/users', (req, res) => {
 
 
 app.get('/api/pullURL/:id', (req, res) => {
-  const testID = req.params;
+  const testID = req.params.id;
 
   const pull = `SELECT link FROM test WHERE id = ?`;
 
+  console.log(testID);
+
   connection.query(pull, [testID], (err, result) => {
-    console.log("getting classes")
+    console.log("getting link")
     if (err) throw err;
+
+    console.log(res.json({ result }));
     return res.json({ result });
   });
 });
