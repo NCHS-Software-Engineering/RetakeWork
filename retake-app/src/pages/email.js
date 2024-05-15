@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import './email.css';
-import axios from "axios";
+
 import fileUpload from './fileUpload';
 import {
   BrowserRouter as Router,
