@@ -62,7 +62,7 @@ function App() {
                         <br/>
                         <h3>Click the menu icon in the top left to continue...</h3>
                         <button onClick={logOut}>Log out</button>
-                        <h3>Built by Will Stenzel (class of 2024), Samantha Pan (class of 2024), Alex Ung (class of 2025), and Akhil Kanuri (class of 2025)</h3>
+                        <h3 className='credits'>Built by Will Stenzel ('24), Samantha Pan ('24), Alex Ung ('25), and Akhil Kanuri ('25)</h3>
                     </div>
                 ) : (
                     <div>

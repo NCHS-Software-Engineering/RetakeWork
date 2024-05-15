@@ -94,6 +94,17 @@ body{
 .social div:hover{
   background-color: rgba(255,255,255,0.47);
 } 
+.credits {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(255, 255, 255);
+  font: 'Poppins', sans-serif;
+  text-align: center;
+  white-space: nowrap; /* Ensures the text stays on one line */
+  font-size: 12px; 
+}
 
 .h4 {
   color: rgb(255, 0, 0);
