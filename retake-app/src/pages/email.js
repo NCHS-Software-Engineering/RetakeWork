@@ -73,15 +73,15 @@ const Email = () => {
 
   const [firstName, lastName] = localStorage.getItem('teacher').split(" ");
   const questions = localStorage.getItem('questionsChosen')
-  const emailText =
-  `Hello Student, 
-     
-  In order to qualify for a retake, please complete questions ${questions} from the worksheet attached to this email.
-            
-  Worksheet Link: ${link}
+  const emailText = `
+Hello Student,
 
+In order to qualify for a retake, please complete questions ${questions} from the worksheet attached to this email.
 
-  Thanks, ${generateSalutation()} ${lastName}`
+Worksheet Link: ${link}
+
+Thanks, ${generateSalutation()} ${lastName}
+`;
   console.log(emailText)
 
   return (
@@ -142,9 +142,10 @@ const Email = () => {
             </div>
             <p>Thanks, {generateSalutation()} {lastName}</p>
 
-            <CopyToClipboard
+            <CopyToClipboard 
               text={emailText}
-              onCopy={() => alert("Copied")}>
+              onCopy={() => alert("Copied")}
+              format={"text/plain"}>
               <button className='copyButton'>Copy to clipboard</button>
             </CopyToClipboard>
           </form>
