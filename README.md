@@ -70,6 +70,7 @@ a phpMyAdmin
 ## Known Issues
 There are a few issues left
 1. sidebar.js and sidebar.css in the retake-app/src folder are extra and the following files: Home.js, Home.css, Import.css, Import.js, Login.css, Login.js, Login.jsx, Signup.css, and Signup.js, all found in retake-app/src/pages, aren't needed/used, but deleting them breaks the app. We did not have the time to fix them.
+2. App is not ADA complient
 
 ## Contact Info
 If you have any questions about the code we wrote, feel free to reach out to use. We might not be able to help you develop new code, but we can help you understand our current code. If emailing, add second try champions or retake app in email subject.
