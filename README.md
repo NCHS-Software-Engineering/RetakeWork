@@ -10,11 +10,12 @@ An up to date browser
 2. Open the project folder
 3. Install necessary packages via npm install (as outlined below)
 3. Add a .env file in the server folder and in the src folder
-4. Add necessary env variables
-5. open two terminals
-6. In one terminal, run cd server, then npm run dev
-7. In the other terminal, run cd retake-app, then run npm start
-8. Enjoy!
+4. Add the env file data (from Dr. Miller)
+5. Add necessary env variables
+6. open two terminals
+7. In one terminal, run cd server, then npm run dev
+8. In the other terminal, run cd retake-app, then run npm start
+9. Enjoy!
 
 ## Project Architecture
 | Package | Description |
