@@ -56,6 +56,8 @@ const Email = () => {
     setSelectedOption(value); // Update the selected option
   };
 
+  const [firstName, lastName] = localStorage.getItem('teacher').split(" ");
+
   // Function to generate the salutation based on selected options
   const generateSalutation = () => {
     switch (selectedOption) {
@@ -67,12 +69,13 @@ const Email = () => {
         return "Mrs.";
       case "dr":
         return "Dr.";
+      case "first":
+        return firstName;
       default:
         return "";
     }
   };
 
-  const [firstName, lastName] = localStorage.getItem('teacher').split(" ");
   const questions = localStorage.getItem('questionsChosen')
   const emailText = `
 Hello Student,
@@ -140,6 +143,16 @@ Thanks, ${generateSalutation()} ${lastName}
               />
               Dr.
               </label>
+              <label>
+              <input
+                type="radio"
+                name="salutation"
+                value="first"
+                checked={selectedOption === "first"}
+                onChange={handleRadioChange}
+              />
+              First
+            </label>
             </div>
             <p>Thanks, {generateSalutation()} {lastName}</p>
 

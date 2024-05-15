@@ -60,14 +60,14 @@ function App() {
                         <br/>
                         <br/>
                         <h3>Click the menu icon in the top left to continue...</h3>
-                        <button onClick={logOut}>Log out</button>
+                        <button className="homebuttons2" onClick={logOut}>Log out</button>
                     </div>
                 ) : (
                     <div>
                         <h1>Welcome to the Retake App!</h1>
                         <br/>
                         <br/>
-                        <a href="http://localhost:8000/auth/google/"><button>Sign in with Google 🚀 </button></a>
+                        <a href="http://localhost:8000/auth/google/"><button className="homebuttons1">Sign in with Google 🚀 </button></a>
                     </div>
                 )}
             </div>
