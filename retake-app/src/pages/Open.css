@@ -130,3 +130,16 @@ body{
   background-color: #999999;
   color: white;
 }
+.credits {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(255, 255, 255);
+  font: 'Poppins', sans-serif;
+  text-align: center;
+  white-space: nowrap; /* Ensures the text stays on one line */
+  font-size: 12px; 
+}
+
+

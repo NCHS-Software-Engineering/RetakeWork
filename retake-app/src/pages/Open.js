@@ -46,6 +46,7 @@ function App() {
             });
     };
 
+    
 
     return (
         <body>
@@ -61,6 +62,8 @@ function App() {
                         <br/>
                         <h3>Click the menu icon in the top left to continue...</h3>
                         <button className="homebuttons2" onClick={logOut}>Log out</button>
+                        
+                        <h3 className='credits'>Built by Will Stenzel ('24), Samantha Pan ('24), Alex Ung ('25), and Akhil Kanuri ('25)</h3>
                     </div>
                 ) : (
                     <div>
