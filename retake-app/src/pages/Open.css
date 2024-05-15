@@ -94,3 +94,8 @@ body{
 .social div:hover{
   background-color: rgba(255,255,255,0.47);
 } 
+
+.h4 {
+  color: rgb(255, 0, 0);
+  text-align: center;
+}
