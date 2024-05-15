@@ -2,21 +2,14 @@ import { UPLOADING } from 'dropzone';
 import './SelectQs.css';
 import Sidebar from './Sidebar';
 import React from 'react';
-import Select, { MultiValue } from "react-select";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+
 
 
 
 function App() {
 
-  const options = [
-    { value: "blues", label: "Blues" },
-    { value: "rock", label: "Rock" },
-    { value: "jazz", label: "Jazz" },
-    { value: "orchestra", label: "Orchestra" },
-  ];
-
-const [selectedOptions, setSelectedOptions] = useState([]);
+  const [questionsSelected, setQuestionsSelected] = React.useState([]);
   
 
    
@@ -30,18 +23,29 @@ const [selectedOptions, setSelectedOptions] = useState([]);
             <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
             
         </div>
-        <div className = 'selectQsStuff'>
-        <Select
-        className='selectQs'
-        defaultValue={selectedOptions}
-        onChange={setSelectedOptions}
-        options={options}
-        isMulti
-      />
+        </div>
       
+        <div className="textInput">
+          
+        <input
+            placeholder='Type the questions the student should complete, seperated by a comma with a space (1, 2, 3d, 5...)'
+            type="text"
+            onInput={(e) => setQuestionsSelected(e.target.value.split(','))}
+         />
+        <Link to="/email"><button button className = "clickToEmailButton" onClick={() => {}}>Next</button></Link>
         </div>
+
+        {/*{isEmpty(questionsSelected) ? (
+          <div>
+            <h1>Questions Selected: {questionsSelected}</h1>
+          </div>
+        ) : (
+          <div>
+            <h1>hi</h1>
+          </div>
+        )}*/}
         
-        </div>
+        
       </body>
       );
       

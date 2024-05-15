@@ -1,32 +1,32 @@
-body{
+body {
     background-color: #262124;
-} 
+}
 
 
-.emailForm{
+.emailForm {
     width: 500px;
     height: 800px;
-    background-color: rgba(255,255,255,0.13);
+    background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
 }
 
 
-form h1{
+form h1 {
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     text-align: center;
 }
 
-form *{
+form * {
     font-family: 'Arial', sans-serif;
     color: #ffffff;
     letter-spacing: 0.5px;
@@ -41,13 +41,35 @@ form p {
     text-align: center;
 }
 
-.copyButton{
-    margin-top: 925px;
-    margin-left: -290px;
-    width: 13%;
+
+.checkbox-container label {
+    display: inline-block;
+    /* Display checkboxes side by side */
+    margin-right: 10px;
+    /* Add some space between checkboxes */
+}
+
+.checkbox-container label input {
+    display: block;
+    height: 30px;
+    width: 30px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+
+.copyButton {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 20%;
     background-color: #ffffff;
     color: #080710;
-    padding: 15px 0;
+    padding: 20px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 10px;
@@ -55,11 +77,11 @@ form p {
 }
 
 .copyButton:hover {
-    background-color: #999999;
+    background-color: #7b2727;
     color: white;
-  }
+}
 
-.copy{
+.copy {
     width: 50px;
     height: 50px;
     text-align: center;
@@ -69,16 +91,16 @@ form p {
     color: white;
     border: none;
     margin: 5px;
-    
+
 }
 
-.copy:hover{
+.copy:hover {
     background-color: #999999;
     cursor: pointer;
 }
 
 
-.Copied{
+.Copied {
     width: 50px;
     height: 50px;
     text-align: center;
@@ -88,10 +110,10 @@ form p {
     color: white;
     border: none;
     margin: 5px;
-    
+
 }
 
-.Copied:hover{
+.Copied:hover {
     background-color: #999999;
     cursor: pointer;
 }

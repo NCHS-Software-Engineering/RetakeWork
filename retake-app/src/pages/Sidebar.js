@@ -4,16 +4,23 @@ import './Sidebar.css';
 import Select from "react-select";
 import { PiSignOutBold } from "react-icons/pi";
 import Child from './SelectQs.js';
+import axios from 'axios';
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Link,
+  useNavigate,
 } from "react-router-dom";
 
 
-//<Select placeholder="Students" options = {studentOptions} autoFocus={true} onChange={handleStudentChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
+
+const baseURL = "http://localhost:8000/";
+
+const email = localStorage.getItem('myString');
+
+console.log(email)
 
 const Parent = () => {
   const data = "Data from Parent to Child";
@@ -23,25 +30,54 @@ const Parent = () => {
 
 export default props => {
 
-  const [isOpenableClasses, setSelectedClasses] = useState(true);
-  const [testOptions, setTests] = useState([]);
+  const [user, setUser] = useState({ username: '', email: '' }); // Default empty user
+
+
+  useEffect(() => {
+    console.log("getting user");
+
+    axios.get('http://localhost:8000/api/auth/check', { withCredentials: true }) // Make an HTTP GET request to check authentication
+      .then((response) => {
+        if (response.data.authenticated) {
+
+          setUser(response.data.user); // Store user data in state
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking authentication:", error);
+      });
+  }, []); // The empty array ensures this effect runs once when the component is mounted
+
+
+
+  const [isOpenableClasses, disableOpenable] = useState(true);
+  const [testOptions, setTestOptions] = useState([]);
+  const [classOptions, setClassOptions] = useState([]);
   const [studentOptions, setStudents] = useState([]);
+  const [userInput, setUserInput] = useState();
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedTest, setSelectedTest] = useState(null);
+  const [classes, setClasses] = useState([]);
+  const [tests, setTests] = useState([]);
+
+
   const handleChange = (selectedOption) => {
 
     if (selectedOption.value === "login") {
       window.location.href = "./login";
-    
+
     }
     if (selectedOption.value === "default") {
       window.location.href = "./";
-     
+
     }
     if (selectedOption.value === "signup") {
       window.location.href = "./signup";
-   
+
     }
     if (selectedOption.value === "home") {
-     ;
+      ;
     }
     if (selectedOption.value === "qs") {
       window.location.href = "./questions";
@@ -55,50 +91,77 @@ export default props => {
 
   };
 
-  const handleChangeClasses = (selectedOption) => {
 
-    if (selectedOption.value === "prog1") {
-      setTests([
-      { value: 'test1', label: 'Chapter 1 Test' },
-      { value: 'test2', label: 'Chapter 2 Test' },
-      { value: 'test3', label: 'Chapter 3 Test' },
-      { value: 'test4', label: 'Chapter 4 Test' }]);
 
-        setStudents([
-          {value: 'student1', label: 'Henry Anderson'},
-          {value: 'student2', label: 'Doran Sanford'},
-          {value: 'student3', label: 'Conner Furby'},])
+  const handleChangeClasses = async (selectedClass) => {
+    disableOpenable(false);
+    console.log("handling class choice")
+    setSelectedClass(selectedClass);
 
-      setSelectedClasses(false);
+
+    if (selectedClass.value === "addClass") {
+      setUserInput('');
     }
-    if (selectedOption.value === "APCS") {
-      setTests([
-      { value: 'test5', label: 'Unit 1: Primitive Types Test' },
-      { value: 'test6', label: 'Unit 5: Writing Classes Test' },
-      { value: 'test7', label: 'Unit 10: Recursion Test' }]);
+    else {
+      localStorage.setItem('selectedClass', selectedClass.value);
+      console.log(`this is ${selectedClass.value}` );
+      const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
+      const data = await res.json();
+      //populate test options with data from class table
 
-        setStudents([
-          {value: 'student4', label: 'Sam Abud'},
-          {value: 'student5', label: 'Jacob Wachtor'},
-          {value: 'student6', label: 'Jake Moore'},])
+      console.log(data)
+      const tests = data.result.map((entry) => {
+        return { value: entry.id, label: entry.name }
+      });
+      console.log(tests)
+      setTestOptions([...tests, { value: 'addTest', label: 'Add Test...' }]);
 
-      setSelectedClasses(false);
     }
-    if (selectedOption.value === "SE") {
-      setTests([
-      { value: 'test9', label: 'Chapter 15 Exam' },
-      { value: 'test10', label: 'Maze Lab' },
-      { value: 'test11', label: 'Chapter 17 Test' }]);
+  };
 
-        setStudents([
-          {value: 'student7', label: 'Ahkil Kanuri'},
-          {value: 'student8', label: 'Alex Ung'},
-          {value: 'student9', label: 'Will Stenzel'},
-          {value: 'student10', label: 'Samantha Pan'},])
 
-      setSelectedClasses(false);
+  const createClass = async (className) => {
+    try {
+      const res = await axios.post(
+        'http://localhost:8000/api/classes',
+        {
+          teacherFK: user.email,
+          name: className,
+        },
+      )
+
+      //debugger;
+      const data = await res.data;
+      //debugger;
+      if (res.status === 200) {
+        setClasses([...classes, data])
+        alert('Class Successfully Created!');
+        window.location.reload();
+
+      }
+    } catch (error) {
+      console.error('Error creating test:', error);
     }
+  };
 
+  const createTest = async (testName) => {
+    const res = await axios.post(
+      'http://localhost:8000/api/tests',
+      {
+        teacherFK: user.email,
+        classFK: selectedClass.value,
+        name: testName,
+      },
+    )
+
+    //debugger;
+    const data = await res.data;
+    //debugger;
+    if (res.status === 200) {
+      setTests([...tests, res.data])
+      alert('Test Successfully Created!');
+      window.location.reload();
+    }
   };
 
   const handleStudentChange = (selectedOption) => {
@@ -109,7 +172,7 @@ export default props => {
 
 
   const customStyles = {
-    control:  (provided, state)=> ({
+    control: (provided, state) => ({
       ...provided,
       width: 210,
       position: 'relative',
@@ -123,44 +186,151 @@ export default props => {
       width: 210,
       position: 'relative',
       top: 40
-    })};
+    })
+  };
 
 
   const options1 = [
-    { value: 'signup', label: 'Sign Up' },
-    { value: 'home', label: 'Home' },
-    { value: 'login', label: 'Log In' },
+    // { value: 'signup', label: 'Sign Up' },
+    // { value: 'home', label: 'Home' },
+    // { value: 'login', label: 'Log In' },
     { value: 'default', label: 'Default' },
-    {value: 'qs', label: 'Select Questions'},
-    {value: 'email', label: 'Email'},
-    {value: 'upload', label: 'Upload'}];
+    { value: 'qs', label: 'Select Questions' },
+    { value: 'email', label: 'Email' },
+    { value: 'upload', label: 'Upload' }];
 
-  const classOptions = [
-    { value: 'prog1', label: 'Programming 1' },
-    { value: 'APCS', label: 'AP Computer Science A' },
-    { value: 'SE', label: 'Software Engineering' },];
 
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    console.log("function called");
+    axios.get('http://localhost:8000/api/auth/logout')
+      .then(() => {
+        // Redirect the user after successful logout
+        navigate('/');
+      })
+      .catch((err) => {
+        console.error('Logout failed:', err);
+      });
+  };
+
+  const handleChangeTest = (selectedTest) => {
+    setSelectedTest(selectedTest);
+    console.log("handling test selection")
+    console.log(selectedTest.value)
+    if (selectedTest.value === "addTest") {
+      setUserInput('');
+    }
+    // Redirect to another page with the selected test value in the URL
+    else {
+      localStorage.setItem('selectedTest',selectedTest.value);
+      console.log(localStorage);
+      window.location.href = `/upload?selectedTest=${selectedTest.value}`;
+    }
+  }
+
+  // Function to handle user input change
+  const handleInputChange = (event) => {
+    setUserInput(event.target.value);
+  };
+
+  const handleKeyDownClass = (event) => {
+    if (event.key === 'Enter') {
+      createClass(event.target.value);
+    }
+  }
+  const handleKeyDownTest = (event) => {
+    if (event.key === 'Enter') {
+      createTest(event.target.value);
+    }
+  }
+
+
+
+  //populate class options with data from class table
+  useEffect(() => {
+    
+    async function fetchData() {
+      const value = await fetch(`http://localhost:8000/api/classes/${user.email}`);
   
+      const data = await value.json();
+      console.log(data)
+      const classes = data.result.map((entry) => {
+        return { value: entry.id, label: entry.name }
+      });
+      console.log(classes)
+      setClassOptions([...classes, { value: 'addClass', label: 'Add class...' }]);
+    }
+    localStorage.setItem('teacher', user.username)
+    console.log(localStorage)
+    fetchData();
+  }, [user.email]);
+
+
+
 
   return (
-    
+
     <Menu>
-      
+
       <div className="mt-auto m-auto w-50">
-        <Select placeholder="Pages" options = {options1} autoFocus={true} onChange={handleChange} styles={customStyles}/>
+        {/* <p1>Current User: {user.username}</p1> */}
+        {/* <Select
+          placeholder="Pages"
+          options={options1}
+          autoFocus={true}
+          onChange={handleChange}
+          styles={customStyles} /> */}
         <p></p>
-        <Select placeholder="Classes" options = {classOptions} autoFocus={true} onChange={handleChangeClasses} styles={customStyles}/>
+        <Select
+          placeholder="Classes"
+          options={classOptions}
+          autoFocus={true}
+          onChange={handleChangeClasses}
+          styles={customStyles}
+        />
+        <br></br>
+        <br></br>
+        {selectedClass && selectedClass.value === 'addClass' && (
+          <input
+            type="text"
+            value={userInput}
+            onChange={handleInputChange}
+            placeholder="Enter your new class"
+            onKeyDown={handleKeyDownClass}
+          />
+        )}
+
+
         <p></p>
-        <Select placeholder="Test" options = {testOptions} autoFocus={true} onChange={handleChange} styles={customStyles}  isDisabled={isOpenableClasses}/>
+        <Select
+          placeholder="Test"
+          options={testOptions}
+          autoFocus={true}
+          onChange={handleChangeTest}
+          styles={customStyles}
+          isDisabled={isOpenableClasses}
+        />
+        <br></br>
+        <br></br>
+        {selectedTest && selectedTest.value === 'addTest' && (
+          <input
+            type="text"
+            value={userInput}
+            onChange={handleInputChange}
+            placeholder="Enter new test name"
+            onKeyDown={handleKeyDownTest}
+          />
+        )}
         <p></p>
-        
+
       </div>
-      <div className = "signout">
-        <Link to="/"><button class="signoutbutton">Sign Out</button></Link>
+      <div className="signout">
+        <Link to="/"><button class="signoutbutton">Back to home</button></Link>
 
       </div>
     </Menu>
-    
+
 
 
   );

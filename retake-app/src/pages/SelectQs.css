@@ -5,6 +5,85 @@
     top: -30%;
 }
 
-.selectQsTable{
-    color:aquamarine
+.off:hover{
+    background-color: #6696ff;
+    cursor: pointer;
 }
+
+
+.on{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 10%;
+    box-shadow: none;
+    background-color: rgb(247, 0, 255);
+    border: none;
+    margin: 5px;
+    
+}
+
+.on:hover{
+    background-color: #15ff00;
+    cursor: pointer;
+}
+
+
+
+.ButtonsQs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  display: wrap;
+  flex-wrap: wrap;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #080710;
+    color: #ffffff;
+}
+
+.textInput{
+    width: 50%;
+    transform: translate(50%,50%);
+  top: 50%;
+  left: 50%;
+}
+
+.clickToEmailButton {
+    background-color: #5584B9; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .clickToEmailButton:hover{
+    background-color: #37527F; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
