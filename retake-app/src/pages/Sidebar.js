@@ -104,7 +104,7 @@ export default props => {
     }
     else {
       localStorage.setItem('selectedClass', selectedClass.value);
-      console.log(localStorage);
+      console.log(`this is ${selectedClass.value}` );
       const res = await fetch(`http://localhost:8000/api/tests/${selectedClass.value}`);
       const data = await res.json();
       //populate test options with data from class table

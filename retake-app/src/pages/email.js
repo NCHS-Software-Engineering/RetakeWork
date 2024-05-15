@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import Sidebar from './Sidebar';
 import './email.css';
 import axios from "axios";
@@ -17,7 +18,7 @@ const selectedTestValue = searchParams.get('selectedQuestions');
 
 //const questions = localStorage.getItem('questionsChosen');
 
-console.log(localStorage);
+const testId = localStorage.getItem('selectedTest');
 
 const Email = () => {
   var change = 'copy';
@@ -144,8 +145,7 @@ Thanks, ${generateSalutation()} ${lastName}
 
             <CopyToClipboard 
               text={emailText}
-              onCopy={() => alert("Copied")}
-              format={"text/plain"}>
+              onCopy={() => alert("Copied. To paste, do ctrl + shift + v to paste WITHOUT formating")}>
               <button className='copyButton'>Copy to clipboard</button>
             </CopyToClipboard>
           </form>

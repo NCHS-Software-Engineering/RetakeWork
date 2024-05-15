@@ -1,6 +1,6 @@
 # retakeWork
 ## Overview
-The retake app was designed and built by Samantha Pan, Akhil Kunari, Alex Ung, and Will Stenzel, at the request of Dr. Derek Miller. It is intended to allow teachers at Naperville Central High School to easily assign retake work to students. It allows teachers to create and select classes and tests, upload links, select questions, and generate email templates to send to students
+The retake app was designed and built by Samantha Pan, Akhil Kunari, Alex Ung, and Will Stenzel, at the request of Dr. Derek Miller. It is intended to allow teachers at Naperville Central High School. It allows teachers to create and select classes and tests, upload links, select questions, and generate email templates to send to students
 
 ## System Requirenments
 An up to date browser
