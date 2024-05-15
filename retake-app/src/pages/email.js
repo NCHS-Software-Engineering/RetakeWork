@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import Sidebar from './Sidebar';
 import './email.css';
-import axios from "axios";
+
 import fileUpload from './fileUpload';
 import {
   BrowserRouter as Router,
@@ -17,7 +18,7 @@ const selectedTestValue = searchParams.get('selectedQuestions');
 
 //const questions = localStorage.getItem('questionsChosen');
 
-console.log(localStorage);
+const testId = localStorage.getItem('selectedTest');
 
 const Email = () => {
   var change = 'copy';
@@ -73,15 +74,15 @@ const Email = () => {
 
   const [firstName, lastName] = localStorage.getItem('teacher').split(" ");
   const questions = localStorage.getItem('questionsChosen')
-  const emailText =
-  `Hello Student, 
-     
-  In order to qualify for a retake, please complete questions ${questions} from the worksheet attached to this email.
-            
-  Worksheet Link: ${link}
+  const emailText = `
+Hello Student,
 
+In order to qualify for a retake, please complete questions ${questions} from the worksheet attached to this email.
 
-  Thanks, ${generateSalutation()} ${lastName}`
+Worksheet Link: ${link}
+
+Thanks, ${generateSalutation()} ${lastName}
+`;
   console.log(emailText)
 
   return (
@@ -142,7 +143,7 @@ const Email = () => {
             </div>
             <p>Thanks, {generateSalutation()} {lastName}</p>
 
-            <CopyToClipboard
+            <CopyToClipboard 
               text={emailText}
               onCopy={() => alert("Copied. To paste, do ctrl + shift + v to paste WITHOUT formating")}>
               <button className='copyButton'>Copy to clipboard</button>

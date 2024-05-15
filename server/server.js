@@ -338,9 +338,13 @@ app.get('/api/link/:id', (req, res) => {
 
   const pull = `SELECT link FROM test WHERE id = ?`;
 
+  console.log(testID);
+
   connection.query(pull, [testID], (err, result) => {
-    console.log("getting classes")
+    console.log("getting link")
     if (err) throw err;
+
+    console.log(res.json({ result }));
     return res.json({ result });
   });
 });
