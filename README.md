@@ -71,14 +71,14 @@ a phpMyAdmin
 There are a few issues left
 1. sidebar.js and sidebar.css in the retake-app/src folder are extra and the following files: Home.js, Home.css, Import.css, Import.js, Login.css, Login.js, Login.jsx, Signup.css, and Signup.js, all found in retake-app/src/pages, aren't needed/used, but deleting them breaks the app. We did not have the time to fix them.
 2. App is not ADA complient
+3. localhost is mentioned, so it is not able to be accessed on any device other than the one running it
 
 ## Contact Info
-If you have any questions about the code we wrote, feel free to reach out to use. We might not be able to help you develop new code, but we can help you understand our current code. If emailing, add second try champions or retake app in email subject.
+If you have any questions about the code we wrote, need help with setting up the env file, or just have general questions, feel free to reach out to use. We might not be able to help you develop new code, but we can help you understand our current code and goals. If emailing, add second try champions or retake app in email subject. 
 
 | Name | Email |
 | ----------- | ----------- |
 | Alex Ung | alexung2007@icloud.com |
 | Will Stenzel | wstenzel77@gmail.com |
 | Samantha Pan | samanthapan06@gmail.com |
-| Akhil Kanuri | akhil.Kanuri@gmail.com |
-
+| Akhil Kanuri | akhil.kanuri@gmail.com |
