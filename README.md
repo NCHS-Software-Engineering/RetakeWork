@@ -12,7 +12,7 @@ An up to date browser
 3. Add a .env file in the server folder and in the src folder
 4. Add the env file data (from Dr. Miller)
 5. Add necessary env variables
-6. open two terminals
+6. Open two terminals
 7. In one terminal, run cd server, then npm run dev
 8. In the other terminal, run cd retake-app, then run npm start
 9. Enjoy!
@@ -47,7 +47,7 @@ An up to date browser
 | cors | access resources from other locations |
 
 ## Project Data Schema
-a phpMyAdmin
+A phpMyAdmin
 
 ## Folder Structure
 | folder | Description |
