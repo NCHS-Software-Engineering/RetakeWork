@@ -58,7 +58,7 @@ A phpMyAdmin
 |retake-app/public | logos and stuff. Not really used |
 | retake-app/src | frontend files, app.js, index.js, other files that are less important|
 | retake-app/src/assest | a pdf |
-| retake-app/src/pages | the actuall pages |
+| retake-app/src/pages | the actual pages |
 
 ## Remaining User Stories
 1. As a teacher, I can enter a link for a Google doc containing the retake work that needs to be completed. This creates the basis for how the emails are to be formatted and is what the developer is aiming to streamline for users. This task will take the effort of one member's development to create a functioning upload page. This task is considered complete when users can successfully submit and have access to future alteration of a link submission.
@@ -74,7 +74,7 @@ There are a few issues left
 3. localhost is mentioned, so it is not able to be accessed on any device other than the one running it
 
 ## Contact Info
-If you have any questions about the code we wrote, need help with setting up the env file, or just have general questions, feel free to reach out to use. We might not be able to help you develop new code, but we can help you understand our current code and goals. If emailing, add second try champions or retake app in email subject. 
+If you have any questions about the code we wrote, need help with setting up the env file, or just have general questions, feel free to reach out to us. We might not be able to help you develop new code, but we can help you understand our current code and goals. If emailing, add second try champions or retake app in email subject. 
 
 | Name | Email |
 | ----------- | ----------- |
